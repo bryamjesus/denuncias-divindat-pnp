@@ -147,7 +147,7 @@ h1,h2,.card-title,.hero-title{font-family: var(--font-display); font-weight: 700
 @media(min-width:480px){ .btn-out{width:auto} }
 .btn-out:hover{background:var(--primary-light)}
 
-.btn-row{display:flex;flex-direction:column;gap:12px;margin-top:28px;align-items:stretch}
+.btn-row{display:flex;flex-direction:column-reverse;gap:12px;margin-top:28px;align-items:stretch}
 @media(min-width:480px){ .btn-row{flex-direction:row;align-items:center} }
 
 /* HERO */
@@ -471,7 +471,7 @@ textarea.finput{
 <div id="geo-modal" class="modal-overlay hidden">
   <div class="modal-card">
     <div class="modal-head">
-      <div class="modal-icon-pulse">📍</div>
+      <div class="modal-icon-pulse"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1b5e3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
       <h2 class="modal-title" data-t="geo-title">Activación obligatoria de ubicación</h2>
       <p class="modal-sub" data-t="geo-sub">Requerido por el protocolo PNP · DIVINDAT antes de iniciar la denuncia</p>
     </div>
@@ -486,12 +486,12 @@ textarea.finput{
           <li data-t="geo-r4">Coordinar respuesta inmediata con la comisaría más cercana si el caso lo amerita.</li>
         </ul>
       </div>
-      <div class="modal-legal" data-t="geo-legal">⚖️ <strong>Aviso legal:</strong> Tu ubicación será registrada únicamente durante el llenado del formulario y se vinculará al expediente. Estos datos están protegidos bajo la Ley N° 29733 de Protección de Datos Personales. No se compartirán con terceros.</div>
+      <div class="modal-legal" data-t="geo-legal"><strong>Aviso legal:</strong> Tu ubicación será registrada únicamente durante el llenado del formulario y se vinculará al expediente. Estos datos están protegidos bajo la Ley N° 29733 de Protección de Datos Personales. No se compartirán con terceros.</div>
       <div id="geo-error" class="modal-error-box"></div>
     </div>
     <div class="modal-foot">
       <button class="modal-cancel" onclick="cancelLocation()" data-t="geo-cancel">Cancelar</button>
-      <button class="modal-accept" id="geo-accept-btn" onclick="acceptLocation()"><span>📍</span> <span data-t="geo-accept">Activar ubicación y continuar</span></button>
+      <button class="modal-accept" id="geo-accept-btn" onclick="acceptLocation()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:5px;flex-shrink:0" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span data-t="geo-accept">Activar ubicación y continuar</span></button>
     </div>
   </div>
 </div>
@@ -523,7 +523,7 @@ textarea.finput{
   <div class="container">
     <div class="nb-mobile-head">
       <div class="nb-brand" data-nav="0" style="cursor:pointer" title="Ir al inicio">
-        <div class="nb-escudo">🛡</div>
+        <div class="nb-escudo"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1b5e3a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2L3 7v5c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z"/></svg></div>
         <div class="nb-texts"><b>PNP · DIVINDAT</b><span data-t="nb-sub">División de Investigación de Delitos de Alta Tecnología</span></div>
       </div>
       <button class="hamburger-btn" onclick="document.getElementById('navbar').classList.toggle('menu-open')">☰</button>
@@ -540,8 +540,8 @@ textarea.finput{
         <span class="lang-sep">|</span>
         <button class="lang-btn" data-lang="ay" id="lb-ay">AY</button>
       </div>
-      <button class="nb-ayuda" data-nav="0.5" data-t="btn-ayuda">❓ Ayuda</button>
-      <button class="nb-emergencia" data-start="1" data-t="btn-emergencia">🚨 Me acaban de estafar ahora</button>
+      <button class="nb-ayuda" data-nav="0.5" data-t="btn-ayuda">Ayuda</button>
+      <button class="nb-emergencia" data-start="1" data-t="btn-emergencia"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:5px;flex-shrink:0" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Me acaban de estafar ahora</button>
     </div>
   </div>
 </nav>
@@ -564,12 +564,18 @@ textarea.finput{
       <h1 class="hero-title" data-t="hero-title">Plataforma de Denuncia de<br>Delitos Cibernéticos</h1>
       <p class="hero-sub" data-t="hero-sub">Denuncia phishing, fraude bancario, hackeo, suplantación o extorsión digital en menos de 10 minutos. Sin ir a ninguna comisaría. Con validez legal mediante ID Perú.</p>
       <div class="hero-btns">
-        <button class="btn-red" data-start="1" data-t="btn-urgente">🚨 Iniciar denuncia urgente</button>
+        <button class="btn-red" data-start="1" data-t="btn-urgente"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;flex-shrink:0" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Iniciar denuncia urgente</button>
         <button class="btn-hero-white" data-start="0.5" data-t="btn-iniciar">Iniciar denuncia</button>
       </div>
     </div>
     <div class="hero-right">
-      <div class="hero-icon-big">🛡️💻</div>
+      <div class="hero-icon-big">
+        <svg width="90" height="90" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M45 8L16 20v22c0 17.2 12.3 33.3 29 37.4C61.7 75.3 74 59.2 74 42V20L45 8z" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
+          <path d="M45 18L24 28v16c0 12.6 9 24.4 21 27.4 12-3 21-14.8 21-27.4V28L45 18z" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+          <path d="M36 42l6 6 12-12" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
       <div class="stat-grid">
         <div class="stat-box"><div class="stat-num">42,000+</div><div class="stat-lbl" data-t="stat1">Denuncias en 2024</div></div>
         <div class="stat-box"><div class="stat-num">&lt;10 min</div><div class="stat-lbl" data-t="stat2">Para completar denuncia</div></div>
@@ -594,7 +600,7 @@ textarea.finput{
   <div class="card">
     <h2 class="card-title" data-t="tut-title">Centro de ayuda y tutorial</h2>
     <p class="card-sub" data-t="tut-sub">¿Cómo funciona el proceso de denuncia? Sigue estos 5 pasos — te tomará menos de 10 minutos.</p>
-    <div class="scroll-hint"><span>Desliza para ver pasos</span> ↔️</div>
+    <div class="scroll-hint"><span>Desliza para ver pasos</span> ↔</div>
     <div class="scroll-grid" style="margin-bottom:28px">
       <div class="tut-step"><div class="tut-num">1</div><div class="tut-title" data-t="tstep1">Reúne tu evidencia</div><div class="tut-text" data-t="tstep1b">Capturas, URLs, datos bancarios, mensajes</div></div>
       <div class="tut-step"><div class="tut-num">2</div><div class="tut-title" data-t="tstep2">Selecciona el delito</div><div class="tut-text" data-t="tstep2b">El formulario se adapta automáticamente</div></div>
@@ -746,10 +752,10 @@ textarea.finput{
     <div class="tip" id="ev-tip">📌 Para phishing: captura del correo/SMS falso, URL del sitio, comprobante de transferencia.</div>
     <input type="file" id="file-input" accept="image/jpeg,image/png,application/pdf" multiple style="display:none" onchange="handleFiles(this.files)"/>
     <div class="uzone" id="drop-zone" onclick="document.getElementById('file-input').click()">
-      <div style="font-size:40px;margin-bottom:10px">☁️</div>
+      <div style="margin-bottom:10px"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#1b5e3a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg></div>
       <p style="font-size:15px;font-weight:700;color:#1b5e3a" data-t="upload-title">Arrastra tus archivos aquí o haz clic para seleccionar</p>
       <p style="font-size:12px;color:#666;margin-top:6px;font-weight:600" data-t="upload-sub">📎 Formatos permitidos: JPG · PNG · PDF únicamente</p>
-      <p style="font-size:12px;color:#888;margin-top:4px" data-t="upload-sub2">⚖️ Máximo 10 MB por archivo · Hasta 3 capturas y 1 PDF</p>
+      <p style="font-size:12px;color:#888;margin-top:4px" data-t="upload-sub2">Máx. 10 MB por archivo · Hasta 3 capturas y 1 PDF</p>
     </div>
     <div id="upload-counter" style="display:flex;gap:12px;margin-top:14px;font-size:12px">
       <span style="background:#e7f3eb;border:1px solid #b8d4c2;border-radius:6px;padding:4px 12px;color:#1b5e3a;font-weight:600">🖼️ Capturas: <span id="cnt-img">0</span>/3</span>
@@ -805,7 +811,7 @@ textarea.finput{
       <button class="btn-blue" style="font-size:15px;padding:13px 32px" data-nav="6" data-t="btn-idperu">Continuar con ID Perú →</button>
       <p class="id-footnote" data-t="id-footnote">🔐 Tus datos biométricos están protegidos bajo la Ley N° 29733 de Protección de Datos Personales.</p>
     </div>
-    <div class="id-right"><div style="font-size:80px">🛡️</div><p style="color:#1b5e3a;font-size:12px;margin-top:8px;font-weight:700" data-t="id-secure">Autenticación segura<br>vía RENIEC</p></div>
+    <div class="id-right"><svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#1b5e3a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2L3 7v5c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z"/><path d="M9 12l2 2 4-4" stroke-width="2"/></svg><p style="color:#1b5e3a;font-size:12px;margin-top:8px;font-weight:700" data-t="id-secure">Autenticación segura<br>vía RENIEC</p></div>
   </div>
   <div class="btn-row"><button class="btn-out" data-nav="4" data-t="btn-volver">← Volver</button></div>
 </div>
@@ -827,8 +833,8 @@ textarea.finput{
       </div>
       <div class="notif-box">✉️ <span data-t="notif-msg">Te notificaremos sobre los avances de tu caso al canal que seleccionaste.</span></div>
       <div class="success-btns">
-        <button class="btn-out" data-nav="0" data-t="btn-seguimiento">🔍 Ver seguimiento de mi caso</button>
-        <button class="btn-blue" data-t="btn-pdf">⬇️ Descargar constancia (PDF)</button>
+        <button class="btn-out" data-nav="0" data-t="btn-seguimiento">Ver seguimiento de mi caso</button>
+        <button class="btn-blue" data-t="btn-pdf"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;flex-shrink:0" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Descargar constancia (PDF)</button>
         <button class="btn-blue" data-nav="0" data-t="btn-finalizar">Finalizar y volver al inicio</button>
       </div>
     </div>
@@ -847,7 +853,7 @@ textarea.finput{
         <div class="footer-title">DIVINDAT · PNP</div>
         <p class="footer-text" data-t="ft-desc">La División de Investigación de Delitos de Alta Tecnología es la unidad especializada de la Policía Nacional del Perú encargada de combatir el cibercrimen a nivel nacional.</p>
         <div style="display:flex;gap:12px;margin-top:20px;align-items:center">
-          <div style="background:#fff; padding:6px; border-radius:4px; display:flex; align-items:center; justify-content:center; width:40px; height:40px; font-size:24px;">🛡️</div>
+          <div style="background:#fff; padding:8px; border-radius:4px; display:flex; align-items:center; justify-content:center; width:40px; height:40px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b5e3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2L3 7v5c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z"/></svg></div>
           <div style="background:rgba(255,255,255,0.1); padding:6px; border-radius:4px; display:flex; align-items:center; justify-content:center; width:40px; height:40px; font-size:24px;">🇵🇪</div>
         </div>
       </div>
@@ -883,10 +889,11 @@ textarea.finput{
 
 <script>
 
+
 const T = {
   es: {
     'nb-sub':'División de Investigación de Delitos de Alta Tecnología',
-    'btn-ayuda':'❓ Ayuda','btn-emergencia':'🚨 Me acaban de estafar ahora','btn-urgente':'🚨 Iniciar denuncia urgente','btn-iniciar':'Iniciar denuncia',
+    'btn-ayuda':'Ayuda','btn-emergencia':'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:5px;flex-shrink:0" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Me acaban de estafar ahora','btn-urgente':'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;flex-shrink:0" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Iniciar denuncia urgente','btn-iniciar':'Iniciar denuncia',
     'hero-badge':'PNP · DIVINDAT · LEY 30096',
     'hero-title':'Plataforma de Denuncia de<br>Delitos Cibernéticos',
     'hero-sub':'Denuncia phishing, fraude bancario, hackeo, suplantación o extorsión digital en menos de 10 minutos. Sin ir a ninguna comisaría. Con validez legal mediante ID Perú.',
@@ -911,7 +918,7 @@ const T = {
     'privacy-tip':'🔒 Sus datos serán usados únicamente para notificarle el avance de su caso y no serán compartidos con terceros.',
     's3-sub':'Completa la información específica de tu caso.','tip-strong':'Si hay dinero en riesgo ahora:','tip-text':'Llama a la Línea 1820 (gratuita, 24h) para bloqueo bancario inmediato.',
     's4-title':'Adjunta evidencia digital','s4-sub':'Sube hasta 3 capturas de pantalla (JPG/PNG) y/o 1 documento PDF que respalden tu denuncia.',
-    'upload-title':'Arrastra tus archivos aquí o haz clic para seleccionar','upload-sub':'📎 Formatos permitidos: JPG · PNG · PDF únicamente','upload-sub2':'⚖️ Máximo 10 MB por archivo · Hasta 3 capturas y 1 PDF',
+    'upload-title':'Arrastra tus archivos aquí o haz clic para seleccionar','upload-sub':'📎 Formatos permitidos: JPG · PNG · PDF únicamente','upload-sub2':'Máximo 10 MB por archivo · Hasta 3 capturas y 1 PDF',
     'files-lbl':'Archivos adjuntos','files-lbl-prefix':'Archivos adjuntos','hash-note':'🔐 Cada archivo recibe hash SHA-256, timestamp e IP para cadena de custodia forense.',
     's5-title':'Revisa tu información','s5-sub':'Verifica que todos los datos estén correctos antes de continuar.',
     'rev-tipo':'Tipo de delito','rev-datos':'Datos personales','rev-nombre':'Nombre','rev-tel':'Teléfono','rev-correo':'Correo',
@@ -922,7 +929,7 @@ const T = {
     'success-title':'¡Denuncia registrada correctamente!','success-sub':'Tu caso ha sido registrado con éxito en el sistema de DIVINDAT.',
     'case-lbl':'Número de caso','meta-fecha':'Fecha y hora','meta-estado':'Estado actual','status-recibido':'Recibido','meta-delito':'Tipo de delito','meta-invest':'Investigador',
     'notif-msg':'Te notificaremos sobre los avances de tu caso al canal que seleccionaste.',
-    'btn-seguimiento':'🔍 Ver seguimiento de mi caso','btn-pdf':'⬇️ Descargar constancia (PDF)',
+    'btn-seguimiento':'Ver seguimiento de mi caso','btn-pdf':'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;flex-shrink:0" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Descargar constancia (PDF)',
     'bank-title':'¿Necesitas bloqueo bancario inmediato?','bank-text':'Llama a la Línea 1820 (gratuita, 24h) para coordinar el bloqueo de cuentas bancarias involucradas.',
     'btn-volver':'← Volver','btn-continuar':'Continuar →','btn-comenzar':'Comenzar denuncia →','btn-volver-inicio':'← Volver al inicio',
     'nav-inicio':'Inicio','nav-tutorial':'Tutorial','nav-tipo':'1 Tipo','nav-datos':'2 Datos','nav-detalles':'3 Detalles','nav-evidencia':'4 Evidencia','nav-confirmar':'5 Confirmar','nav-exito':'✅ Éxito',
@@ -935,7 +942,7 @@ const T = {
     'geo-r2':'Generar la geo-firma forense que acompaña a la cadena de custodia digital.',
     'geo-r3':'Prevenir denuncias fraudulentas mediante validación geográfica del denunciante.',
     'geo-r4':'Coordinar respuesta inmediata con la comisaría más cercana si el caso lo amerita.',
-    'geo-legal':'⚖️ <strong>Aviso legal:</strong> Tu ubicación será registrada únicamente durante el llenado del formulario y se vinculará al expediente. Estos datos están protegidos bajo la Ley N° 29733 de Protección de Datos Personales. No se compartirán con terceros.',
+    'geo-legal':'<strong>Aviso legal:</strong> Tu ubicación será registrada únicamente durante el llenado del formulario y se vinculará al expediente. Estos datos están protegidos bajo la Ley N° 29733 de Protección de Datos Personales. No se compartirán con terceros.',
     'geo-cancel':'Cancelar',
     'geo-accept':'Activar ubicación y continuar',
     'geo-active':'📍 Ubicación activa',
@@ -966,7 +973,7 @@ const T = {
   },
   qu: {
     'nb-sub':'Teknolojíawan Llullakuykunata Maskaq Kikin (DIVINDAT)',
-    'btn-ayuda':'❓ Yanapay','btn-emergencia':'🚨 Kunanmi suwariwanku','btn-urgente':'🚨 Utqaylla willakuyta qallariy','btn-iniciar':'Willakuyta qallariy',
+    'btn-ayuda':'Yanapay','btn-emergencia':'Kunanmi suwariwanku','btn-urgente':'Utqaylla willakuyta qallariy','btn-iniciar':'Willakuyta qallariy',
     'hero-badge':'PNP · DIVINDAT · LEY 30096',
     'hero-title':'Ciberdelitoskunamanta<br>Willakuy Plataforma',
     'hero-sub':'Phishing, qullqi suwayta, hackeo, suplantaciónta willakuy 10 minutollapi. Manam comisaríaman risqachu. ID Perúwan chaninchasqa.',
@@ -991,7 +998,7 @@ const T = {
     'privacy-tip':'🔒 Willakuyniyki casoykimanta yachachinaykillampaqmi, manam pikunawanpas qukusunki.',
     's3-sub':'Casoykimanta kikin willakuykunata hunt\'ay.','tip-strong':'Qullqiyki kunan llakipis:','tip-text':'1820 liniaman waqay bloqueo bancario nisqapaq.',
     's4-title':'Ruwasqaykita adjuntar','s4-sub':'Kinsa captura (JPG/PNG) ima huk PDF qillqa adjuntayway, casoyki willakuypaq.',
-    'upload-title':'Kayman archivosniykita usqhaychay o clic ruwayway','upload-sub':'📎 Atisqa formatos: JPG · PNG · PDF sapallan','upload-sub2':'⚖️ 10 MB sapa archivo · 3 captura ima 1 PDF',
+    'upload-title':'Kayman archivosniykita usqhaychay o clic ruwayway','upload-sub':'📎 Atisqa formatos: JPG · PNG · PDF sapallan','upload-sub2':'10 MB sapa archivo · 3 captura ima 1 PDF',
     'files-lbl':'Adjuntasqa archivos','files-lbl-prefix':'Adjuntasqa archivos','hash-note':'🔐 Sapa archivo SHA-256 hash, timestamp ima chaskikun.',
     's5-title':'Willakuyniykita qaway','s5-sub':'Lliw willay chiqantas kasqanta qaway manaraj ñist\'iniykipaq.',
     'rev-tipo':'Delito tipo','rev-datos':'Runa willakuy','rev-nombre':'Suti','rev-tel':'Teléfono','rev-correo':'Correo',
@@ -1002,7 +1009,7 @@ const T = {
     'success-title':'¡Willakuyki allintan chaskikurqan!','success-sub':'Casoyki DIVINDAT systemapi chaskikurqan.',
     'case-lbl':'Caso número','meta-fecha':'Punchay hora','meta-estado':'Kunan estado','status-recibido':'Chaskisqa','meta-delito':'Delito tipo','meta-invest':'Investigador',
     'notif-msg':'Casoykimanta yachachisunkim akllasqayki canalniykiman.',
-    'btn-seguimiento':'🔍 Casoyta qatiy','btn-pdf':'⬇️ Certificado PDF uraykuy',
+    'btn-seguimiento':'Casoyta qatiy','btn-pdf':'Certificado PDF uraykuy',
     'bank-title':'¿Kunan banco bloqueo munankichu?','bank-text':'1820 liniaman waqay (qullqiniyuq, 24h) banco cuentata bloquearnapaq.',
     'btn-volver':'← Kutiy','btn-continuar':'Katiy →','btn-comenzar':'Willakuyta qallariy →','btn-volver-inicio':'← Qallarinman kutiy',
     'nav-inicio':'Qallariy','nav-tutorial':'Yanapay','nav-tipo':'1 Rikchaq','nav-datos':'2 Runa','nav-detalles':'3 Willakuy','nav-evidencia':'4 Ruwasqa','nav-confirmar':'5 Chiqanchay','nav-exito':'✅ Tukuy',
@@ -1015,7 +1022,7 @@ const T = {
     'geo-r2':'Forense geo-firma cadena de custodia digital ruway.',
     'geo-r3':'Llulla willakuykunata jark\'ay.',
     'geo-r4':'Aswan qaylla comisaría tantachiy chayri kan.',
-    'geo-legal':'⚖️ <strong>Liyiymanta willay:</strong> Lugarniyki formulario hunt\'asqaykita rikuchillanqa, casoyki expedientepi qillqasqa. Ley N° 29733 waqaychasqa.',
+    'geo-legal':'<strong>Liyiymanta willay:</strong> Lugarniyki formulario hunt\'asqaykita rikuchillanqa, casoyki expedientepi qillqasqa. Ley N° 29733 waqaychasqa.',
     'geo-cancel':'Saqiy',
     'geo-accept':'Lugar kachay, katiy',
     'geo-active':'📍 Lugar kachasqa',
@@ -1046,7 +1053,7 @@ const T = {
   },
   ay: {
     'nb-sub':'Teknolojia Juchanakan Uñakipaña Kikin (DIVINDAT)',
-    'btn-ayuda':'❓ Yanapaña','btn-emergencia':'🚨 Jichhax suwawistu','btn-urgente':'🚨 Jankaki yatiyawi qalltaña','btn-iniciar':'Yatiyawi qalltaña',
+    'btn-ayuda':'Yanapaña','btn-emergencia':'Jichhax suwawistu','btn-urgente':'Jankaki yatiyawi qalltaña','btn-iniciar':'Yatiyawi qalltaña',
     'hero-badge':'PNP · DIVINDAT · LEY 30096',
     'hero-title':'Ciberdelitunakan<br>Yatiyawi Plataforma',
     'hero-sub':'Phishing, qullqi suwaña, hackeo, yatiyaña 10 minutun. Comisarianx maynïchu. ID Perump chaninchatawa.',
@@ -1071,7 +1078,7 @@ const T = {
     'privacy-tip':'🔒 Yatiyawïx casunakamp yatichañatakiwa, makï jaqinakampiwa qukañäni.',
     's3-sub':'Casuma kimsa yatiyawi junt\'aña.','tip-strong':'Qullqïx jichhax phaxsitawa:','tip-text':'1820 nimanx wawiyaña bloqueo bancario irnaqañpataki.',
     's4-title':'Lurawi adjuntar','s4-sub':'Kimsa captura (JPG/PNG) ukat mä PDF qillqa adjuntaña, casuma yatiyawimpataki.',
-    'upload-title':'Kamanx archivonakama usqharaña utajx clic luraña','upload-sub':'📎 Phaqtata formatos: JPG · PNG · PDF sapaki','upload-sub2':'⚖️ 10 MB sapa archivo · 3 captura ukat 1 PDF',
+    'upload-title':'Kamanx archivonakama usqharaña utajx clic luraña','upload-sub':'📎 Phaqtata formatos: JPG · PNG · PDF sapaki','upload-sub2':'10 MB sapa archivo · 3 captura ukat 1 PDF',
     'files-lbl':'Adjuntata archivos','files-lbl-prefix':'Adjuntata archivos','hash-note':'🔐 Sapa archivo SHA-256 hash, timestamp ima chiktata.',
     's5-title':'Yatiyawimax uñakipaña','s5-sub':'Lliw yatiyawi chiqankas kaskanama uñakipaña.',
     'rev-tipo':'Jucha tipo','rev-datos':'Jaqi yatiyawi','rev-nombre':'Suti','rev-tel':'Teléfono','rev-correo':'Correo',
@@ -1082,7 +1089,7 @@ const T = {
     'success-title':'¡Yatiyawimax allintan chiktatayna!','success-sub':'Casuma DIVINDAT sistimapi chiktatayna.',
     'case-lbl':'Caso número','meta-fecha':'Uru hora','meta-estado':'Jichha estado','status-recibido':'Chiktata','meta-delito':'Jucha tipo','meta-invest':'Uñakipaña',
     'notif-msg':'Casunakamp yatichañataki akathasïri canalruwa.',
-    'btn-seguimiento':'🔍 Casuma qathaña','btn-pdf':'⬇️ Certificado PDF uraña',
+    'btn-seguimiento':'Casuma qathaña','btn-pdf':'Certificado PDF uraña',
     'bank-title':'¿Jichhax banco bloqueo munaskta?','bank-text':'1820 nimanx wawiyaña (gratis, 24h) banco cuenta bloquearañataki.',
     'btn-volver':'← Kutt\'aña','btn-continuar':'Kathaña →','btn-comenzar':'Yatiyawi qalltaña →','btn-volver-inicio':'← Qalltan kuthaña',
     'nav-inicio':'Qalltaña','nav-tutorial':'Yanapaña','nav-tipo':'1 Rikuña','nav-datos':'2 Jaqi','nav-detalles':'3 Yatiyawi','nav-evidencia':'4 Luräwi','nav-confirmar':'5 Irnaqaña','nav-exito':'✅ Tukuña',
@@ -1095,7 +1102,7 @@ const T = {
     'geo-r2':'Forense geo-firma cadena de custodia digital luraña.',
     'geo-r3':'Llunthaña yatiyawinakax jark\'aña.',
     'geo-r4':'Jak\'a comisaria ulluqsuyaña tantachañpataki.',
-    'geo-legal':'⚖️ <strong>Liyimpi yatiyawi:</strong> Lugarmax formulario junt\'añkamak yatisi, expedientearu chiktata. Ley N° 29733 waqaychata.',
+    'geo-legal':'<strong>Liyimpi yatiyawi:</strong> Lugarmax formulario junt\'añkamak yatisi, expedientearu chiktata. Ley N° 29733 waqaychata.',
     'geo-cancel':'Apsutaña',
     'geo-accept':'Lugar wakichaña, sarantaña',
     'geo-active':'📍 Lugar wakichata',
@@ -1126,17 +1133,6 @@ const T = {
   }
 };
 
-/* ====== ESTADO DE LA APLICACIÓN (State Management) ====== */
-const AppState = {
-  lang: 'es',
-  step: 0,
-  crime: 'Phishing',
-  imgCount: 0,
-  pdfCount: 0,
-  geo: { active: false, watchId: null },
-  pendingTargetStep: null
-};
-
 const crimes = {
   'Phishing':   {icon:'🎣', tips:{es:'📌 Evidencia: URL del sitio falso · Captura del correo/SMS · Comprobante de transferencia · Código de operación bancaria.',qu:'📌 Ruwasqa: Llullaq URL · Captura qillqa/SMS · Qullqi willay · Banco código.',ay:'📌 Lurawi: Llunthaña URL · Captura qillqa/SMS · Qullqi yatiyawi · Banco código.'}},
   'Fraude':     {icon:'💳', tips:{es:'📌 Evidencia: Comprobante del cargo no reconocido · Número CCI de destino · Ticket de la operación en tu app bancaria.',qu:'📌 Ruwasqa: Mana ruwayki cargo · CCI número · Banco app ticket.',ay:'📌 Lurawi: Mä sañuri cargo · CCI número · Banco app ticket.'}},
@@ -1145,694 +1141,569 @@ const crimes = {
   'Extorsión':  {icon:'😰', tips:{es:'📌 Evidencia: Capturas de los mensajes de amenaza · Número/perfil del extorsionador · Monto exigido · Comprobante si ya pagaste.',qu:'📌 Ruwasqa: Qapariy capturas · Extorsionador número · Qullqi mañasqa · Pagasqa riki.',ay:'📌 Lurawi: Jaqukipaña capturas · Extorsionador número · Qullqi mañata · Pagata.'}}
 };
 
-/* ====== LOGICA CORE ====== */
-function getCrimeName(c){
-  const n = T[AppState.lang];
-  const map={'Phishing':n['c1'],'Fraude':n['c2'],'Suplantación':n['c3'],'Hackeo':n['c4'],'Extorsión':n['c5']};
-  return map[c]||c;
+// ─── CONSTANTS ────────────────────────────────────────────────────────────────
+// Crime → sub-form id map (Fraude reutiliza el form de Phishing)
+const CRIME_FORM = {
+  Phishing:'form-phishing', Fraude:'form-phishing',
+  'Suplantación':'form-sup', Hackeo:'form-hackeo', 'Extorsión':'form-ext'
+};
+
+// Screen id map
+const SCREEN_IDS = {0:'s0', 0.5:'s05', 1:'s1', 2:'s2', 3:'s3', 4:'s4', 5:'s5', 6:'s6'};
+
+// Navbar section label map
+const NAV_LABELS = {
+  0:'sec-inicio', 0.5:'nav-tutorial', 1:'nav-tipo', 2:'nav-datos',
+  3:'nav-detalles', 4:'nav-evidencia', 5:'nav-confirmar', 6:'nav-exito'
+};
+
+// Subtitles for step-3 header per language
+const S3_SUBTITLE = {es:'Cuéntanos qué ocurrió', qu:'Ima pasarqanta willaykuway', ay:'Kunasa luraski yatiyawi'};
+
+// Upload limits
+const UPLOAD = { MAX_MB:10, MAX_IMG:3, MAX_PDF:1 };
+
+// Geo error code → translation key
+const GEO_ERR = {1:'err-geo-denied', 2:'err-geo-gps', 3:'err-geo-timeout'};
+
+// ─── APPLICATION STATE ────────────────────────────────────────────────────────
+const AppState = {
+  lang:'es', step:0, crime:'Phishing',
+  imgCount:0, pdfCount:0,
+  geo:{ active:false, watchId:null },
+  pendingTargetStep:null
+};
+
+// ─── UI UTILITIES ─────────────────────────────────────────────────────────────
+const ui = {
+  /** Null-safe getElementById */
+  $: id => document.getElementById(id),
+
+  /** Mark an input as invalid */
+  markInvalid(el) {
+    if (!el) return;
+    el.style.borderColor = 'var(--danger)';
+    el.style.backgroundColor = '#fdf2f1';
+  },
+
+  /** Clear invalid styling from an input */
+  clearInvalid(el) {
+    if (!el) return;
+    el.style.borderColor = '';
+    el.style.backgroundColor = '';
+  },
+
+  /**
+   * Show a toast message.
+   * @param {string}  msg
+   * @param {'error'|'success'} type
+   * @param {string|null} [anchorId] - reuse existing element with this id
+   */
+  showToast(msg, type = 'error', anchorId = null) {
+    const isSuccess = type === 'success';
+    const bg  = isSuccess ? '#1b5e3a' : 'var(--danger)';
+    const pos = isSuccess ? 'bottom:24px' : 'top:20px';
+
+    let t = anchorId ? ui.$(anchorId) : null;
+    if (!t) {
+      t = document.createElement('div');
+      if (anchorId) t.id = anchorId;
+      t.style.cssText = 'position:fixed;' + pos + ';left:50%;transform:translateX(-50%);' +
+        'color:#fff;padding:12px 20px;border-radius:8px;font-size:14px;font-weight:700;' +
+        'z-index:9999;box-shadow:0 4px 12px rgba(0,0,0,.2);animation:fadeIn 0.3s;' +
+        'display:flex;align-items:center;gap:10px;';
+      document.body.appendChild(t);
+    }
+    t.style.background = bg;
+    t.innerHTML = msg;
+    t.style.display = 'flex';
+    if (t._tid) clearTimeout(t._tid);
+    t._tid = setTimeout(() => { t.style.display = 'none'; }, isSuccess ? 3500 : 4000);
+  }
+};
+
+// ─── TRANSLATION HELPER ───────────────────────────────────────────────────────
+/** Get translated string for current lang, falls back to es */
+function t(key) {
+  return T[AppState.lang]?.[key] ?? T.es[key] ?? key;
 }
 
-function applyTranslations(lang){
-  const tr = T[lang];
-  if(!tr) return;
-  document.querySelectorAll('[data-t]').forEach(el=>{
+function applyTranslations(lang) {
+  const tr = T[lang]; if (!tr) return;
+  document.querySelectorAll('[data-t]').forEach(el => {
     const key = el.getAttribute('data-t');
-    if(tr[key] !== undefined){
-      if(el.tagName==='INPUT'||el.tagName==='TEXTAREA') return;
-      
-      // Preservar elementos span (como los asteriscos de obligatoriedad)
-      const spans = Array.from(el.querySelectorAll('span'));
-      el.innerHTML = tr[key];
-      // Si el texto de traducción no incluía ya sus propios spans, re-agregamos los originales al final
-      if (spans.length > 0 && !tr[key].includes('<span')) {
-         spans.forEach(span => el.appendChild(span));
-         // Añadir un espacio antes del span para que no se pegue al texto
-         el.insertBefore(document.createTextNode(' '), el.lastChild);
-      }
+    if (tr[key] === undefined) return;
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') return;
+    const spans = [...el.querySelectorAll('span')];
+    el.innerHTML = tr[key];
+    if (spans.length && !tr[key].includes('<span')) {
+      el.insertBefore(document.createTextNode(' '), null);
+      spans.forEach(s => el.appendChild(s));
     }
   });
-  const nbSec = document.getElementById('nb-section-lbl');
-  if(nbSec){ const k='sec-'+nbSec.getAttribute('data-page')||'inicio'; }
 }
 
-function setLang(lang){
+function setLang(lang) {
   AppState.lang = lang;
-  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
-  const btn = document.getElementById('lb-'+lang);
-  if(btn) btn.classList.add('active');
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  ui.$('lb-' + lang)?.classList.add('active');
   applyTranslations(lang);
-  const sb = document.getElementById('stepbar');
-  if(!sb.classList.contains('hidden')) updateStepperUI(AppState.step);
+  if (!ui.$('stepbar')?.classList.contains('hidden')) updateStepperUI(AppState.step);
 }
 
-function updateStepperUI(step){
-  const labels = T[AppState.lang]['stepper-labels'] || ['Tipo','Datos','Detalles','Evidencia','Confirmación'];
-  const c = document.getElementById('stepper'); if(!c) return;
-  let h = '';
-  const currentStepNum = Math.floor(step);
-  for(let i=0;i<5;i++){
-    const n=i+1;
-    const isDone = n < currentStepNum;
-    const cls=isDone?'done clickable':n===currentStepNum?'active':'pend';
-    const lbl=isDone?'done':n===currentStepNum?'active':'';
-    const sym=isDone?'✓':n;
-    const clickAttr = isDone ? `data-nav="${n}"` : '';
-    h+=`<div class="stp"><div class="stp-c ${cls}" ${clickAttr}>${sym}</div><div class="stp-lbl ${lbl}">${labels[i]}</div></div>`;
-    if(i<4)h+=`<div class="stp-line ${isDone?'done':''}"></div>`;
+// ─── STEPPER ─────────────────────────────────────────────────────────────────
+function updateStepperUI(step) {
+  const c = ui.$('stepper'); if (!c) return;
+  const labels = t('stepper-labels') || ['Tipo','Datos','Detalles','Evidencia','Confirmación'];
+  const cur = Math.floor(step);
+  c.innerHTML = Array.from({length: 5}, (_, i) => {
+    const n = i + 1;
+    const done   = n < cur;
+    const active = n === cur;
+    const cls = done ? 'done clickable' : active ? 'active' : 'pend';
+    const lbl = done ? 'done' : active ? 'active' : '';
+    const nav = done ? ' data-nav="' + n + '"' : '';
+    const sep = i < 4 ? '<div class="stp-line ' + (done ? 'done' : '') + '"></div>' : '';
+    return '<div class="stp"><div class="stp-c ' + cls + '"' + nav + '>' + (done ? '✓' : n) + '</div>' +
+           '<div class="stp-lbl ' + lbl + '">' + labels[i] + '</div></div>' + sep;
+  }).join('');
+}
+
+// ─── CRIME HELPERS ────────────────────────────────────────────────────────────
+function getCrimeName(c) {
+  const map = {Phishing:'c1', Fraude:'c2', 'Suplantación':'c3', Hackeo:'c4', 'Extorsión':'c5'};
+  return t(map[c]) ?? c;
+}
+
+// ─── FORM RENDERING ───────────────────────────────────────────────────────────
+function renderDynamicForm(crime) {
+  const title = ui.$('s3-title');
+  if (title) title.textContent = getCrimeName(crime) + ' — ' + (S3_SUBTITLE[AppState.lang] ?? S3_SUBTITLE.es);
+
+  ['form-phishing','form-sup','form-hackeo','form-ext'].forEach(id =>
+    ui.$(id)?.classList.add('hidden')
+  );
+  ui.$(CRIME_FORM[crime] ?? 'form-phishing')?.classList.remove('hidden');
+
+  const ev = ui.$('ev-tip');
+  if (ev && crimes[crime]) ev.textContent = crimes[crime].tips[AppState.lang] ?? crimes[crime].tips.es;
+}
+
+function renderReviewScreen() {
+  const s5c = ui.$('s5-crime');
+  if (s5c) s5c.textContent = (crimes[AppState.crime]?.icon ?? '') + ' ' + getCrimeName(AppState.crime);
+
+  const ev = ui.$('s5-evidence');
+  if (ev) {
+    const box = '<div style="background:var(--primary-bg);border-radius:var(--radius-md);padding:10px 14px;font-size:20px">';
+    const imgs = Array(AppState.imgCount).fill(box + '🖼️</div>').join('');
+    const pdfs = Array(AppState.pdfCount).fill(box + '📄</div>').join('');
+    ev.innerHTML = imgs + pdfs ||
+      '<span style="color:var(--text-muted);font-size:13px;font-style:italic">Sin archivos adjuntos</span>';
   }
-  c.innerHTML=h;
 }
 
-function renderDynamicForm(crime){
-  const t3=document.getElementById('s3-title');
-  if(t3) t3.textContent = getCrimeName(crime) + ' — ' + (AppState.lang==='qu'?'Ima pasarqanta willaykuway': AppState.lang==='ay'?'Kunasa luraski yatiyawi':'Cuéntanos qué ocurrió');
-  
-  ['form-phishing','form-sup','form-hackeo','form-ext'].forEach(f=>{const e=document.getElementById(f);if(e)e.classList.add('hidden')});
-  
-  const fmap={'Phishing':'form-phishing','Fraude':'form-phishing','Suplantación':'form-sup','Hackeo':'form-hackeo','Extorsión':'form-ext'};
-  const show=fmap[crime]||'form-phishing';
-  const e=document.getElementById(show);if(e)e.classList.remove('hidden');
-  
-  const ev=document.getElementById('ev-tip');
-  if(ev&&crimes[crime]) ev.textContent=crimes[crime].tips[AppState.lang]||crimes[crime].tips.es;
-}
-
-function renderReviewScreen(){
-  const s5c=document.getElementById('s5-crime');
-  if(s5c) s5c.textContent=(crimes[AppState.crime]?.icon||'❓')+' '+getCrimeName(AppState.crime);
-  
-  const ev=document.getElementById('s5-evidence');
-  if(ev){
-    let h='';
-    for(let i=0;i<AppState.imgCount;i++) h+='<div style="background:var(--primary-bg);border-radius:var(--radius-md);padding:10px 14px;font-size:20px">🖼️</div>';
-    for(let i=0;i<AppState.pdfCount;i++) h+='<div style="background:var(--primary-bg);border-radius:var(--radius-md);padding:10px 14px;font-size:20px">📄</div>';
-    if(!h) h='<span style="color:var(--text-muted);font-size:13px;font-style:italic">Sin archivos adjuntos</span>';
-    ev.innerHTML=h;
-  }
-}
-
-function navigateToScreen(n){
+// ─── NAVIGATION ───────────────────────────────────────────────────────────────
+function navigateToScreen(n) {
   const nNum = parseFloat(n);
-  
-  // Validation check if moving forward
+
   if (nNum > AppState.step && AppState.step > 0 && AppState.step < 6) {
     if (!validateStep(AppState.step)) return;
   }
-  
-  const screenIds = {0:'s0',0.5:'s05',1:'s1',2:'s2',3:'s3',4:'s4',5:'s5',6:'s6'};
-  Object.values(screenIds).forEach(id=>{
-    const e=document.getElementById(id);
-    if(e){
-      e.classList.add('hidden');
-      e.classList.remove('fade-in');
-    }
+
+  Object.values(SCREEN_IDS).forEach(id => {
+    const el = ui.$(id);
+    if (!el) return;
+    el.classList.add('hidden');
+    el.classList.remove('fade-in');
   });
-  
-  const t = screenIds[nNum]; 
-  if(t){
-    const e=document.getElementById(t);
-    if(e) {
-      e.classList.remove('hidden');
-      // Trigger reflow for animation
-      void e.offsetWidth;
-      e.classList.add('fade-in');
-    }
+
+  const target = ui.$(SCREEN_IDS[nNum]);
+  if (target) {
+    target.classList.remove('hidden');
+    void target.offsetWidth;
+    target.classList.add('fade-in');
   }
-  
-  const sb=document.getElementById('stepbar');
-  const stepMap = {1:1,2:2,3:3,4:4,5:5,6:6};
-  
-  if(stepMap[nNum]){
-    AppState.step=stepMap[nNum];
-    sb.classList.remove('hidden');
+
+  const sb = ui.$('stepbar');
+  const isStep = Number.isInteger(nNum) && nNum >= 1 && nNum <= 6;
+  if (isStep) {
+    AppState.step = nNum;
+    sb?.classList.remove('hidden');
     updateStepperUI(AppState.step);
   } else {
-    AppState.step=0;
-    sb.classList.add('hidden');
+    AppState.step = 0;
+    sb?.classList.add('hidden');
   }
-  
-  const nb=document.getElementById('nb-section-lbl');
-  const secs={0:'sec-inicio',0.5:'nav-tutorial',1:'nav-tipo',2:'nav-datos',3:'nav-detalles',4:'nav-evidencia',5:'nav-confirmar',6:'nav-exito'};
-  if(nb&&secs[nNum]){ nb.textContent=T[AppState.lang][secs[nNum]]||''; }
-  
-  if(nNum === 3) renderDynamicForm(AppState.crime);
-  if(nNum === 5) renderReviewScreen();
-  if(nNum === 6) {
-    const s6c=document.getElementById('s6-crime');
-    if(s6c) s6c.textContent=getCrimeName(AppState.crime);
+
+  const nb = ui.$('nb-section-lbl');
+  if (nb && NAV_LABELS[nNum]) nb.textContent = t(NAV_LABELS[nNum]);
+
+  if (nNum === 3) renderDynamicForm(AppState.crime);
+  if (nNum === 5) renderReviewScreen();
+  if (nNum === 6) {
+    const s6c = ui.$('s6-crime');
+    if (s6c) s6c.textContent = getCrimeName(AppState.crime);
     stopLocation();
   }
-  if(nNum === 0) stopLocation();
-  
-  window.scrollTo(0,0);
+  if (nNum === 0) stopLocation();
+
+  window.scrollTo(0, 0);
   applyTranslations(AppState.lang);
-  
   saveDraft();
 }
 
-/* ====== EVENT DELEGATION ====== */
-document.addEventListener('DOMContentLoaded', () => {
-  document.body.addEventListener('click', (e) => {
-    // Nav
-    const navBtn = e.target.closest('[data-nav]');
-    if(navBtn) { navigateToScreen(navBtn.getAttribute('data-nav')); return; }
-    
-    // Start Denuncia
-    const startBtn = e.target.closest('[data-start]');
-    if(startBtn) { startDenuncia(parseFloat(startBtn.getAttribute('data-start'))); return; }
-    
-    // Set Lang
-    const langBtn = e.target.closest('[data-lang]');
-    if(langBtn) { setLang(langBtn.getAttribute('data-lang')); return; }
-    
-    // Crime Selection
-    const actionEl = e.target.closest('[data-action]');
-    if(actionEl) {
-      const action = actionEl.getAttribute('data-action');
-      if(action === 'selCrime' || action === 'selTutCrime') {
-        const crimeName = actionEl.getAttribute('data-crime');
-        const containerId = action === 'selCrime' ? '#s1' : '#tut-crimes';
-        document.querySelectorAll(`${containerId} .ccard`).forEach(c=>c.classList.remove('sel'));
-        actionEl.classList.add('sel'); 
-        AppState.crime = crimeName;
-        
-        const tipId = action === 'selCrime' ? 'crime-tip' : 'tut-tip';
-        const tip = document.getElementById(tipId);
-        if(tip&&crimes[crimeName]){tip.classList.remove('hidden');tip.textContent=crimes[crimeName].tips[AppState.lang]||crimes[crimeName].tips.es;}
-        
-        const b = document.getElementById('btn-s1');if(b)b.disabled=false;
-        
-        if (action === 'selTutCrime') {
-          const btnTut = document.getElementById('btn-start-tut');
-          if (btnTut) btnTut.setAttribute('data-start', '2');
-        }
-      }
-      if(action === 'toggleNotif') {
-         toggleNotif(actionEl.getAttribute('data-notif'));
-      }
-    }
-  });
-  
-  document.body.addEventListener('change', (e) => {
-    const changeEl = e.target.closest('[data-change]');
-    if(changeEl && changeEl.getAttribute('data-change') === 'checkOtherBank') {
-      const wrap = document.getElementById('other-bank-wrap');
-      if(wrap) {
-        if(changeEl.value === 'Otros') wrap.classList.remove('hidden');
-        else wrap.classList.add('hidden');
-      }
-    }
-  });
+// ─── NOTIFICATION TOGGLE ──────────────────────────────────────────────────────
+function toggleNotif(type) {
+  const sms   = ui.$('nch-sms');
+  const email = ui.$('nch-email');
+  const both  = ui.$('nch-both');
+  if (!sms || !email || !both) return;
 
-  document.body.addEventListener('input', (e) => {
-    const t = e.target;
-    if(t.id === 'monto-min' || t.id === 'monto-max' || t.id === 'ext-monto-min' || t.id === 'ext-monto-max') {
-      let minInput, maxInput;
-      if (AppState.crime === 'Phishing' || AppState.crime === 'Fraude') {
-        minInput = document.getElementById('monto-min');
-        maxInput = document.getElementById('monto-max');
-      } else if (AppState.crime === 'Extorsión') {
-        minInput = document.getElementById('ext-monto-min');
-        maxInput = document.getElementById('ext-monto-max');
-      }
-      
-      if (minInput && maxInput && minInput.value && maxInput.value) {
-        if (parseFloat(maxInput.value) < parseFloat(minInput.value)) {
-          maxInput.style.borderColor = 'var(--danger)';
-          maxInput.style.backgroundColor = '#fdf2f1';
-          
-          let toast = document.getElementById('err-toast');
-          if(!toast){
-            toast = document.createElement('div');
-            toast.id = 'err-toast';
-            toast.style.cssText = 'position:fixed;top:20px;left:50%;transform:translateX(-50%);background:var(--danger);color:#fff;padding:12px 20px;border-radius:8px;font-size:14px;font-weight:700;z-index:9999;box-shadow:0 4px 12px rgba(0,0,0,0.2);animation:fadeIn 0.3s;';
-            document.body.appendChild(toast);
-          }
-          toast.innerHTML = T[AppState.lang]['err-monto'];
-          toast.style.display = 'block';
-          if(toast.dataset.timeoutId) clearTimeout(parseInt(toast.dataset.timeoutId));
-          toast.dataset.timeoutId = setTimeout(()=>{toast.style.display='none'}, 3000);
-        } else {
-          maxInput.style.borderColor = '';
-          maxInput.style.backgroundColor = '';
-        }
-      }
-    }
-  });
-
-  // init
-  if (!checkDraft()) {
-    navigateToScreen(0);
-  }
-});
-
-/* ====== NOTIFICACIONES ====== */
-function toggleNotif(type){
-  const sms = document.getElementById('nch-sms');
-  const email = document.getElementById('nch-email');
-  const both = document.getElementById('nch-both');
-  if(!sms || !email || !both) return;
-
-  if(type === 'both'){
-    const willActivate = !both.classList.contains('on');
-    sms.classList.toggle('on', willActivate);
-    email.classList.toggle('on', willActivate);
-    both.classList.toggle('on', willActivate);
+  if (type === 'both') {
+    const on = !both.classList.contains('on');
+    [sms, email, both].forEach(el => el.classList.toggle('on', on));
   } else {
-    const target = (type === 'sms') ? sms : email;
-    target.classList.toggle('on');
-    if(sms.classList.contains('on') && email.classList.contains('on')){
-      both.classList.add('on');
-    } else {
-      both.classList.remove('on');
-    }
+    (type === 'sms' ? sms : email).classList.toggle('on');
+    both.classList.toggle('on', sms.classList.contains('on') && email.classList.contains('on'));
   }
 
-  const wrap = document.getElementById('notif-wrap');
-  if(wrap) {
-    wrap.style.border = '';
-    wrap.style.padding = '';
-    wrap.style.backgroundColor = '';
-  }
+  const wrap = ui.$('notif-wrap');
+  if (wrap) wrap.style.cssText = '';
 
-  const reqTel = document.getElementById('req-tel');
-  const reqEmail = document.getElementById('req-email');
-  if(reqTel) {
-    if(sms.classList.contains('on')) reqTel.classList.remove('hidden');
-    else reqTel.classList.add('hidden');
-  }
-  if(reqEmail) {
-    if(email.classList.contains('on')) reqEmail.classList.remove('hidden');
-    else reqEmail.classList.add('hidden');
-  }
+  ui.$('req-tel')?.classList.toggle('hidden', !sms.classList.contains('on'));
+  ui.$('req-email')?.classList.toggle('hidden', !email.classList.contains('on'));
 }
 
-/* ====== GEOLOCALIZACIÓN ====== */
-function startDenuncia(targetStep){
-  if(AppState.geo.active){ navigateToScreen(targetStep); return; }
+// ─── GEOLOCATION ─────────────────────────────────────────────────────────────
+function resetGeoBtn() {
+  var btn = ui.$('geo-accept-btn');
+  if (!btn) return;
+  btn.disabled = false;
+  btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:5px;flex-shrink:0" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span data-t="geo-accept">' + t('geo-accept') + '</span>';
+}
+
+function startDenuncia(targetStep) {
+  if (AppState.geo.active) { navigateToScreen(targetStep); return; }
   AppState.pendingTargetStep = targetStep;
-  const m = document.getElementById('geo-modal');
-  const err = document.getElementById('geo-error');
-  const btn = document.getElementById('geo-accept-btn');
-  if(err){ err.style.display='none'; err.innerHTML=''; }
-  if(btn){ btn.disabled=false; }
-  if(m) m.classList.remove('hidden');
+  const err = ui.$('geo-error');
+  const btn = ui.$('geo-accept-btn');
+  if (err) { err.style.display = 'none'; err.innerHTML = ''; }
+  if (btn) btn.disabled = false;
+  ui.$('geo-modal')?.classList.remove('hidden');
 }
 
-window.cancelLocation = function(){
-  document.getElementById('geo-modal').classList.add('hidden');
+window.cancelLocation = function() {
+  ui.$('geo-modal')?.classList.add('hidden');
   AppState.pendingTargetStep = null;
-}
-
-window.acceptLocation = function(){
-  const btn = document.getElementById('geo-accept-btn');
-  const err = document.getElementById('geo-error');
-  if(!navigator.geolocation){
-    showGeoError(T[AppState.lang]['err-geo-support']);
-    return;
+  // Si estaba en "Solicitando permiso…" y el usuario canceló,
+  // detener el watchPosition pendiente y restaurar el botón
+  if (AppState.geo.watchId !== null && !AppState.geo.active) {
+    navigator.geolocation.clearWatch(AppState.geo.watchId);
+    AppState.geo.watchId = null;
   }
+  resetGeoBtn();
+};
+
+window.acceptLocation = function() {
+  const btn = ui.$('geo-accept-btn');
+  const err = ui.$('geo-error');
+  if (!navigator.geolocation) { showGeoError(t('err-geo-support')); return; }
   btn.disabled = true;
-  btn.innerHTML = T[AppState.lang]['geo-requesting'];
+  btn.innerHTML = t('geo-requesting');
 
   AppState.geo.watchId = navigator.geolocation.watchPosition(
-    pos => {
-      if(!AppState.geo.active){
+    function(pos) {
+      if (!AppState.geo.active) {
         AppState.geo.active = true;
-        document.getElementById('geo-modal').classList.add('hidden');
-        document.getElementById('geo-badge').classList.remove('hidden');
+        ui.$('geo-modal')?.classList.add('hidden');
+        ui.$('geo-badge')?.classList.remove('hidden');
         updateGeoCoords(pos);
-        const t = AppState.pendingTargetStep;
+        var target = AppState.pendingTargetStep;
         AppState.pendingTargetStep = null;
-        navigateToScreen(t);
+        navigateToScreen(target);
       } else {
         updateGeoCoords(pos);
       }
     },
-    err => {
+    function(geoErr) {
       btn.disabled = false;
-      btn.innerHTML = '<span>📍</span> <span data-t="geo-accept">Reintentar activación</span>';
-      let msg = T[AppState.lang]['err-geo-fail'];
-      if(err.code === 1) msg = T[AppState.lang]['err-geo-denied'];
-      else if(err.code === 2) msg = T[AppState.lang]['err-geo-gps'];
-      else if(err.code === 3) msg = T[AppState.lang]['err-geo-timeout'];
-      showGeoError(msg);
+      btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:5px;flex-shrink:0" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span data-t="geo-accept">Reintentar activación</span>';
+      showGeoError(t(GEO_ERR[geoErr.code] ?? 'err-geo-fail'));
     },
     { enableHighAccuracy:true, timeout:15000, maximumAge:0 }
   );
-}
+};
 
-function showGeoError(msg){
-  const err = document.getElementById('geo-error');
-  if(!err) return;
+function showGeoError(msg) {
+  const err = ui.$('geo-error');
+  if (!err) return;
   err.innerHTML = msg;
   err.style.display = 'block';
 }
 
-function updateGeoCoords(pos){
-  const c = document.getElementById('geo-coords');
-  if(c && pos && pos.coords){
+function updateGeoCoords(pos) {
+  const c = ui.$('geo-coords');
+  if (c && pos && pos.coords) {
     c.textContent = '· ' + pos.coords.latitude.toFixed(4) + ', ' + pos.coords.longitude.toFixed(4);
   }
 }
 
-function stopLocation(){
-  if(AppState.geo.watchId !== null){
+function stopLocation() {
+  if (AppState.geo.watchId !== null) {
     navigator.geolocation.clearWatch(AppState.geo.watchId);
     AppState.geo.watchId = null;
   }
   AppState.geo.active = false;
-  const b = document.getElementById('geo-badge');
-  if(b) b.classList.add('hidden');
+  ui.$('geo-badge')?.classList.add('hidden');
 }
 
-/* ====== UPLOAD ====== */
-const MAX_SIZE_MB = 10;
-const MAX_IMG = 3;
-const MAX_PDF = 1;
-
-function showError(msg){
-  const e = document.getElementById('upload-error');
-  if(!e) return;
+// ─── UPLOAD ───────────────────────────────────────────────────────────────────
+function showUploadError(msg) {
+  const e = ui.$('upload-error');
+  if (!e) return;
   e.textContent = '⚠️ ' + msg;
   e.style.display = 'block';
-  setTimeout(()=>{e.style.display='none'}, 4500);
+  setTimeout(function() { e.style.display = 'none'; }, 4500);
 }
 
-function updateCounters(){
-  const ci=document.getElementById('cnt-img'); if(ci)ci.textContent=AppState.imgCount;
-  const cp=document.getElementById('cnt-pdf'); if(cp)cp.textContent=AppState.pdfCount;
-  const total = AppState.imgCount+AppState.pdfCount;
-  const fc=document.getElementById('files-count'); if(fc)fc.textContent=total;
-  
-  const title = document.querySelector('[data-t="upload-title"]');
-  const dzone = document.getElementById('drop-zone');
-  if(title && dzone) {
-    if(total > 0) {
-      title.textContent = 'Añadir más evidencias (Arrastra o haz clic)';
+function updateCounters() {
+  const total = AppState.imgCount + AppState.pdfCount;
+  const ci = ui.$('cnt-img');  if (ci) ci.textContent = AppState.imgCount;
+  const cp = ui.$('cnt-pdf');  if (cp) cp.textContent = AppState.pdfCount;
+  const fc = ui.$('files-count'); if (fc) fc.textContent = total;
+
+  const titleEl = document.querySelector('[data-t="upload-title"]');
+  const dzone   = ui.$('drop-zone');
+  if (titleEl && dzone) {
+    if (total > 0) {
+      titleEl.textContent = 'Añadir más evidencias (Arrastra o haz clic)';
       dzone.style.borderColor = 'var(--primary)';
       dzone.style.backgroundColor = '#e8f0eb';
     } else {
-      title.textContent = 'Arrastra tus archivos aquí o haz clic para seleccionar';
+      titleEl.textContent = 'Arrastra tus archivos aquí o haz clic para seleccionar';
       dzone.style.borderColor = '';
       dzone.style.backgroundColor = '';
     }
   }
 }
 
-window.removeFile = function(btn, type){
-  if(type==='img') AppState.imgCount--;
-  if(type==='pdf') AppState.pdfCount--;
+window.removeFile = function(btn, type) {
+  if (type === 'img') AppState.imgCount--;
+  if (type === 'pdf') AppState.pdfCount--;
   btn.parentElement.remove();
   updateCounters();
-}
-
-window.handleFiles = function(fileList){
-  if(!fileList) return;
-  let added = 0;
-  for(const f of fileList){
-    const isImg = (f.type === 'image/jpeg' || f.type === 'image/png');
-    const isPdf = (f.type === 'application/pdf');
-    if(!isImg && !isPdf){ showError(T[AppState.lang]['err-file-format']); continue; }
-    const sizeMB = f.size / (1024*1024);
-    if(sizeMB > MAX_SIZE_MB){ showError(T[AppState.lang]['err-file-size']); continue; }
-    if(isImg && AppState.imgCount >= MAX_IMG){ showError(T[AppState.lang]['err-file-imgs']); continue; }
-    if(isPdf && AppState.pdfCount >= MAX_PDF){ showError(T[AppState.lang]['err-file-pdf']); continue; }
-    
-    if(isImg) AppState.imgCount++; else AppState.pdfCount++;
-    const l = document.getElementById('flist');
-    const d = document.createElement('div');
-    d.className = 'frow fade-in';
-    const type = isImg ? 'img' : 'pdf';
-    const icon = isImg ? '🖼️' : '📄';
-    d.innerHTML = `<span style="font-size:18px;flex-shrink:0">${icon}</span><span class="fname" title="${f.name}">${f.name}</span><span class="fsize">${sizeMB.toFixed(2)} MB</span><button class="fdel" onclick="removeFile(this,'${type}')" title="Eliminar">🗑</button>`;
-    l.appendChild(d);
-    added++;
-  }
-  
-  if (added > 0) {
-    let t = document.getElementById('succ-toast');
-    if(!t){
-      t = document.createElement('div');
-      t.id = 'succ-toast';
-      t.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1b5e3a;color:#fff;padding:12px 24px;border-radius:10px;font-size:14px;font-weight:700;z-index:9999;box-shadow:0 6px 20px rgba(0,0,0,0.3);animation:slideUp 0.3s;display:flex;align-items:center;gap:10px;';
-      document.body.appendChild(t);
-    }
-    const msgSuffix = added === 1 ? T[AppState.lang]['upload-success-single'] : T[AppState.lang]['upload-success-multi'];
-    t.innerHTML = `<span style="font-size:18px">✅</span> <span>${added} ${msgSuffix}</span>`;
-    t.style.display = 'flex';
-    if(t.dataset.timeoutId) clearTimeout(parseInt(t.dataset.timeoutId));
-    t.dataset.timeoutId = setTimeout(()=>{t.style.display='none'}, 3500);
-  }
-  
-  updateCounters();
-  const inp = document.getElementById('file-input');
-  if(inp) inp.value = '';
-}
-
-// ----- UI Utilities -----
-const uiUtils = {
-  markInvalid(el) {
-    if (!el) return;
-    el.style.borderColor = 'var(--danger)';
-    el.style.backgroundColor = '#fdf2f1';
-  },
-  clearInvalid(el) {
-    if (!el) return;
-    el.style.borderColor = '';
-    el.style.backgroundColor = '';
-  },
-  showToast(msg, type = 'error') {
-    // Ensure a container exists
-    let container = document.getElementById('toast-container');
-    if (!container) {
-      container = document.createElement('div');
-      container.id = 'toast-container';
-      container.style.position = 'fixed';
-      container.style.top = '20px';
-      container.style.left = '50%';
-      container.style.transform = 'translateX(-50%)';
-      container.style.zIndex = '10000';
-      document.body.appendChild(container);
-    }
-    const toast = document.createElement('div');
-    toast.textContent = msg;
-    toast.style.cssText = `background:${type==='error'? 'var(--danger)' : '#1b5e3a'};color:#fff;padding:12px 20px;border-radius:8px;font-size:14px;font-weight:700;box-shadow:0 4px 12px rgba(0,0,0,0.2);margin-top:8px;`;
-    container.appendChild(toast);
-    setTimeout(() => { container.removeChild(toast); }, 4000);
-  }
 };
 
+window.handleFiles = function(fileList) {
+  if (!fileList) return;
+  var added = 0;
+  for (var i = 0; i < fileList.length; i++) {
+    var f = fileList[i];
+    var isImg = (f.type === 'image/jpeg' || f.type === 'image/png');
+    var isPdf = (f.type === 'application/pdf');
+    var sizeMB = f.size / (1024 * 1024);
 
+    if (!isImg && !isPdf)                              { showUploadError(t('err-file-format')); continue; }
+    if (sizeMB > UPLOAD.MAX_MB)                        { showUploadError(t('err-file-size'));   continue; }
+    if (isImg && AppState.imgCount >= UPLOAD.MAX_IMG)  { showUploadError(t('err-file-imgs'));   continue; }
+    if (isPdf && AppState.pdfCount >= UPLOAD.MAX_PDF)  { showUploadError(t('err-file-pdf'));    continue; }
+
+    if (isImg) AppState.imgCount++; else AppState.pdfCount++;
+    var type  = isImg ? 'img' : 'pdf';
+    var icon  = isImg ? '🖼️' : '📄';
+    var row = document.createElement('div');
+    row.className = 'frow fade-in';
+    row.innerHTML = '<span style="font-size:18px;flex-shrink:0">' + icon + '</span>' +
+      '<span class="fname" title="' + f.name + '">' + f.name + '</span>' +
+      '<span class="fsize">' + sizeMB.toFixed(2) + ' MB</span>' +
+      '<button class="fdel" onclick="removeFile(this,\'' + type + '\')" title="Eliminar">🗑</button>';
+    var flist = ui.$('flist');
+    if (flist) flist.appendChild(row);
+    added++;
+  }
+
+  if (added > 0) {
+    var msgSuffix = added === 1 ? t('upload-success-single') : t('upload-success-multi');
+    ui.showToast('<span style="font-size:18px">✅</span> <span>' + added + ' ' + msgSuffix + '</span>', 'success', 'succ-toast');
+  }
+  updateCounters();
+  var inp = ui.$('file-input');
+  if (inp) inp.value = '';
+};
+
+// ─── VALIDATION ───────────────────────────────────────────────────────────────
+
+/** Check a single required field. Returns true if valid. */
 function checkRequired(id) {
-  const el = document.getElementById(id);
-  if (!el) return true;
-  const val = el.value ? el.value.trim() : '';
-  const isValid = val !== '';
-  if (isValid) uiUtils.clearInvalid(el); else uiUtils.markInvalid(el);
-  return isValid;
+  var el = ui.$(id); if (!el) return true;
+  var valid = el.value.trim() !== '';
+  if (valid) ui.clearInvalid(el); else ui.markInvalid(el);
+  return valid;
 }
 
-/* ====== UX IMPROVEMENTS (Validation, Drafts, Drag&Drop) ====== */
+/** Get the monto [min, max] inputs for the active crime */
+function getMontoInputs() {
+  if (AppState.crime === 'Phishing' || AppState.crime === 'Fraude')
+    return [ui.$('monto-min'), ui.$('monto-max')];
+  if (AppState.crime === 'Extorsión')
+    return [ui.$('ext-monto-min'), ui.$('ext-monto-max')];
+  return [null, null];
+}
+
+/** Validate monto range. Returns true if valid. */
+function validateMontoRange() {
+  var pair = getMontoInputs();
+  var minEl = pair[0], maxEl = pair[1];
+  if (!minEl || !maxEl || !minEl.value || !maxEl.value) return true;
+  if (parseFloat(maxEl.value) < parseFloat(minEl.value)) {
+    ui.markInvalid(maxEl);
+    ui.showToast(t('err-monto'), 'error', 'err-toast');
+    maxEl.addEventListener('input', function() { ui.clearInvalid(maxEl); }, {once:true});
+    return false;
+  }
+  ui.clearInvalid(maxEl);
+  return true;
+}
 
 function validateStep(stepNum) {
-  const stepIds = {1:'s1',2:'s2',3:'s3',4:'s4',5:'s5'};
-  const container = document.getElementById(stepIds[stepNum]);
-  if(!container) return true;
-  
-  let isValid = true;
-  
+  var stepMap = {1:'s1',2:'s2',3:'s3',4:'s4',5:'s5'};
+  var container = ui.$(stepMap[stepNum]);
+  if (!container) return true;
+  var valid = true;
+  var hasEmpty = false;
+
   if (stepNum === 2) {
-    const sms = document.getElementById('nch-sms');
-    const email = document.getElementById('nch-email');
+    var sms   = ui.$('nch-sms');
+    var email = ui.$('nch-email');
     if (sms && email && !sms.classList.contains('on') && !email.classList.contains('on')) {
-       uiUtils.showToast(T[AppState.lang]['err-notif'], 'error');
-       const wrap = document.getElementById('notif-wrap');
-       if(wrap) {
-         wrap.style.border = '1.5px solid var(--danger)';
-         wrap.style.padding = '8px';
-         wrap.style.borderRadius = '8px';
-         wrap.style.backgroundColor = '#fdf2f1';
-         isValid = false;
-       }
+      ui.showToast(t('err-notif'), 'error');
+      var wrap = ui.$('notif-wrap');
+      if (wrap) wrap.style.cssText = 'border:1.5px solid var(--danger);padding:8px;border-radius:8px;background:#fdf2f1;';
+      valid = false;
     }
+    ['inp-nom','inp-apat','inp-amat','inp-doc'].forEach(function(id) {
+      if (!checkRequired(id)) { valid = false; hasEmpty = true; }
+    });
+    if (sms && sms.classList.contains('on'))   { if (!checkRequired('inp-tel'))   { valid = false; hasEmpty = true; } }
+    if (email && email.classList.contains('on')){ if (!checkRequired('inp-email')) { valid = false; hasEmpty = true; } }
   }
 
-  let missingFields = false;
-  
-  // Validación explícita de seguridad para Paso 2
-  if (stepNum === 2) {
-     const reqInputs = ['inp-nom', 'inp-apat', 'inp-amat', 'inp-doc'];
-     reqInputs.forEach(id => {
-       if (!checkRequired(id)) {
-         isValid = false;
-         missingFields = true;
-       }
-     });
-     
-     // Validación condicional
-     const sms = document.getElementById('nch-sms');
-     const email = document.getElementById('nch-email');
-     if (sms && sms.classList.contains('on')) {
-       const tel = document.getElementById('inp-tel');
-       if (tel && (!tel.value || tel.value.trim() === '')) {
-         tel.style.borderColor = 'var(--danger)';
-         tel.style.backgroundColor = '#fdf2f1';
-         isValid = false;
-         missingFields = true;
-       }
-     }
-     if (email && email.classList.contains('on')) {
-       const mail = document.getElementById('inp-email');
-       if (mail && (!mail.value || mail.value.trim() === '')) {
-         mail.style.borderColor = 'var(--danger)';
-         mail.style.backgroundColor = '#fdf2f1';
-         isValid = false;
-         missingFields = true;
-       }
-     }
-  }
-
-  // Validación dinámica general
-  container.querySelectorAll('.fg').forEach(fg => {
+  container.querySelectorAll('.fg').forEach(function(fg) {
     if (fg.classList.contains('hidden') || fg.closest('.hidden')) return;
-    const span = fg.querySelector('label span');
-    const isRequired = span && !span.classList.contains('hidden') && span.textContent.includes('*');
-    if (isRequired) {
-      const input = fg.querySelector('.finput');
-      if (input && (!input.value || input.value.trim() === '')) {
-        input.style.borderColor = 'var(--danger)';
-        input.style.backgroundColor = '#fdf2f1';
-        isValid = false;
-        missingFields = true;
-        input.addEventListener('input', function() {
-          this.style.borderColor = '';
-          this.style.backgroundColor = '';
-        }, {once:true});
-      }
+    var span   = fg.querySelector('label span');
+    var isReq  = span && !span.classList.contains('hidden') && span.textContent.includes('*');
+    if (!isReq) return;
+    var input = fg.querySelector('.finput');
+    if (input && !input.value.trim()) {
+      ui.markInvalid(input);
+      input.addEventListener('input', function() { ui.clearInvalid(input); }, {once:true});
+      valid    = false;
+      hasEmpty = true;
     }
   });
 
-  if (missingFields) {
-     let t = document.getElementById('err-toast');
-     if(!t){
-        t = document.createElement('div');
-        t.id = 'err-toast';
-        t.style.cssText = 'position:fixed;top:20px;left:50%;transform:translateX(-50%);background:var(--danger);color:#fff;padding:12px 20px;border-radius:8px;font-size:14px;font-weight:700;z-index:9999;box-shadow:0 4px 12px rgba(0,0,0,0.2);animation:fadeIn 0.3s;';
-        document.body.appendChild(t);
-     }
-     t.innerHTML = T[AppState.lang]['err-required'];
-     t.style.display = 'block';
-     if(t.dataset.timeoutId) clearTimeout(parseInt(t.dataset.timeoutId));
-     t.dataset.timeoutId = setTimeout(()=>{t.style.display='none'}, 4000);
-  }
+  if (hasEmpty) ui.showToast(t('err-required'), 'error', 'err-toast');
+  if (stepNum === 3 && !validateMontoRange()) valid = false;
 
-  if (stepNum === 3) {
-    let minInput, maxInput;
-    if (AppState.crime === 'Phishing' || AppState.crime === 'Fraude') {
-      minInput = document.getElementById('monto-min');
-      maxInput = document.getElementById('monto-max');
-    } else if (AppState.crime === 'Extorsión') {
-      minInput = document.getElementById('ext-monto-min');
-      maxInput = document.getElementById('ext-monto-max');
-    }
-    
-    if (minInput && maxInput && minInput.value && maxInput.value) {
-      if (parseFloat(maxInput.value) < parseFloat(minInput.value)) {
-        maxInput.style.borderColor = 'var(--danger)';
-        maxInput.style.backgroundColor = '#fdf2f1';
-        isValid = false;
-        
-        let t = document.getElementById('err-toast');
-        if(!t){
-          t = document.createElement('div');
-          t.id = 'err-toast';
-          t.style.cssText = 'position:fixed;top:20px;left:50%;transform:translateX(-50%);background:var(--danger);color:#fff;padding:12px 20px;border-radius:8px;font-size:14px;font-weight:700;z-index:9999;box-shadow:0 4px 12px rgba(0,0,0,0.2);animation:fadeIn 0.3s;';
-          document.body.appendChild(t);
-        }
-        t.innerHTML = T[AppState.lang]['err-monto'];
-        t.style.display = 'block';
-        setTimeout(()=>{t.style.display='none'}, 4000);
-        
-        maxInput.addEventListener('input', function() {
-          this.style.borderColor = '';
-          this.style.backgroundColor = '';
-        }, {once:true});
-      }
-    }
-  }
-
-  return isValid;
+  return valid;
 }
 
+// ─── DRAFT ────────────────────────────────────────────────────────────────────
 function saveDraft() {
-  if (AppState.step > 0 && AppState.step < 6) {
-    const draft = { step: AppState.step, crime: AppState.crime, lang: AppState.lang };
-    localStorage.setItem('divindat_draft', JSON.stringify(draft));
-  } else if (AppState.step === 6) {
+  if (AppState.step > 0 && AppState.step < 6)
+    localStorage.setItem('divindat_draft', JSON.stringify({step:AppState.step, crime:AppState.crime, lang:AppState.lang}));
+  else if (AppState.step === 6)
     localStorage.removeItem('divindat_draft');
-  }
 }
 
 function checkDraft() {
-  const draftStr = localStorage.getItem('divindat_draft');
-  if(draftStr) {
-    try {
-      const draft = JSON.parse(draftStr);
-      if(draft.step > 0 && draft.step < 6) {
-        resumeDraft();
-        return true;
-      }
-    } catch(e) {}
-  }
+  try {
+    var draft = JSON.parse(localStorage.getItem('divindat_draft'));
+    if (draft && draft.step > 0 && draft.step < 6) { resumeDraft(); return true; }
+  } catch(e) {}
   return false;
 }
 
 window.resumeDraft = function() {
-  const draftStr = localStorage.getItem('divindat_draft');
-  if(draftStr) {
-    const draft = JSON.parse(draftStr);
+  try {
+    var draft = JSON.parse(localStorage.getItem('divindat_draft'));
+    if (!draft) return;
     setLang(draft.lang);
-    
-    // Select the correct crime card
-    const ccard = document.querySelector(`[data-action="selCrime"][data-crime="${draft.crime}"]`);
-    if(ccard) {
-       document.querySelectorAll('#s1 .ccard').forEach(c=>c.classList.remove('sel'));
-       ccard.classList.add('sel');
-       AppState.crime = draft.crime;
-       const b = document.getElementById('btn-s1');if(b)b.disabled=false;
+    var card = document.querySelector('[data-action="selCrime"][data-crime="' + draft.crime + '"]');
+    if (card) {
+      document.querySelectorAll('#s1 .ccard').forEach(function(c) { c.classList.remove('sel'); });
+      card.classList.add('sel');
+      AppState.crime = draft.crime;
+      var b = ui.$('btn-s1'); if (b) b.disabled = false;
     }
-    
     navigateToScreen(draft.step);
-    const toast = document.querySelector('[onclick="resumeDraft()"]');
-    if(toast) toast.parentElement.remove();
-  }
+    var toast = document.querySelector('[onclick="resumeDraft()"]');
+    if (toast) toast.parentElement.remove();
+  } catch(e) {}
 };
 
-// Setup Drag & Drop
-document.addEventListener('DOMContentLoaded', () => {
-  const dropZone = document.getElementById('drop-zone');
-  if(dropZone) {
-    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-      dropZone.addEventListener(eventName, preventDefaults, false);
-    });
-    function preventDefaults(e) { e.preventDefault(); e.stopPropagation(); }
-    
-    ['dragenter', 'dragover'].forEach(eventName => {
-      dropZone.addEventListener(eventName, () => dropZone.classList.add('drag-active'), false);
-    });
-    
-    ['dragleave', 'drop'].forEach(eventName => {
-      dropZone.addEventListener(eventName, () => dropZone.classList.remove('drag-active'), false);
-    });
-    
-    dropZone.addEventListener('drop', (e) => {
-      let dt = e.dataTransfer;
-      let files = dt.files;
-      handleFiles(files);
-    }, false);
+// ─── EVENT DELEGATION ─────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function() {
+
+  document.body.addEventListener('click', function(e) {
+    var nav    = e.target.closest('[data-nav]');
+    var start  = e.target.closest('[data-start]');
+    var lang   = e.target.closest('[data-lang]');
+    var action = e.target.closest('[data-action]');
+
+    if (nav)   { navigateToScreen(nav.getAttribute('data-nav')); return; }
+    if (start) { startDenuncia(parseFloat(start.getAttribute('data-start'))); return; }
+    if (lang)  { setLang(lang.getAttribute('data-lang')); return; }
+
+    if (action) {
+      var act   = action.getAttribute('data-action');
+      var cont  = act === 'selCrime' ? '#s1' : '#tut-crimes';
+      if (act === 'selCrime' || act === 'selTutCrime') {
+        var crime = action.getAttribute('data-crime');
+        document.querySelectorAll(cont + ' .ccard').forEach(function(c) { c.classList.remove('sel'); });
+        action.classList.add('sel');
+        AppState.crime = crime;
+        var tipId = act === 'selCrime' ? 'crime-tip' : 'tut-tip';
+        var tip   = ui.$(tipId);
+        if (tip && crimes[crime]) {
+          tip.classList.remove('hidden');
+          tip.textContent = crimes[crime].tips[AppState.lang] ?? crimes[crime].tips.es;
+        }
+        var btnS1 = ui.$('btn-s1'); if (btnS1) btnS1.disabled = false;
+        if (act === 'selTutCrime') {
+          var btnTut = ui.$('btn-start-tut');
+          if (btnTut) btnTut.setAttribute('data-start', '2');
+        }
+      }
+      if (act === 'toggleNotif') toggleNotif(action.getAttribute('data-notif'));
+    }
+  });
+
+  document.body.addEventListener('change', function(e) {
+    if (e.target.closest('[data-change="checkOtherBank"]')) {
+      var wrap = ui.$('other-bank-wrap');
+      if (wrap) wrap.classList.toggle('hidden', e.target.value !== 'Otros');
+    }
+  });
+
+  // Live monto range check
+  document.body.addEventListener('input', function(e) {
+    var montoIds = ['monto-min','monto-max','ext-monto-min','ext-monto-max'];
+    if (montoIds.indexOf(e.target.id) !== -1) validateMontoRange();
+  });
+
+  // Drag & Drop
+  var dz = ui.$('drop-zone');
+  if (dz) {
+    function stopEvt(ev) { ev.preventDefault(); ev.stopPropagation(); }
+    ['dragenter','dragover','dragleave','drop'].forEach(function(ev) { dz.addEventListener(ev, stopEvt); });
+    ['dragenter','dragover'].forEach(function(ev) { dz.addEventListener(ev, function() { dz.classList.add('drag-active'); }); });
+    ['dragleave','drop'].forEach(function(ev)     { dz.addEventListener(ev, function() { dz.classList.remove('drag-active'); }); });
+    dz.addEventListener('drop', function(ev) { handleFiles(ev.dataTransfer.files); });
   }
-  
-  // checkDraft is now handled synchronously in the main initialization
+
+  if (!checkDraft()) navigateToScreen(0);
 });
 
 </script>

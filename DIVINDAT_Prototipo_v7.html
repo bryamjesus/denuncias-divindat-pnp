@@ -444,7 +444,7 @@ h1,h2,.card-title,.hero-title{font-family:'Georgia','Times New Roman',serif;lett
     <div id="tut-tip" class="tip hidden"></div>
     <div class="btn-row">
       <button class="btn-out" data-nav="0" data-t="btn-volver">← Volver al inicio</button>
-      <button class="btn-blue" data-start="1" data-t="btn-comenzar">Comenzar denuncia →</button>
+      <button class="btn-blue" id="btn-start-tut" data-start="1" data-t="btn-comenzar">Comenzar denuncia →</button>
     </div>
   </div>
 </div>
@@ -1025,6 +1025,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if(tip&&crimes[crimeName]){tip.classList.remove('hidden');tip.textContent=crimes[crimeName].tips[AppState.lang]||crimes[crimeName].tips.es;}
         
         const b = document.getElementById('btn-s1');if(b)b.disabled=false;
+        
+        if (action === 'selTutCrime') {
+          const btnTut = document.getElementById('btn-start-tut');
+          if (btnTut) btnTut.setAttribute('data-start', '2');
+        }
       }
       if(action === 'toggleNotif') {
          toggleNotif(actionEl.getAttribute('data-notif'));
@@ -1039,6 +1044,42 @@ document.addEventListener('DOMContentLoaded', () => {
       if(wrap) {
         if(changeEl.value === 'Otros') wrap.classList.remove('hidden');
         else wrap.classList.add('hidden');
+      }
+    }
+  });
+
+  document.body.addEventListener('input', (e) => {
+    const t = e.target;
+    if(t.id === 'monto-min' || t.id === 'monto-max' || t.id === 'ext-monto-min' || t.id === 'ext-monto-max') {
+      let minInput, maxInput;
+      if (AppState.crime === 'Phishing' || AppState.crime === 'Fraude') {
+        minInput = document.getElementById('monto-min');
+        maxInput = document.getElementById('monto-max');
+      } else if (AppState.crime === 'Extorsión') {
+        minInput = document.getElementById('ext-monto-min');
+        maxInput = document.getElementById('ext-monto-max');
+      }
+      
+      if (minInput && maxInput && minInput.value && maxInput.value) {
+        if (parseFloat(maxInput.value) < parseFloat(minInput.value)) {
+          maxInput.style.borderColor = 'var(--danger)';
+          maxInput.style.backgroundColor = '#fdf2f1';
+          
+          let toast = document.getElementById('err-toast');
+          if(!toast){
+            toast = document.createElement('div');
+            toast.id = 'err-toast';
+            toast.style.cssText = 'position:fixed;top:20px;left:50%;transform:translateX(-50%);background:var(--danger);color:#fff;padding:12px 20px;border-radius:8px;font-size:14px;font-weight:700;z-index:9999;box-shadow:0 4px 12px rgba(0,0,0,0.2);animation:fadeIn 0.3s;';
+            document.body.appendChild(toast);
+          }
+          toast.innerHTML = '⚠️ El monto máximo no puede ser menor al mínimo.';
+          toast.style.display = 'block';
+          if(toast.dataset.timeoutId) clearTimeout(parseInt(toast.dataset.timeoutId));
+          toast.dataset.timeoutId = setTimeout(()=>{toast.style.display='none'}, 3000);
+        } else {
+          maxInput.style.borderColor = '';
+          maxInput.style.backgroundColor = '';
+        }
       }
     }
   });

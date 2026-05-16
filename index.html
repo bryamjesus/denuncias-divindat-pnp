@@ -200,8 +200,57 @@ h1,h2,.card-title,.hero-title{font-family: var(--font-display); font-weight: 700
 .fg{display:flex;flex-direction:column;gap:6px;margin-bottom:18px}
 .flbl{font-size:13px;font-weight:600;color:#444}
 .flbl span{color:var(--danger)}
-.finput{border:1.5px solid #d8dce8;border-radius:8px;padding:10px 14px;font-size:14px;color:#222;background:#fff;width:100%;transition:border-color .15s}
+.finput{
+  border:1.5px solid #d8dce8;border-radius:8px;padding:10px 14px;font-size:14px;color:#222;background:#fff;width:100%;transition:border-color .15s;
+  -webkit-appearance:none;-moz-appearance:none;appearance:none;
+  min-height:44px;box-sizing:border-box;
+  font-family:var(--font-main);
+  -webkit-text-fill-color:#222;
+}
 .finput:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(26,43,94,.08)}
+
+/* ── Safari / iOS: date & time inputs ── */
+input[type="date"].finput,
+input[type="time"].finput,
+input[type="datetime-local"].finput{
+  -webkit-appearance:none;appearance:none;
+  display:flex;align-items:center;
+  padding:10px 14px;
+  min-height:44px;line-height:1.4;
+  cursor:pointer;
+}
+/* Hide the native calendar icon on WebKit */
+input[type="date"].finput::-webkit-calendar-picker-indicator,
+input[type="time"].finput::-webkit-calendar-picker-indicator,
+input[type="datetime-local"].finput::-webkit-calendar-picker-indicator{
+  width:20px;height:20px;opacity:0.5;cursor:pointer;
+  filter:invert(30%) sepia(60%) saturate(400%) hue-rotate(100deg);
+}
+/* Firefox: remove extra inner shadow on date */
+input[type="date"].finput::-moz-focus-inner,
+input[type="time"].finput::-moz-focus-inner{border:0;padding:0}
+
+/* ── Safari: select dropdown ── */
+select.finput{
+  -webkit-appearance:none;appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;
+  padding-right:36px;cursor:pointer;
+}
+
+/* ── iOS: number input — force decimal keyboard & remove spinners ── */
+input[type="number"].finput{
+  -webkit-appearance:none;appearance:none;
+  -moz-appearance:textfield;
+}
+input[type="number"].finput::-webkit-inner-spin-button,
+input[type="number"].finput::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+
+/* ── iOS: textarea ── */
+textarea.finput{
+  resize:vertical;min-height:100px;
+  -webkit-appearance:none;appearance:none;
+}
 .fgrid2{display:grid;grid-template-columns:1fr;gap:16px}
 @media(min-width:768px){ .fgrid2{grid-template-columns:1fr 1fr;gap:20px} }
 .fgrid3{display:grid;grid-template-columns:1fr;gap:16px}
@@ -363,6 +412,56 @@ h1,h2,.card-title,.hero-title{font-family: var(--font-display); font-weight: 700
 
 /* ERROR MODAL */
 .modal-error-box{background:#fde8e8;border:1px solid #e57373;color:var(--danger);border-radius:8px;padding:12px 14px;font-size:13px;line-height:1.5;margin-top:14px;display:none}
+
+/* ════════════════════════════════════════════════
+   CROSS-BROWSER FIXES — Safari iOS / WebKit
+   ════════════════════════════════════════════════ */
+
+/* 1. Eliminar zoom automático en Safari iOS
+      (font-size < 16px en inputs dispara zoom) */
+@media screen and (-webkit-min-device-pixel-ratio:0) and (max-width:767px){
+  .finput{font-size:16px!important}
+  select.finput{font-size:16px!important}
+}
+
+/* 2. Radio buttons & checkboxes — normalizar en iOS */
+input[type="radio"],input[type="checkbox"]{
+  width:18px;height:18px;
+  -webkit-appearance:auto;appearance:auto;
+  accent-color:var(--primary);
+  flex-shrink:0;cursor:pointer;
+}
+.radio-row label{gap:8px;min-height:44px;display:flex;align-items:center}
+
+/* 3. Botones — evitar estilo nativo iOS */
+button,.btn-blue,.btn-red,.btn-out,.btn-hero-white,.modal-accept,.modal-cancel,.lang-btn,.nb-ayuda,.nb-emergencia{
+  -webkit-appearance:none;appearance:none;
+  touch-action:manipulation;
+}
+
+/* 4. Eliminar highlight azul al tocar en iOS/Android */
+*{-webkit-tap-highlight-color:transparent}
+
+/* 5. Scroll momentum iOS */
+.stepbar-inner,.crime-grid{-webkit-overflow-scrolling:touch}
+
+/* 6. textarea en Safari móvil */
+textarea.finput{
+  min-height:110px;width:100%;display:block;
+  -webkit-appearance:none;appearance:none;
+}
+
+/* 7. Safe area para iPhone con notch/Dynamic Island */
+@supports(padding:max(0px)){
+  .navbar > .container{
+    padding-left:max(16px, env(safe-area-inset-left));
+    padding-right:max(16px, env(safe-area-inset-right));
+  }
+  body{
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+}
+
 </style>
 
 </head>
@@ -582,10 +681,16 @@ h1,h2,.card-title,.hero-title{font-family: var(--font-display); font-weight: 700
         <div class="fg"><label class="flbl">Correo remitente sospechoso <span>*</span></label><input class="finput" value="alerta@bcp-seguro.net"/></div>
       </div>
       <div class="fgrid4">
-        <div class="fg"><label class="flbl">Fecha <span>*</span></label><input class="finput" type="date" value="2026-05-09"/></div>
-        <div class="fg"><label class="flbl">Hora</label><input class="finput" type="time" value="14:30"/></div>
-        <div class="fg"><label class="flbl">Monto mínimo (S/) <span>*</span></label><input class="finput" id="monto-min" type="number" min="0" step="0.01" value="500.00"/></div>
-        <div class="fg"><label class="flbl">Monto máximo (S/) <span>*</span></label><input class="finput" id="monto-max" type="number" min="0" step="0.01" value="1250.00"/></div>
+        <div class="fg">
+          <label class="flbl">Fecha <span>*</span></label>
+          <input class="finput" id="ph-fecha" type="date" value="2026-05-09" inputmode="none"/>
+        </div>
+        <div class="fg">
+          <label class="flbl">Hora</label>
+          <input class="finput" id="ph-hora" type="time" value="14:30" inputmode="none"/>
+        </div>
+        <div class="fg"><label class="flbl">Monto mínimo (S/) <span>*</span></label><input class="finput" id="monto-min" type="number" inputmode="decimal" min="0" step="0.01" value="500.00"/></div>
+        <div class="fg"><label class="flbl">Monto máximo (S/) <span>*</span></label><input class="finput" id="monto-max" type="number" inputmode="decimal" min="0" step="0.01" value="1250.00"/></div>
       </div>
       <div class="fgrid2">
         <div class="fg"><label class="flbl">Banco afectado <span>*</span></label><select class="finput" data-change="checkOtherBank"><option value="BCP">BCP</option><option value="Interbank">Interbank</option><option value="BBVA">BBVA</option><option value="Scotiabank">Scotiabank</option><option value="Yape">Yape</option><option value="Plin">Plin</option><option value="Otros">Otros</option></select></div>
@@ -607,7 +712,7 @@ h1,h2,.card-title,.hero-title{font-family: var(--font-display); font-weight: 700
         <div class="fg"><label class="flbl" data-t="lbl-hck-serv">Servicio afectado <span>*</span></label><input class="finput" value="Gmail"/></div>
       </div>
       <div class="fgrid2">
-        <div class="fg"><label class="flbl">Fecha <span>*</span></label><input class="finput" type="date" value="2026-05-09"/></div>
+        <div class="fg"><label class="flbl">Fecha <span>*</span></label><input class="finput" id="hck-fecha" type="date" value="2026-05-09" inputmode="none"/></div>
         <div class="fg"><label class="flbl">¿Aún puedes acceder?</label><div class="radio-row"><label><input type="radio" name="acc" checked/> Sí</label><label><input type="radio" name="acc"/> No</label></div></div>
       </div>
       <div class="fg"><label class="flbl">Descripción detallada <span>*</span></label><textarea class="finput" rows="4">Dejé de tener acceso a mi cuenta de correo de repente. Intenté recuperar la contraseña pero el teléfono y correo de recuperación habían sido cambiados.</textarea></div>
@@ -618,8 +723,8 @@ h1,h2,.card-title,.hero-title{font-family: var(--font-display); font-weight: 700
         <div class="fg">
           <label class="flbl">Monto exigido — rango (S/.)</label>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-            <input class="finput" id="ext-monto-min" type="number" min="0" step="0.01" value="500.00"/>
-            <input class="finput" id="ext-monto-max" type="number" min="0" step="0.01" value="1000.00"/>
+            <input class="finput" id="ext-monto-min" type="number" inputmode="decimal" min="0" step="0.01" value="500.00"/>
+            <input class="finput" id="ext-monto-max" type="number" inputmode="decimal" min="0" step="0.01" value="1000.00"/>
           </div>
         </div>
       </div>

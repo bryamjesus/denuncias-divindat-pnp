@@ -297,9 +297,40 @@ h1,h2,.card-title,.hero-title{font-family: var(--font-display); font-weight: 700
 .tut-num{width:30px;height:30px;border-radius:50%;background:var(--primary);color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 8px}
 .tut-title{font-size:14px;font-weight:700;color:var(--primary);margin-bottom:4px}
 .tut-text{font-size:12px;color:#888;line-height:1.4}
-#tut-crimes { grid-template-columns: 1fr; }
-@media(min-width:480px){ #tut-crimes{grid-template-columns:repeat(2,1fr)} }
-@media(min-width:768px){ #tut-crimes{grid-template-columns:repeat(5,1fr)} }
+.scroll-grid {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 4px 4px 12px;
+  margin: 0 -4px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.scroll-grid::-webkit-scrollbar { display: none; }
+.scroll-grid > * { flex: 0 0 180px; min-width: 180px; }
+
+@media(min-width: 768px) {
+  .scroll-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    overflow-x: visible;
+    padding: 0;
+    margin: 0;
+  }
+  .scroll-grid > * { flex: auto; min-width: 0; }
+}
+
+.scroll-hint {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--primary);
+  opacity: 0.6;
+  margin-bottom: 8px;
+  justify-content: flex-end;
+}
+@media(min-width: 768px) { .scroll-hint { display: none; } }
 
 /* MODAL DE GEOLOCALIZACIÓN */
 .modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,20,15,.65);backdrop-filter:blur(4px);z-index:1000;display:flex;align-items:center;justify-content:center;padding:16px;animation:fadeIn .2s ease-out;overflow-y:auto}
@@ -479,7 +510,8 @@ h1,h2,.card-title,.hero-title{font-family: var(--font-display); font-weight: 700
   <div class="card">
     <h2 class="card-title" data-t="tut-title">Centro de ayuda y tutorial</h2>
     <p class="card-sub" data-t="tut-sub">¿Cómo funciona el proceso de denuncia? Sigue estos 5 pasos — te tomará menos de 10 minutos.</p>
-    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:28px">
+    <div class="scroll-hint"><span>Desliza para ver pasos</span> ↔️</div>
+    <div class="scroll-grid" style="margin-bottom:28px">
       <div class="tut-step"><div class="tut-num">1</div><div class="tut-title" data-t="tstep1">Reúne tu evidencia</div><div class="tut-text" data-t="tstep1b">Capturas, URLs, datos bancarios, mensajes</div></div>
       <div class="tut-step"><div class="tut-num">2</div><div class="tut-title" data-t="tstep2">Selecciona el delito</div><div class="tut-text" data-t="tstep2b">El formulario se adapta automáticamente</div></div>
       <div class="tut-step"><div class="tut-num">3</div><div class="tut-title" data-t="tstep3">Completa el formulario</div><div class="tut-text" data-t="tstep3b">Campos específicos para tu tipo de delito</div></div>
@@ -487,7 +519,8 @@ h1,h2,.card-title,.hero-title{font-family: var(--font-display); font-weight: 700
       <div class="tut-step"><div class="tut-num">5</div><div class="tut-title" data-t="tstep5">Recibe tu número de caso</div><div class="tut-text" data-t="tstep5b">Seguimiento online en tiempo real</div></div>
     </div>
     <div class="section-lbl" data-t="tut-evidence-lbl">¿Qué evidencia necesitas según tu delito?</div>
-    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:20px" id="tut-crimes">
+    <div class="scroll-hint"><span>Desliza para ver opciones</span> ↔️</div>
+    <div class="scroll-grid" style="margin-bottom:20px" id="tut-crimes">
       <div class="ccard" data-action="selTutCrime" data-crime="Phishing"><div class="cicon">🎣</div><div class="cname" data-t="c1">Phishing</div></div>
       <div class="ccard" data-action="selTutCrime" data-crime="Fraude"><div class="cicon">💳</div><div class="cname" data-t="c2">Fraude electrónico</div></div>
       <div class="ccard" data-action="selTutCrime" data-crime="Suplantación"><div class="cicon">🎭</div><div class="cname" data-t="c3">Suplantación</div></div>

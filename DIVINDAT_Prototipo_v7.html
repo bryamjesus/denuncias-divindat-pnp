@@ -508,20 +508,20 @@ h1,h2,.card-title,.hero-title{font-family:'Georgia','Times New Roman',serif;lett
     <p class="card-sub" data-t="s3-sub">Completa la información específica de tu caso. Los campos con <span style="color:#c0392b">*</span> son obligatorios.</p>
     <div id="form-phishing">
       <div class="fgrid2">
-        <div class="fg"><label class="flbl">URL o dominio malicioso <span>*</span></label><input class="finput" placeholder="https://banco-falso.com"/></div>
-        <div class="fg"><label class="flbl">Correo remitente sospechoso <span>*</span></label><input class="finput" placeholder="alerta@bcp-seguro.net"/></div>
+        <div class="fg"><label class="flbl">URL o dominio malicioso <span>*</span></label><input class="finput" value="https://banco-falso.com"/></div>
+        <div class="fg"><label class="flbl">Correo remitente sospechoso <span>*</span></label><input class="finput" value="alerta@bcp-seguro.net"/></div>
       </div>
       <div class="fgrid4">
         <div class="fg"><label class="flbl">Fecha <span>*</span></label><input class="finput" type="date" value="2026-05-09"/></div>
         <div class="fg"><label class="flbl">Hora</label><input class="finput" type="time" value="14:30"/></div>
-        <div class="fg"><label class="flbl">Monto mínimo (S/) <span>*</span></label><input class="finput" id="monto-min" type="number" min="0" step="0.01" placeholder="500.00"/></div>
-        <div class="fg"><label class="flbl">Monto máximo (S/) <span>*</span></label><input class="finput" id="monto-max" type="number" min="0" step="0.01" placeholder="1,250.00"/></div>
+        <div class="fg"><label class="flbl">Monto mínimo (S/) <span>*</span></label><input class="finput" id="monto-min" type="number" min="0" step="0.01" value="500.00"/></div>
+        <div class="fg"><label class="flbl">Monto máximo (S/) <span>*</span></label><input class="finput" id="monto-max" type="number" min="0" step="0.01" value="1250.00"/></div>
       </div>
       <div class="fgrid2">
         <div class="fg"><label class="flbl">Banco afectado <span>*</span></label><select class="finput" data-change="checkOtherBank"><option value="BCP">BCP</option><option value="Interbank">Interbank</option><option value="BBVA">BBVA</option><option value="Scotiabank">Scotiabank</option><option value="Yape">Yape</option><option value="Plin">Plin</option><option value="Otros">Otros</option></select></div>
         <div class="fg hidden" id="other-bank-wrap"><label class="flbl">Especificar banco <span>*</span></label><input class="finput" type="text" placeholder="Ej. Banco de la Nación"/></div>
       </div>
-      <div class="fg"><label class="flbl">Descripción detallada <span>*</span></label><textarea class="finput" rows="4" placeholder="Describe cómo ocurrió el incidente..."></textarea></div>
+      <div class="fg"><label class="flbl">Descripción detallada <span>*</span></label><textarea class="finput" rows="4">Recibí un correo que parecía de mi banco indicando un problema con mi cuenta. Al hacer clic en el enlace e ingresar mis datos, me di cuenta de que la URL no era la oficial.</textarea></div>
     </div>
     <div id="form-sup" class="hidden">
       <div class="fgrid2">
@@ -529,7 +529,7 @@ h1,h2,.card-title,.hero-title{font-family:'Georgia','Times New Roman',serif;lett
         <div class="fg"><label class="flbl">¿Dónde ocurrió? <span>*</span></label><select class="finput"><option>Selecciona</option><option>Facebook</option><option>Instagram</option><option>WhatsApp</option><option>TikTok</option></select></div>
       </div>
       <div class="fg"><label class="flbl">URL del perfil falso (opcional)</label><input class="finput" placeholder="https://facebook.com/perfil-falso"/></div>
-      <div class="fg"><label class="flbl">Descripción detallada <span>*</span></label><textarea class="finput" rows="4" placeholder="Describe qué ocurrió..."></textarea></div>
+      <div class="fg"><label class="flbl">Descripción detallada <span>*</span></label><textarea class="finput" rows="4">Crearon un perfil de Facebook usando mis fotos y nombre completo. Están enviando mensajes a mis contactos pidiendo dinero prestado.</textarea></div>
     </div>
     <div id="form-hackeo" class="hidden">
       <div class="fgrid2">
@@ -540,7 +540,7 @@ h1,h2,.card-title,.hero-title{font-family:'Georgia','Times New Roman',serif;lett
         <div class="fg"><label class="flbl">Fecha <span>*</span></label><input class="finput" type="date" value="2026-05-09"/></div>
         <div class="fg"><label class="flbl">¿Aún puedes acceder?</label><div class="radio-row"><label><input type="radio" name="acc" checked/> Sí</label><label><input type="radio" name="acc"/> No</label></div></div>
       </div>
-      <div class="fg"><label class="flbl">Descripción detallada <span>*</span></label><textarea class="finput" rows="4" placeholder="Describe cómo detectaste el acceso no autorizado..."></textarea></div>
+      <div class="fg"><label class="flbl">Descripción detallada <span>*</span></label><textarea class="finput" rows="4">Dejé de tener acceso a mi cuenta de correo de repente. Intenté recuperar la contraseña pero el teléfono y correo de recuperación habían sido cambiados.</textarea></div>
     </div>
     <div id="form-ext" class="hidden">
       <div class="fgrid2">
@@ -548,12 +548,12 @@ h1,h2,.card-title,.hero-title{font-family:'Georgia','Times New Roman',serif;lett
         <div class="fg">
           <label class="flbl">Monto exigido — rango (S/.)</label>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-            <input class="finput" id="ext-monto-min" type="number" min="0" step="0.01" placeholder="Mínimo: 500.00"/>
-            <input class="finput" id="ext-monto-max" type="number" min="0" step="0.01" placeholder="Máximo: 1,000.00"/>
+            <input class="finput" id="ext-monto-min" type="number" min="0" step="0.01" value="500.00"/>
+            <input class="finput" id="ext-monto-max" type="number" min="0" step="0.01" value="1000.00"/>
           </div>
         </div>
       </div>
-      <div class="fg"><label class="flbl">Descripción detallada <span>*</span></label><textarea class="finput" rows="4" placeholder="Describe el tipo de amenaza..."></textarea></div>
+      <div class="fg"><label class="flbl">Descripción detallada <span>*</span></label><textarea class="finput" rows="4">Recibí mensajes de WhatsApp de un número desconocido amenazando con publicar información personal si no les transfiero la cantidad solicitada.</textarea></div>
     </div>
     <div class="tip">💡 <strong data-t="tip-strong">Si hay dinero en riesgo ahora:</strong> <span data-t="tip-text">Llama a la Línea 1820 (gratuita, 24h) para bloqueo bancario inmediato.</span></div>
     <div class="btn-row">
@@ -1085,7 +1085,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // init
-  navigateToScreen(0);
+  if (!checkDraft()) {
+    navigateToScreen(0);
+  }
 });
 
 /* ====== NOTIFICACIONES ====== */
@@ -1320,12 +1322,12 @@ function checkDraft() {
     try {
       const draft = JSON.parse(draftStr);
       if(draft.step > 0 && draft.step < 6) {
-        const toast = document.createElement('div');
-        toast.innerHTML = `<div style="position:fixed;bottom:24px;right:24px;background:var(--primary);color:white;padding:14px 20px;border-radius:10px;box-shadow:0 6px 16px rgba(0,0,0,0.25);z-index:9999;display:flex;align-items:center;gap:14px;font-size:14px;animation:fadeIn 0.5s;"><span>📄 Tienes una denuncia en borrador.</span> <button onclick="resumeDraft()" style="background:white;color:var(--primary);border:none;padding:8px 14px;border-radius:6px;cursor:pointer;font-weight:bold;font-size:13px;transition:all 0.2s;">Recuperar</button> <button onclick="this.parentElement.remove();localStorage.removeItem('divindat_draft');" style="background:transparent;border:none;color:rgba(255,255,255,0.7);cursor:pointer;font-size:20px;line-height:1;">&times;</button></div>`;
-        document.body.appendChild(toast);
+        resumeDraft();
+        return true;
       }
     } catch(e) {}
   }
+  return false;
 }
 
 window.resumeDraft = function() {
@@ -1373,7 +1375,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, false);
   }
   
-  setTimeout(checkDraft, 500);
+  // checkDraft is now handled synchronously in the main initialization
 });
 
 </script>

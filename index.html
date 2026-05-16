@@ -724,6 +724,7 @@ h1,h2,.card-title,.hero-title{font-family: var(--font-display); font-weight: 700
       <div class="success-btns">
         <button class="btn-out" data-nav="0" data-t="btn-seguimiento">🔍 Ver seguimiento de mi caso</button>
         <button class="btn-blue" data-t="btn-pdf">⬇️ Descargar constancia (PDF)</button>
+        <button class="btn-blue" data-nav="0" data-t="btn-finalizar">Finalizar y volver al inicio</button>
       </div>
     </div>
     <div style="background:#fff8e1;border:1px solid #f9a825;border-radius:10px;padding:16px 20px;display:flex;gap:14px;align-items:flex-start;margin-top:24px">
@@ -833,7 +834,30 @@ const T = {
     'geo-cancel':'Cancelar',
     'geo-accept':'Activar ubicación y continuar',
     'geo-active':'📍 Ubicación activa',
-    'stepper-labels':['Tipo','Datos','Detalles','Evidencia','Confirmación']
+    'stepper-labels':['Tipo','Datos','Detalles','Evidencia','Confirmación'],
+    'btn-finalizar':'Finalizar y volver al inicio',
+    'err-monto':'⚠️ El monto máximo no puede ser menor al mínimo.',
+    'err-geo-support':'Tu navegador no soporta geolocalización.',
+    'geo-requesting':'<span>⏳</span> <span>Solicitando permiso…</span>',
+    'err-geo-fail':'No se pudo obtener tu ubicación.',
+    'err-geo-denied':'⛔ Permiso denegado.',
+    'err-geo-gps':'📡 No se pudo determinar tu ubicación (señal GPS no disponible).',
+    'err-geo-timeout':'⏱️ Tiempo de espera agotado.',
+    'err-file-format':'Formato no permitido.',
+    'err-file-size':'Archivo supera los 10 MB.',
+    'err-file-imgs':'Solo se permiten hasta 3 capturas.',
+    'err-file-pdf':'Solo se permite 1 archivo PDF.',
+    'upload-success-single':'archivo subido correctamente',
+    'upload-success-multi':'archivos subidos correctamente',
+    'err-notif':'⚠️ Debes seleccionar cómo recibir notificaciones.',
+    'err-required':'⚠️ Por favor, completa todos los campos obligatorios (*).',
+    'ft-desc':'La División de Investigación de Delitos de Alta Tecnología es la unidad especializada de la Policía Nacional del Perú encargada de combatir el cibercrimen a nivel nacional.',
+    'ft-contact':'Contacto de Emergencia',
+    'ft-legal':'Enlaces Oficiales',
+    'ft-terms':'Términos y Condiciones',
+    'ft-privacy':'Política de Privacidad',
+    'ft-ley':'Ley N° 30096 (Cibercrimen)',
+    'ft-copy':'© 2026 Policía Nacional del Perú. Todos los derechos reservados.'
   },
   qu: {
     'nb-sub':'Teknolojíawan Llullakuykunata Maskaq Kikin (DIVINDAT)',
@@ -890,7 +914,30 @@ const T = {
     'geo-cancel':'Saqiy',
     'geo-accept':'Lugar kachay, katiy',
     'geo-active':'📍 Lugar kachasqa',
-    'stepper-labels':['Rikchaq','Runa','Willakuy','Ruwasqa','Chiqanchay']
+    'stepper-labels':['Rikchaq','Runa','Willakuy','Ruwasqa','Chiqanchay'],
+    'btn-finalizar':'Tukuchiy hinaspa qallariyman kutiy',
+    'err-monto':'⚠️ Aswan hatun qullqiqa manam pisi qullqimanta aswan pisi kanmanchu.',
+    'err-geo-support':'Navegadoriykiqa manam lugarniykita maskayta atinchu.',
+    'geo-requesting':'<span>⏳</span> <span>Permisota mañakuchkan...</span>',
+    'err-geo-fail':'Manam lugarniykita tariyta atikunchu.',
+    'err-geo-denied':'⛔ Permiso manachasqa.',
+    'err-geo-gps':'📡 Manam lugarniykita tariyta atikunchu (GPS mana kanchu).',
+    'err-geo-timeout':'⏱️ Tiempo de espera tukukapun.',
+    'err-file-format':'Formato mana saqesqa.',
+    'err-file-size':'Archivoqa 10 MB aswan hatunmi.',
+    'err-file-imgs':'3 capturallam saqesqa.',
+    'err-file-pdf':'1 PDF qillqallam saqesqa.',
+    'upload-success-single':'archivo allinta churakapun',
+    'upload-success-multi':'archivokuna allinta churakapun',
+    'err-notif':'⚠️ Imaynatam willaykuna chaskiyta akllanayki tiyan.',
+    'err-required':'⚠️ Ama hina kaspa, tukuy mañakusqakunata hunt\'ay (*).',
+    'ft-desc':'Teknolojíawan Llullakuykunata Maskaq Kikinqa (DIVINDAT) Policía Nacional del Perú nisqap kikin tantanakuyninmi, ciberdelitokunawan maqanakunapaq.',
+    'ft-contact':'Utqaylla waqaykuna',
+    'ft-legal':'Liyiymanta t\'inkikuna',
+    'ft-terms':'Términos hinaspa Condiciones',
+    'ft-privacy':'Privacidad Politica',
+    'ft-ley':'Ley N° 30096 (Cibercrimen)',
+    'ft-copy':'© 2026 Policía Nacional del Perú. Tukuy derechukuna waqaychasqa.'
   },
   ay: {
     'nb-sub':'Teknolojia Juchanakan Uñakipaña Kikin (DIVINDAT)',
@@ -948,6 +995,22 @@ const T = {
     'geo-accept':'Lugar wakichaña, sarantaña',
     'geo-active':'📍 Lugar wakichata',
     'stepper-labels':['Rikuña','Jaqi','Yatiyawi','Luräwi','Irnaqaña'],
+    'btn-finalizar':'Tukuyaña ukat qalltar kutt\'aña',
+    'err-monto':'⚠️ Jach\'a qullqix manaw jisk\'a qullqit sipans jisk\'äkaspati.',
+    'err-geo-support':'Navegadoramax janiw lugarmar t\'aqañ atikiti.',
+    'geo-requesting':'<span>⏳</span> <span>Permiso mayiskis...</span>',
+    'err-geo-fail':'Janiw lugarmar t\'aqañ atikiti.',
+    'err-geo-denied':'⛔ Permiso jark\'atawa.',
+    'err-geo-gps':'📡 Janiw lugarmar t\'aqañ atikiti (GPS janiw utjkiti).',
+    'err-geo-timeout':'⏱️ Tiempo de espera tukuwayi.',
+    'err-file-format':'Formato janiw iyaw satäkiti.',
+    'err-file-size':'Archivox 10 MB sipans jach\'awa.',
+    'err-file-imgs':'3 capturakiw iyaw satäxi.',
+    'err-file-pdf':'1 PDF qillqakiw iyaw satäxi.',
+    'upload-success-single':'archivo walikiw uchatäxi',
+    'upload-success-multi':'archivonaka walikiw uchatäxi',
+    'err-notif':'⚠️ Kunjamatsa yatiyäwinak katuqañax akthayañamawa.',
+    'err-required':'⚠️ Phuqhachañamawa taqi wakisirinaka (*).',
     'ft-desc':'DIVINDAT uqhamaraki Policía Nacional del Perú, markasana cibercrimen jark\'añataki.',
     'ft-contact':'Jank\'aki Wawiyaña',
     'ft-legal':'Liyimpi Qillqanaka',
@@ -1200,7 +1263,7 @@ document.addEventListener('DOMContentLoaded', () => {
             toast.style.cssText = 'position:fixed;top:20px;left:50%;transform:translateX(-50%);background:var(--danger);color:#fff;padding:12px 20px;border-radius:8px;font-size:14px;font-weight:700;z-index:9999;box-shadow:0 4px 12px rgba(0,0,0,0.2);animation:fadeIn 0.3s;';
             document.body.appendChild(toast);
           }
-          toast.innerHTML = '⚠️ El monto máximo no puede ser menor al mínimo.';
+          toast.innerHTML = T[AppState.lang]['err-monto'];
           toast.style.display = 'block';
           if(toast.dataset.timeoutId) clearTimeout(parseInt(toast.dataset.timeoutId));
           toast.dataset.timeoutId = setTimeout(()=>{toast.style.display='none'}, 3000);
@@ -1280,11 +1343,11 @@ window.acceptLocation = function(){
   const btn = document.getElementById('geo-accept-btn');
   const err = document.getElementById('geo-error');
   if(!navigator.geolocation){
-    showGeoError('Tu navegador no soporta geolocalización.');
+    showGeoError(T[AppState.lang]['err-geo-support']);
     return;
   }
   btn.disabled = true;
-  btn.innerHTML = '<span>⏳</span> <span>Solicitando permiso…</span>';
+  btn.innerHTML = T[AppState.lang]['geo-requesting'];
 
   AppState.geo.watchId = navigator.geolocation.watchPosition(
     pos => {
@@ -1303,10 +1366,10 @@ window.acceptLocation = function(){
     err => {
       btn.disabled = false;
       btn.innerHTML = '<span>📍</span> <span data-t="geo-accept">Reintentar activación</span>';
-      let msg = 'No se pudo obtener tu ubicación.';
-      if(err.code === 1) msg = '⛔ Permiso denegado.';
-      else if(err.code === 2) msg = '📡 No se pudo determinar tu ubicación (señal GPS no disponible).';
-      else if(err.code === 3) msg = '⏱️ Tiempo de espera agotado.';
+      let msg = T[AppState.lang]['err-geo-fail'];
+      if(err.code === 1) msg = T[AppState.lang]['err-geo-denied'];
+      else if(err.code === 2) msg = T[AppState.lang]['err-geo-gps'];
+      else if(err.code === 3) msg = T[AppState.lang]['err-geo-timeout'];
       showGeoError(msg);
     },
     { enableHighAccuracy:true, timeout:15000, maximumAge:0 }
@@ -1384,11 +1447,11 @@ window.handleFiles = function(fileList){
   for(const f of fileList){
     const isImg = (f.type === 'image/jpeg' || f.type === 'image/png');
     const isPdf = (f.type === 'application/pdf');
-    if(!isImg && !isPdf){ showError('Formato no permitido.'); continue; }
+    if(!isImg && !isPdf){ showError(T[AppState.lang]['err-file-format']); continue; }
     const sizeMB = f.size / (1024*1024);
-    if(sizeMB > MAX_SIZE_MB){ showError('Archivo supera los '+MAX_SIZE_MB+' MB.'); continue; }
-    if(isImg && AppState.imgCount >= MAX_IMG){ showError('Solo se permiten hasta '+MAX_IMG+' capturas.'); continue; }
-    if(isPdf && AppState.pdfCount >= MAX_PDF){ showError('Solo se permite '+MAX_PDF+' archivo PDF.'); continue; }
+    if(sizeMB > MAX_SIZE_MB){ showError(T[AppState.lang]['err-file-size']); continue; }
+    if(isImg && AppState.imgCount >= MAX_IMG){ showError(T[AppState.lang]['err-file-imgs']); continue; }
+    if(isPdf && AppState.pdfCount >= MAX_PDF){ showError(T[AppState.lang]['err-file-pdf']); continue; }
     
     if(isImg) AppState.imgCount++; else AppState.pdfCount++;
     const l = document.getElementById('flist');
@@ -1409,7 +1472,8 @@ window.handleFiles = function(fileList){
       t.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1b5e3a;color:#fff;padding:12px 24px;border-radius:10px;font-size:14px;font-weight:700;z-index:9999;box-shadow:0 6px 20px rgba(0,0,0,0.3);animation:slideUp 0.3s;display:flex;align-items:center;gap:10px;';
       document.body.appendChild(t);
     }
-    t.innerHTML = `<span style="font-size:18px">✅</span> <span>${added} ${added===1?'archivo subido':'archivos subidos'} correctamente</span>`;
+    const msgSuffix = added === 1 ? T[AppState.lang]['upload-success-single'] : T[AppState.lang]['upload-success-multi'];
+    t.innerHTML = `<span style="font-size:18px">✅</span> <span>${added} ${msgSuffix}</span>`;
     t.style.display = 'flex';
     if(t.dataset.timeoutId) clearTimeout(parseInt(t.dataset.timeoutId));
     t.dataset.timeoutId = setTimeout(()=>{t.style.display='none'}, 3500);
@@ -1476,7 +1540,7 @@ function validateStep(stepNum) {
     const sms = document.getElementById('nch-sms');
     const email = document.getElementById('nch-email');
     if (sms && email && !sms.classList.contains('on') && !email.classList.contains('on')) {
-       uiUtils.showToast('⚠️ Debes seleccionar cómo recibir notificaciones.', 'error');
+       uiUtils.showToast(T[AppState.lang]['err-notif'], 'error');
        const wrap = document.getElementById('notif-wrap');
        if(wrap) {
          wrap.style.border = '1.5px solid var(--danger)';
@@ -1551,7 +1615,7 @@ function validateStep(stepNum) {
         t.style.cssText = 'position:fixed;top:20px;left:50%;transform:translateX(-50%);background:var(--danger);color:#fff;padding:12px 20px;border-radius:8px;font-size:14px;font-weight:700;z-index:9999;box-shadow:0 4px 12px rgba(0,0,0,0.2);animation:fadeIn 0.3s;';
         document.body.appendChild(t);
      }
-     t.innerHTML = '⚠️ Por favor, completa todos los campos obligatorios (*).';
+     t.innerHTML = T[AppState.lang]['err-required'];
      t.style.display = 'block';
      if(t.dataset.timeoutId) clearTimeout(parseInt(t.dataset.timeoutId));
      t.dataset.timeoutId = setTimeout(()=>{t.style.display='none'}, 4000);
@@ -1580,7 +1644,7 @@ function validateStep(stepNum) {
           t.style.cssText = 'position:fixed;top:20px;left:50%;transform:translateX(-50%);background:var(--danger);color:#fff;padding:12px 20px;border-radius:8px;font-size:14px;font-weight:700;z-index:9999;box-shadow:0 4px 12px rgba(0,0,0,0.2);animation:fadeIn 0.3s;';
           document.body.appendChild(t);
         }
-        t.innerHTML = '⚠️ El monto máximo no puede ser menor al mínimo.';
+        t.innerHTML = T[AppState.lang]['err-monto'];
         t.style.display = 'block';
         setTimeout(()=>{t.style.display='none'}, 4000);
         

@@ -4,9 +4,12 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>DIVINDAT — Plataforma de Denuncia de Delitos Cibernéticos · PNP</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 :root {
+  --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Outfit', sans-serif;
   --primary: #1b5e3a;
   --primary-hover: #0f4a2c;
   --primary-light: #e7f3eb;
@@ -25,8 +28,8 @@
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg-body);background-image:linear-gradient(180deg,var(--bg-body) 0%,#e3ece5 100%);min-height:100vh;color:#1a2e1f}
-h1,h2,.card-title,.hero-title{font-family:'Georgia','Times New Roman',serif;letter-spacing:-.3px}
+body{font-family: var(--font-main); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; background:var(--bg-body);background-image:linear-gradient(180deg,var(--bg-body) 0%,#e3ece5 100%);min-height:100vh;color:#1a2e1f}
+h1,h2,.card-title,.hero-title{font-family: var(--font-display); font-weight: 700; letter-spacing:-0.02em}
 .hidden{display:none!important}
 
 /* GOV STRIP */
@@ -67,7 +70,7 @@ h1,h2,.card-title,.hero-title{font-family:'Georgia','Times New Roman',serif;lett
 
 /* LANGUAGE SWITCHER */
 .lang-switcher{display:flex;align-items:center;justify-content:center;gap:3px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:4px 6px}
-.lang-btn{background:none;border:none;color:rgba(255,255,255,.6);font-size:11px;font-weight:700;cursor:pointer;padding:4px 8px;border-radius:5px;transition:all .15s;letter-spacing:.5px;font-family:'Segoe UI',Arial,sans-serif;white-space:nowrap}
+.lang-btn{background:none;border:none;color:rgba(255,255,255,.6);font-size:11px;font-weight:700;cursor:pointer;padding:4px 8px;border-radius:5px;transition:all .15s;letter-spacing:.5px;font-family: var(--font-main);white-space:nowrap}
 .lang-btn:hover{background:rgba(255,255,255,.15);color:#fff}
 .lang-btn.active{background:#fff;color:var(--primary)}
 .lang-sep{color:rgba(255,255,255,.25);font-size:11px;padding:0 1px}
@@ -491,13 +494,13 @@ h1,h2,.card-title,.hero-title{font-family:'Georgia','Times New Roman',serif;lett
     <h2 class="card-title" data-t="s2-title">Datos de la víctima</h2>
     <p class="card-sub" data-t="s2-sub">Cuéntanos quién eres. Tus datos están protegidos y serán usados solo para este proceso.</p>
     <div class="fgrid3">
-      <div class="fg"><label class="flbl" data-t="lbl-nombres">Nombres <span>*</span></label><input class="finput" id="inp-nom" placeholder="Ej. Maria Fernanda"/></div>
-      <div class="fg"><label class="flbl" data-t="lbl-apat">Apellido paterno <span>*</span></label><input class="finput" id="inp-apat" placeholder="Ej. García"/></div>
-      <div class="fg"><label class="flbl" data-t="lbl-amat">Apellido materno <span>*</span></label><input class="finput" id="inp-amat" placeholder="Ej. López"/></div>
+      <div class="fg"><label class="flbl" data-t="lbl-nombres">Nombres <span>*</span></label><input class="finput" id="inp-nom" placeholder="Ej. Maria Fernanda" data-required="true"/></div>
+      <div class="fg"><label class="flbl" data-t="lbl-apat">Apellido paterno <span>*</span></label><input class="finput" id="inp-apat" placeholder="Ej. García" data-required="true"/></div>
+      <div class="fg"><label class="flbl" data-t="lbl-amat">Apellido materno <span>*</span></label><input class="finput" id="inp-amat" placeholder="Ej. López" data-required="true"/></div>
     </div>
     <div class="fgrid4">
       <div class="fg"><label class="flbl" data-t="lbl-tdoc">Tipo de documento</label><select class="finput" id="inp-tdoc"><option>DNI</option><option>CE</option><option>Pasaporte</option></select></div>
-      <div class="fg"><label class="flbl" data-t="lbl-ndoc">Número de documento <span>*</span></label><input class="finput" id="inp-doc" placeholder="Ej. 45678912"/></div>
+      <div class="fg"><label class="flbl" data-t="lbl-ndoc">Número de documento <span>*</span></label><input class="finput" id="inp-doc" placeholder="Ej. 45678912" data-required="true"/></div>
       <div class="fg"><label class="flbl" data-t="lbl-tel">Teléfono celular <span id="req-tel" class="hidden">*</span></label><input class="finput" id="inp-tel" placeholder="Ej. 987 654 321"/></div>
       <div class="fg"><label class="flbl" data-t="lbl-email">Correo electrónico <span id="req-email" class="hidden">*</span></label><input class="finput" id="inp-email" placeholder="Ej. maria@email.com"/></div>
     </div>
@@ -1357,6 +1360,48 @@ window.handleFiles = function(fileList){
   if(inp) inp.value = '';
 }
 
+// ----- UI Utilities -----
+const uiUtils = {
+  markInvalid(el) {
+    if (!el) return;
+    el.style.borderColor = 'var(--danger)';
+    el.style.backgroundColor = '#fdf2f1';
+  },
+  clearInvalid(el) {
+    if (!el) return;
+    el.style.borderColor = '';
+    el.style.backgroundColor = '';
+  },
+  showToast(msg, type = 'error') {
+    // Ensure a container exists
+    let container = document.getElementById('toast-container');
+    if (!container) {
+      container = document.createElement('div');
+      container.id = 'toast-container';
+      container.style.position = 'fixed';
+      container.style.top = '20px';
+      container.style.left = '50%';
+      container.style.transform = 'translateX(-50%)';
+      container.style.zIndex = '10000';
+      document.body.appendChild(container);
+    }
+    const toast = document.createElement('div');
+    toast.textContent = msg;
+    toast.style.cssText = `background:${type==='error'? 'var(--danger)' : '#1b5e3a'};color:#fff;padding:12px 20px;border-radius:8px;font-size:14px;font-weight:700;box-shadow:0 4px 12px rgba(0,0,0,0.2);margin-top:8px;`;
+    container.appendChild(toast);
+    setTimeout(() => { container.removeChild(toast); }, 4000);
+  }
+};
+
+
+function checkRequired(id) {
+  const el = document.getElementById(id);
+  if (!el) return true;
+  const val = el.value ? el.value.trim() : '';
+  const isValid = val !== '';
+  if (isValid) uiUtils.clearInvalid(el); else uiUtils.markInvalid(el);
+  return isValid;
+}
 
 /* ====== UX IMPROVEMENTS (Validation, Drafts, Drag&Drop) ====== */
 
@@ -1371,6 +1416,7 @@ function validateStep(stepNum) {
     const sms = document.getElementById('nch-sms');
     const email = document.getElementById('nch-email');
     if (sms && email && !sms.classList.contains('on') && !email.classList.contains('on')) {
+       uiUtils.showToast('⚠️ Debes seleccionar cómo recibir notificaciones.', 'error');
        const wrap = document.getElementById('notif-wrap');
        if(wrap) {
          wrap.style.border = '1.5px solid var(--danger)';
@@ -1378,18 +1424,6 @@ function validateStep(stepNum) {
          wrap.style.borderRadius = '8px';
          wrap.style.backgroundColor = '#fdf2f1';
          isValid = false;
-         
-         let t = document.getElementById('err-toast');
-         if(!t){
-            t = document.createElement('div');
-            t.id = 'err-toast';
-            t.style.cssText = 'position:fixed;top:20px;left:50%;transform:translateX(-50%);background:var(--danger);color:#fff;padding:12px 20px;border-radius:8px;font-size:14px;font-weight:700;z-index:9999;box-shadow:0 4px 12px rgba(0,0,0,0.2);animation:fadeIn 0.3s;';
-            document.body.appendChild(t);
-         }
-         t.innerHTML = '⚠️ Debes seleccionar cómo recibir notificaciones.';
-         t.style.display = 'block';
-         if(t.dataset.timeoutId) clearTimeout(parseInt(t.dataset.timeoutId));
-         t.dataset.timeoutId = setTimeout(()=>{t.style.display='none'}, 4000);
        }
     }
   }
@@ -1400,10 +1434,7 @@ function validateStep(stepNum) {
   if (stepNum === 2) {
      const reqInputs = ['inp-nom', 'inp-apat', 'inp-amat', 'inp-doc'];
      reqInputs.forEach(id => {
-       const el = document.getElementById(id);
-       if (el && (!el.value || el.value.trim() === '')) {
-         el.style.borderColor = 'var(--danger)';
-         el.style.backgroundColor = '#fdf2f1';
+       if (!checkRequired(id)) {
          isValid = false;
          missingFields = true;
        }

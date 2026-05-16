@@ -27,6 +27,19 @@
   --radius-lg: 12px;
 }
 
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+@media(min-width: 1025px) {
+  .container {
+    padding: 0 48px;
+  }
+}
+
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family: var(--font-main); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; background:var(--bg-body);background-image:linear-gradient(180deg,var(--bg-body) 0%,#e3ece5 100%);min-height:100vh;color:#1a2e1f}
 h1,h2,.card-title,.hero-title{font-family: var(--font-display); font-weight: 700; letter-spacing:-0.02em}
@@ -44,17 +57,22 @@ h1,h2,.card-title,.hero-title{font-family: var(--font-display); font-weight: 700
 .gov-strip a:hover{color:#fff;text-decoration:underline}
 
 /* NAVBAR */
-.navbar{background:var(--primary);display:flex;align-items:center;padding:12px 16px;height:auto;gap:12px;box-shadow:0 2px 8px rgba(0,0,0,.15);border-bottom:3px solid #d91023;flex-wrap:wrap;justify-content:space-between}
-@media(min-width:769px){ .navbar{padding:0 48px;height:60px;flex-wrap:nowrap;justify-content:flex-start} }
+.navbar{background:var(--primary);box-shadow:0 2px 8px rgba(0,0,0,.15);border-bottom:3px solid #d91023; transition:all 0.3s}
+.navbar > .container { display:flex; align-items:center; height:auto; gap:12px; flex-wrap:wrap; justify-content:space-between; padding: 12px 16px; }
+@media(min-width:1025px){ 
+  .navbar > .container { padding:0 48px; height:60px; flex-wrap:nowrap; justify-content:flex-start; } 
+}
 .nb-mobile-head{display:flex;width:100%;justify-content:space-between;align-items:center}
-@media(min-width:769px){ .nb-mobile-head{width:auto} }
+@media(min-width:1025px){ .nb-mobile-head{width:auto} }
 .nb-brand{display:flex;align-items:center;gap:12px}
 .nb-escudo{width:38px;height:38px;background:#fff;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:var(--primary)}
 .nb-texts b{color:#fff;font-size:14px;display:block;letter-spacing:.3px}
 .nb-texts span{color:rgba(255,255,255,.65);font-size:11px;display:none}
-@media(min-width:769px){ .nb-texts span{display:block} }
+@media(min-width:1025px){ .nb-texts span{display:block} .nb-sep{display:block!important} }
+.nb-brand:hover .nb-escudo{ transform: scale(1.1); transition: transform 0.2s; }
+.nb-brand:active .nb-escudo{ transform: scale(0.95); }
 .hamburger-btn{display:none;background:none;border:none;color:#fff;font-size:26px;cursor:pointer;padding:4px}
-@media(max-width:768px){
+@media(max-width:1024px){
   .hamburger-btn{display:block}
   .navbar{flex-direction:column;align-items:stretch;transition:all 0.3s}
   .navbar.menu-open .nb-right{display:flex}
@@ -62,11 +80,11 @@ h1,h2,.card-title,.hero-title{font-family: var(--font-display); font-weight: 700
   .navbar.menu-open .nb-div{display:none}
 }
 .nb-div{width:1px;height:30px;background:rgba(255,255,255,.2);margin:0 10px;display:none}
-@media(min-width:769px){ .nb-div{display:block;margin:0 20px} }
+@media(min-width:1025px){ .nb-div{display:block;margin:0 20px} }
 .nb-section{color:rgba(255,255,255,.8);font-size:13px;display:none}
-@media(min-width:769px){ .nb-section{display:block} }
+@media(min-width:1025px){ .nb-section{display:block; opacity: 0.85; font-weight: 500;} }
 .nb-right{width:100%;display:none;flex-direction:column;align-items:stretch;gap:10px;margin-top:10px}
-@media(min-width:769px){ .nb-right{display:flex;flex-direction:row;width:auto;margin-left:auto;justify-content:flex-start;margin-top:0} }
+@media(min-width:1025px){ .nb-right{display:flex;flex-direction:row;width:auto;margin-left:auto;justify-content:flex-start;margin-top:0} }
 
 /* LANGUAGE SWITCHER */
 .lang-switcher{display:flex;align-items:center;justify-content:center;gap:3px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:4px 6px}
@@ -81,7 +99,8 @@ h1,h2,.card-title,.hero-title{font-family: var(--font-display); font-weight: 700
 
 /* STEPBAR (Scroll Horizontal en móvil) */
 .stepbar{background:#fff;border-bottom:2px solid #e8ecf5;padding:0}
-@media(min-width:768px){ .stepbar{padding:0 48px} }
+.stepbar > .container { padding:0; }
+@media(min-width:1025px){ .stepbar > .container { padding:0 48px; } }
 .stepbar-inner{display:flex;align-items:flex-start;justify-content:flex-start;padding:24px 16px 48px 16px;gap:0;max-width:100%;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
 .stepbar-inner::before, .stepbar-inner::after{content:'';margin:auto}
 .stepbar-inner::-webkit-scrollbar{display:none}
@@ -106,20 +125,28 @@ h1,h2,.card-title,.hero-title{font-family: var(--font-display); font-weight: 700
 .stp-c.clickable:hover { box-shadow: 0 0 0 4px rgba(27,94,58,.15); }
 
 /* MAIN */
-.main{max-width:1000px;margin:0 auto;padding:24px 16px 60px}
+.main{max-width:1200px;margin:0 auto;padding:24px 16px 60px}
 @media(min-width:768px){ .main{padding:36px 24px 80px} }
+@media(min-width:1025px){ .main{padding:36px 48px 80px} }
 
 /* BUTTONS */
-.btn-red{background:var(--danger);color:#fff;border:none;border-radius:8px;padding:14px 28px;font-size:15px;font-weight:700;cursor:pointer;transition:background .15s;width:100%}
-@media(min-width:480px){ .btn-red{width:auto} }
+.btn-red{background:var(--danger);color:#fff;border:none;border-radius:8px;padding:14px 28px;font-size:15px;font-weight:700;cursor:pointer;transition:background .15s;width:100%; display:inline-flex; align-items:center; justify-content:center; gap:8px;}
+@media(min-width:1024px){ .btn-red{width:auto; min-width:250px;} }
 .btn-red:hover{background:var(--danger-hover)}
-.btn-blue{background:var(--primary);color:#fff;border:none;border-radius:8px;padding:12px 28px;font-size:14px;font-weight:600;cursor:pointer;transition:background .15s;width:100%}
+
+.btn-hero-white{background:rgba(255,255,255,.12);color:#fff;border:2px solid rgba(255,255,255,.35);border-radius:8px;padding:12px 28px;font-size:15px;font-weight:700;cursor:pointer;transition:all .15s;width:100%; display:inline-flex; align-items:center; justify-content:center;}
+@media(min-width:1024px){ .btn-hero-white{width:auto; min-width:250px;} }
+.btn-hero-white:hover{background:rgba(255,255,255,.2); border-color:rgba(255,255,255,.5)}
+
+.btn-blue{background:var(--primary);color:#fff;border:none;border-radius:8px;padding:12px 28px;font-size:14px;font-weight:600;cursor:pointer;transition:background .15s;width:100%; display:inline-flex; align-items:center; justify-content:center;}
 @media(min-width:480px){ .btn-blue{width:auto} }
 .btn-blue:hover{background:var(--primary-hover)}
 .btn-blue:disabled{opacity:.4;pointer-events:none}
-.btn-out{background:#fff;color:var(--primary);border:2px solid var(--primary);border-radius:8px;padding:10px 24px;font-size:14px;font-weight:600;cursor:pointer;transition:all .15s;width:100%;text-align:center}
+
+.btn-out{background:#fff;color:var(--primary);border:2px solid var(--primary);border-radius:8px;padding:10px 24px;font-size:14px;font-weight:600;cursor:pointer;transition:all .15s;width:100%;text-align:center; display:inline-flex; align-items:center; justify-content:center;}
 @media(min-width:480px){ .btn-out{width:auto} }
 .btn-out:hover{background:var(--primary-light)}
+
 .btn-row{display:flex;flex-direction:column;gap:12px;margin-top:28px;align-items:stretch}
 @media(min-width:480px){ .btn-row{flex-direction:row;align-items:center} }
 
@@ -134,7 +161,7 @@ h1,h2,.card-title,.hero-title{font-family: var(--font-display); font-weight: 700
 .hero-btns{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
 @media(min-width:768px){ .hero-btns{justify-content:flex-start} }
 .hero-right{display:flex;flex-direction:column;gap:12px;align-items:center}
-@media(min-width:768px){ .hero-right{align-items:flex-start} }
+@media(min-width:768px){ .hero-right{align-items:center} }
 .hero-icon-big{font-size:70px;text-align:center;margin-bottom:4px;filter:drop-shadow(0 6px 20px rgba(0,0,0,.4))}
 @media(min-width:768px){ .hero-icon-big{font-size:90px} }
 .stat-grid{display:grid;grid-template-columns:1fr;gap:10px;width:100%}
@@ -363,45 +390,52 @@ h1,h2,.card-title,.hero-title{font-family: var(--font-display); font-weight: 700
 
 <!-- FRANJA GUBERNAMENTAL OFICIAL -->
 <div class="gov-strip">
-  <div class="gov-strip-left">
-    <span class="gov-flag"><i></i><i></i><i></i></span>
-    <span><strong>Plataforma oficial del Estado Peruano</strong> · gob.pe</span>
-  </div>
-  <div>
-    <a href="#">Mesa de partes virtual</a>
-    <span style="opacity:.4;margin:0 8px">|</span>
-    <a href="#">Transparencia</a>
+  <div class="container" style="display:flex; justify-content:space-between; align-items:center; width:100%; flex-wrap:wrap; gap:8px;">
+    <div class="gov-strip-left">
+      <span class="gov-flag"><i></i><i></i><i></i></span>
+      <span><strong>Plataforma oficial del Estado Peruano</strong> · gob.pe</span>
+    </div>
+    <div>
+      <a href="#">Mesa de partes virtual</a>
+      <span style="opacity:.4;margin:0 8px">|</span>
+      <a href="#">Transparencia</a>
+    </div>
   </div>
 </div>
 
 <!-- NAVBAR -->
 <nav class="navbar" id="navbar">
-  <div class="nb-mobile-head">
-    <div class="nb-brand">
-      <div class="nb-escudo">🛡</div>
-      <div class="nb-texts"><b>PNP · DIVINDAT</b><span data-t="nb-sub">División de Investigación de Delitos de Alta Tecnología</span></div>
+  <div class="container">
+    <div class="nb-mobile-head">
+      <div class="nb-brand" data-nav="0" style="cursor:pointer" title="Ir al inicio">
+        <div class="nb-escudo">🛡</div>
+        <div class="nb-texts"><b>PNP · DIVINDAT</b><span data-t="nb-sub">División de Investigación de Delitos de Alta Tecnología</span></div>
+      </div>
+      <button class="hamburger-btn" onclick="document.getElementById('navbar').classList.toggle('menu-open')">☰</button>
     </div>
-    <button class="hamburger-btn" onclick="document.getElementById('navbar').classList.toggle('menu-open')">☰</button>
-  </div>
-  <div class="nb-div"></div>
-  <span class="nb-section" id="nb-section-lbl" data-t="sec-inicio">Inicio</span>
-  <div class="nb-right">
-    <!-- LANGUAGE SWITCHER -->
-    <div class="lang-switcher">
-      <button class="lang-btn active" data-lang="es" id="lb-es">🇵🇪 ES</button>
-      <span class="lang-sep">|</span>
-      <button class="lang-btn" data-lang="qu" id="lb-qu">QU</button>
-      <span class="lang-sep">|</span>
-      <button class="lang-btn" data-lang="ay" id="lb-ay">AY</button>
+    <div class="nb-div"></div>
+    <span class="nb-sep" style="color:rgba(255,255,255,.3); font-size:14px; display:none;">&rsaquo;</span>
+    <span class="nb-section" id="nb-section-lbl" data-t="sec-inicio">Inicio</span>
+    <div class="nb-right">
+      <!-- LANGUAGE SWITCHER -->
+      <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="es" id="lb-es">🇵🇪 ES</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" data-lang="qu" id="lb-qu">QU</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" data-lang="ay" id="lb-ay">AY</button>
+      </div>
+      <button class="nb-ayuda" data-nav="0.5" data-t="btn-ayuda">❓ Ayuda</button>
+      <button class="nb-emergencia" data-start="1" data-t="btn-emergencia">🚨 Me acaban de estafar ahora</button>
     </div>
-    <button class="nb-ayuda" data-nav="0.5" data-t="btn-ayuda">❓ Ayuda</button>
-    <button class="nb-emergencia" data-start="1" data-t="btn-emergencia">🚨 Me acaban de estafar ahora</button>
   </div>
 </nav>
 
 <!-- STEPBAR -->
 <div class="stepbar hidden" id="stepbar">
-  <div class="stepbar-inner" id="stepper"></div>
+  <div class="container">
+    <div class="stepbar-inner" id="stepper"></div>
+  </div>
 </div>
 
 <!-- SCREENS -->
@@ -416,7 +450,7 @@ h1,h2,.card-title,.hero-title{font-family: var(--font-display); font-weight: 700
       <p class="hero-sub" data-t="hero-sub">Denuncia phishing, fraude bancario, hackeo, suplantación o extorsión digital en menos de 10 minutos. Sin ir a ninguna comisaría. Con validez legal mediante ID Perú.</p>
       <div class="hero-btns">
         <button class="btn-red" data-start="1" data-t="btn-urgente">🚨 Iniciar denuncia urgente</button>
-        <button style="background:rgba(255,255,255,.12);color:#fff;border:2px solid rgba(255,255,255,.35);border-radius:8px;padding:12px 24px;font-size:14px;font-weight:600;cursor:pointer" data-start="0.5" data-t="btn-iniciar">Iniciar denuncia</button>
+        <button class="btn-hero-white" data-start="0.5" data-t="btn-iniciar">Iniciar denuncia</button>
       </div>
     </div>
     <div class="hero-right">

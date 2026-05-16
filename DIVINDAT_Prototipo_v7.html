@@ -280,17 +280,17 @@ h1,h2,.card-title,.hero-title{font-family: var(--font-display); font-weight: 700
 .radio-row{display:flex;gap:24px;margin-top:8px}
 
 /* FOOTER */
-.site-footer { background-color: var(--text-dark); color: rgba(255, 255, 255, 0.7); padding: 56px 24px 24px; margin-top: auto; font-size: 13px; border-top: 4px solid var(--primary); }
-.footer-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 40px; margin-bottom: 40px; }
-@media (min-width: 768px) { .footer-grid { grid-template-columns: 2fr 1.2fr 1fr; } }
-.footer-title { color: #fff; font-size: 15px; font-weight: 700; margin-bottom: 20px; letter-spacing: 0.5px; text-transform: uppercase; }
-.footer-text { line-height: 1.7; margin-bottom: 16px; max-width: 90%; }
-.footer-link { color: rgba(255, 255, 255, 0.7); text-decoration: none; display: block; margin-bottom: 12px; transition: color 0.2s; }
-.footer-link:hover { color: #fff; text-decoration: underline; }
-.footer-contact { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
-.footer-contact i { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: rgba(255,255,255,0.08); border-radius: 50%; color: #fff; font-size: 14px; flex-shrink: 0; }
-.footer-bottom { max-width: 1000px; margin: 0 auto; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, 0.1); text-align: center; font-size: 12px; display: flex; flex-direction: column; gap: 12px; align-items: center; justify-content: center; }
-@media (min-width: 768px) { .footer-bottom { flex-direction: row; justify-content: space-between; text-align: left; } }
+.site-footer { background-color: var(--text-dark); color: rgba(255, 255, 255, 0.6); padding: 70px 0 30px; margin-top: 80px; font-size: 13px; border-top: 4px solid var(--primary); }
+.footer-grid { display: grid; grid-template-columns: 1fr; gap: 40px; margin-bottom: 50px; }
+@media (min-width: 768px) { .footer-grid { grid-template-columns: 1.8fr 1.2fr 1.2fr; } }
+.footer-title { color: #fff; font-size: 16px; font-weight: 700; margin-bottom: 22px; letter-spacing: 0.5px; font-family: var(--font-display); }
+.footer-text { line-height: 1.8; margin-bottom: 16px; max-width: 90%; }
+.footer-link { color: rgba(255, 255, 255, 0.6); text-decoration: none; display: flex; align-items: center; gap: 8px; margin-bottom: 12px; transition: color 0.2s; }
+.footer-link:hover { color: #fff; }
+.footer-contact { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; }
+.footer-contact i { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; background: rgba(255,255,255,0.08); border-radius: 8px; color: #fff; font-size: 15px; flex-shrink: 0; }
+.footer-bottom { padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, 0.1); text-align: center; font-size: 12px; display: flex; flex-direction: column; gap: 12px; align-items: center; justify-content: center; }
+@media (min-width: 768px) { .footer-bottom { flex-direction: row; justify-content: space-between; } }
 
 .radio-row label{display:flex;align-items:center;gap:6px;font-size:14px;cursor:pointer}
 .tut-step{background:#eef5f0;border-radius:10px;padding:18px 12px;text-align:center}
@@ -718,33 +718,42 @@ h1,h2,.card-title,.hero-title{font-family: var(--font-display); font-weight: 700
 </div>
 
 <footer class="site-footer">
-  <div class="footer-grid">
-    <div>
-      <div class="footer-title">DIVINDAT · PNP</div>
-      <p class="footer-text" data-t="ft-desc">La División de Investigación de Delitos de Alta Tecnología es la unidad especializada de la Policía Nacional del Perú encargada de combatir el cibercrimen a nivel nacional.</p>
-      <div style="display:flex;gap:16px;margin-top:20px;align-items:center">
-        <div style="font-size:32px;opacity:0.8">🛡️</div>
-        <div style="font-size:32px;opacity:0.8">🇵🇪</div>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-title">DIVINDAT · PNP</div>
+        <p class="footer-text" data-t="ft-desc">La División de Investigación de Delitos de Alta Tecnología es la unidad especializada de la Policía Nacional del Perú encargada de combatir el cibercrimen a nivel nacional.</p>
+        <div style="display:flex;gap:12px;margin-top:20px;align-items:center">
+          <div style="background:#fff; padding:6px; border-radius:4px; display:flex; align-items:center; justify-content:center; width:40px; height:40px; font-size:24px;">🛡️</div>
+          <div style="background:rgba(255,255,255,0.1); padding:6px; border-radius:4px; display:flex; align-items:center; justify-content:center; width:40px; height:40px; font-size:24px;">🇵🇪</div>
+        </div>
+      </div>
+      <div>
+        <div class="footer-title" data-t="ft-contact">Contacto de Emergencia</div>
+        <div class="footer-contact"><i>📞</i> <span>Central de Emergencias:<br><b style="color:#fff;font-size:16px">105</b></span></div>
+        <div class="footer-contact"><i>🏦</i> <span>Fraude y Bloqueo:<br><b style="color:#fff;font-size:16px">1820</b></span></div>
+        <div class="footer-contact"><i>📍</i> <span>Av. España 323, Cercado de Lima</span></div>
+      </div>
+      <div>
+        <div class="footer-title" data-t="ft-legal">Enlaces Oficiales</div>
+        <a href="#" class="footer-link" data-t="ft-terms">Términos y Condiciones</a>
+        <a href="#" class="footer-link" data-t="ft-privacy">Política de Privacidad</a>
+        <a href="#" class="footer-link" data-t="ft-ley">Ley N° 30096 (Cibercrimen)</a>
+        <a href="#" class="footer-link" style="margin-top:20px; background:rgba(255,255,255,0.05); padding:10px 14px; border-radius:8px; border:1px solid rgba(255,255,255,0.1)">
+          <span style="font-size:18px">📖</span> 
+          <span>Libro de Reclamaciones</span>
+        </a>
       </div>
     </div>
-    <div>
-      <div class="footer-title" data-t="ft-contact">Contacto de Emergencia</div>
-      <div class="footer-contact"><i>📞</i> <span>Central de Emergencias: <b style="color:#fff;font-size:14px">105</b></span></div>
-      <div class="footer-contact"><i>🏦</i> <span>Fraude y Bloqueo: <b style="color:#fff;font-size:14px">1820</b></span></div>
-      <div class="footer-contact"><i>📍</i> <span>Av. España 323, Cercado de Lima</span></div>
-    </div>
-    <div>
-      <div class="footer-title" data-t="ft-legal">Enlaces Legales</div>
-      <a href="#" class="footer-link" data-t="ft-terms">Términos y Condiciones</a>
-      <a href="#" class="footer-link" data-t="ft-privacy">Política de Privacidad</a>
-      <a href="#" class="footer-link" data-t="ft-ley">Ley N° 30096 (Delitos Informáticos)</a>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p data-t="ft-copy">© 2026 Policía Nacional del Perú. Todos los derechos reservados.</p>
-    <div style="display:flex;gap:12px">
-      <a href="#" style="color:rgba(255,255,255,0.5);text-decoration:none">Facebook</a>
-      <a href="#" style="color:rgba(255,255,255,0.5);text-decoration:none">Twitter (X)</a>
+    <div class="footer-bottom">
+      <p data-t="ft-copy">© 2026 Policía Nacional del Perú. Todos los derechos reservados.</p>
+      <div style="display:flex;gap:20px; align-items:center;">
+        <span style="opacity:0.5">Hecho con orgullo en 🇵🇪</span>
+        <div style="display:flex;gap:12px">
+          <a href="#" style="color:rgba(255,255,255,0.5);text-decoration:none; font-size:16px;">f</a>
+          <a href="#" style="color:rgba(255,255,255,0.5);text-decoration:none; font-size:16px;">𝕏</a>
+        </div>
+      </div>
     </div>
   </div>
 </footer>

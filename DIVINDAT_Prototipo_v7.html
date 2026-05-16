@@ -188,9 +188,10 @@ h1,h2,.card-title,.hero-title{font-family:'Georgia','Times New Roman',serif;lett
 .uzone{border:2px dashed #c0c8e0;border-radius:12px;padding:24px 16px;text-align:center;background:#f0f7f3;cursor:pointer;transition:all .15s}
 @media(min-width:768px){ .uzone{padding:36px 24px} }
 .uzone:hover{border-color:var(--primary);background:var(--primary-bg)}
-.frow{display:flex;align-items:center;gap:10px;background:#f7f8fc;border:1px solid #e8eaf0;border-radius:8px;padding:10px 14px;margin-top:8px;font-size:13px;flex-wrap:wrap}
-.fsize{color:#aaa;margin-left:auto;font-size:12px}
-.fdel{background:none;border:none;color:var(--danger);cursor:pointer;font-size:20px;line-height:1;padding:0 4px}
+.frow{display:flex;align-items:center;gap:10px;background:#f7f8fc;border:1px solid #e8eaf0;border-radius:8px;padding:10px 14px;margin-top:8px;font-size:13px;flex-wrap:nowrap;overflow:hidden}
+.fname{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600;color:#222}
+.fsize{color:#aaa;margin-left:auto;font-size:12px;flex-shrink:0}
+.fdel{background:none;border:none;color:var(--danger);cursor:pointer;font-size:20px;line-height:1;padding:0 4px;flex-shrink:0}
 
 /* REVIEW */
 .rev-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-bottom:24px}
@@ -242,10 +243,25 @@ h1,h2,.card-title,.hero-title{font-family:'Georgia','Times New Roman',serif;lett
 @media(min-width:768px){ .meta-val{font-size:14px} }
 .ntoggle{display:flex;flex-direction:column;gap:8px;margin-top:8px}
 @media(min-width:480px){ .ntoggle{flex-direction:row} }
-.nch{background:var(--primary-light);border:1.5px solid #b8d4c2;border-radius:8px;padding:8px 14px;font-size:13px;color:var(--primary);cursor:pointer;font-weight:600;transition:all .15s;text-align:center}
+.nch{background:#fff;border:1.5px solid #d8dce8;border-radius:8px;padding:8px 14px;font-size:13px;color:#666;cursor:pointer;font-weight:600;transition:all .15s;text-align:center}
+.nch:hover{background:var(--primary-light);border-color:var(--primary);color:var(--primary)}
 .nch.on{background:var(--primary);color:#fff;border-color:var(--primary)}
 .section-lbl{font-size:12px;font-weight:700;color:#aaa;letter-spacing:.8px;text-transform:uppercase;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid #e8ecf5}
 .radio-row{display:flex;gap:24px;margin-top:8px}
+
+/* FOOTER */
+.site-footer { background-color: var(--text-dark); color: rgba(255, 255, 255, 0.7); padding: 56px 24px 24px; margin-top: auto; font-size: 13px; border-top: 4px solid var(--primary); }
+.footer-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 40px; margin-bottom: 40px; }
+@media (min-width: 768px) { .footer-grid { grid-template-columns: 2fr 1.2fr 1fr; } }
+.footer-title { color: #fff; font-size: 15px; font-weight: 700; margin-bottom: 20px; letter-spacing: 0.5px; text-transform: uppercase; }
+.footer-text { line-height: 1.7; margin-bottom: 16px; max-width: 90%; }
+.footer-link { color: rgba(255, 255, 255, 0.7); text-decoration: none; display: block; margin-bottom: 12px; transition: color 0.2s; }
+.footer-link:hover { color: #fff; text-decoration: underline; }
+.footer-contact { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.footer-contact i { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: rgba(255,255,255,0.08); border-radius: 50%; color: #fff; font-size: 14px; flex-shrink: 0; }
+.footer-bottom { max-width: 1000px; margin: 0 auto; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, 0.1); text-align: center; font-size: 12px; display: flex; flex-direction: column; gap: 12px; align-items: center; justify-content: center; }
+@media (min-width: 768px) { .footer-bottom { flex-direction: row; justify-content: space-between; text-align: left; } }
+
 .radio-row label{display:flex;align-items:center;gap:6px;font-size:14px;cursor:pointer}
 .tut-step{background:#eef5f0;border-radius:10px;padding:18px 12px;text-align:center}
 .tut-num{width:30px;height:30px;border-radius:50%;background:var(--primary);color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 8px}
@@ -475,19 +491,19 @@ h1,h2,.card-title,.hero-title{font-family:'Georgia','Times New Roman',serif;lett
     <h2 class="card-title" data-t="s2-title">Datos de la víctima</h2>
     <p class="card-sub" data-t="s2-sub">Cuéntanos quién eres. Tus datos están protegidos y serán usados solo para este proceso.</p>
     <div class="fgrid3">
-      <div class="fg"><label class="flbl" data-t="lbl-nombres">Nombres <span>*</span></label><input class="finput" value="Maria Fernanda"/></div>
-      <div class="fg"><label class="flbl" data-t="lbl-apat">Apellido paterno <span>*</span></label><input class="finput" value="García"/></div>
-      <div class="fg"><label class="flbl" data-t="lbl-amat">Apellido materno</label><input class="finput" value="López"/></div>
+      <div class="fg"><label class="flbl" data-t="lbl-nombres">Nombres <span>*</span></label><input class="finput" id="inp-nom" placeholder="Ej. Maria Fernanda"/></div>
+      <div class="fg"><label class="flbl" data-t="lbl-apat">Apellido paterno <span>*</span></label><input class="finput" id="inp-apat" placeholder="Ej. García"/></div>
+      <div class="fg"><label class="flbl" data-t="lbl-amat">Apellido materno <span>*</span></label><input class="finput" id="inp-amat" placeholder="Ej. López"/></div>
     </div>
     <div class="fgrid4">
-      <div class="fg"><label class="flbl" data-t="lbl-tdoc">Tipo de documento</label><select class="finput"><option>DNI</option><option>CE</option><option>Pasaporte</option></select></div>
-      <div class="fg"><label class="flbl" data-t="lbl-ndoc">Número de documento <span>*</span></label><input class="finput" value="45678912"/></div>
-      <div class="fg"><label class="flbl" data-t="lbl-tel">Teléfono celular <span>*</span></label><input class="finput" value="987 654 321"/></div>
-      <div class="fg"><label class="flbl" data-t="lbl-email">Correo electrónico</label><input class="finput" value="maria.garcia@email.com"/></div>
+      <div class="fg"><label class="flbl" data-t="lbl-tdoc">Tipo de documento</label><select class="finput" id="inp-tdoc"><option>DNI</option><option>CE</option><option>Pasaporte</option></select></div>
+      <div class="fg"><label class="flbl" data-t="lbl-ndoc">Número de documento <span>*</span></label><input class="finput" id="inp-doc" placeholder="Ej. 45678912"/></div>
+      <div class="fg"><label class="flbl" data-t="lbl-tel">Teléfono celular <span id="req-tel" class="hidden">*</span></label><input class="finput" id="inp-tel" placeholder="Ej. 987 654 321"/></div>
+      <div class="fg"><label class="flbl" data-t="lbl-email">Correo electrónico <span id="req-email" class="hidden">*</span></label><input class="finput" id="inp-email" placeholder="Ej. maria@email.com"/></div>
     </div>
     <div class="fg">
-      <label class="flbl" data-t="lbl-notif">¿Cómo deseas recibir notificaciones sobre tu caso?</label>
-      <div class="ntoggle">
+      <label class="flbl" data-t="lbl-notif">¿Cómo deseas recibir notificaciones sobre tu caso? <span>*</span></label>
+      <div class="ntoggle" id="notif-wrap">
         <div id="nch-sms" class="nch" data-action="toggleNotif" data-notif="sms" data-t="notif-sms">📱 SMS (Teléfono)</div>
         <div id="nch-email" class="nch" data-action="toggleNotif" data-notif="email" data-t="notif-email">📧 Correo electrónico</div>
         <div id="nch-both" class="nch" data-action="toggleNotif" data-notif="both" data-t="notif-both">Ambos</div>
@@ -664,6 +680,38 @@ h1,h2,.card-title,.hero-title{font-family:'Georgia','Times New Roman',serif;lett
 </div>
 </div>
 
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-title">DIVINDAT · PNP</div>
+      <p class="footer-text" data-t="ft-desc">La División de Investigación de Delitos de Alta Tecnología es la unidad especializada de la Policía Nacional del Perú encargada de combatir el cibercrimen a nivel nacional.</p>
+      <div style="display:flex;gap:16px;margin-top:20px;align-items:center">
+        <div style="font-size:32px;opacity:0.8">🛡️</div>
+        <div style="font-size:32px;opacity:0.8">🇵🇪</div>
+      </div>
+    </div>
+    <div>
+      <div class="footer-title" data-t="ft-contact">Contacto de Emergencia</div>
+      <div class="footer-contact"><i>📞</i> <span>Central de Emergencias: <b style="color:#fff;font-size:14px">105</b></span></div>
+      <div class="footer-contact"><i>🏦</i> <span>Fraude y Bloqueo: <b style="color:#fff;font-size:14px">1820</b></span></div>
+      <div class="footer-contact"><i>📍</i> <span>Av. España 323, Cercado de Lima</span></div>
+    </div>
+    <div>
+      <div class="footer-title" data-t="ft-legal">Enlaces Legales</div>
+      <a href="#" class="footer-link" data-t="ft-terms">Términos y Condiciones</a>
+      <a href="#" class="footer-link" data-t="ft-privacy">Política de Privacidad</a>
+      <a href="#" class="footer-link" data-t="ft-ley">Ley N° 30096 (Delitos Informáticos)</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p data-t="ft-copy">© 2026 Policía Nacional del Perú. Todos los derechos reservados.</p>
+    <div style="display:flex;gap:12px">
+      <a href="#" style="color:rgba(255,255,255,0.5);text-decoration:none">Facebook</a>
+      <a href="#" style="color:rgba(255,255,255,0.5);text-decoration:none">Twitter (X)</a>
+    </div>
+  </div>
+</footer>
+
 <script>
 
 const T = {
@@ -836,7 +884,14 @@ const T = {
     'geo-cancel':'Apsutaña',
     'geo-accept':'Lugar wakichaña, sarantaña',
     'geo-active':'📍 Lugar wakichata',
-    'stepper-labels':['Rikuña','Jaqi','Yatiyawi','Luräwi','Irnaqaña']
+    'stepper-labels':['Rikuña','Jaqi','Yatiyawi','Luräwi','Irnaqaña'],
+    'ft-desc':'DIVINDAT uqhamaraki Policía Nacional del Perú, markasana cibercrimen jark\'añataki.',
+    'ft-contact':'Jank\'aki Wawiyaña',
+    'ft-legal':'Liyimpi Qillqanaka',
+    'ft-terms':'Términos ukat Condiciones',
+    'ft-privacy':'Privacidad Waqaychaña',
+    'ft-ley':'Ley N° 30096 (Delitos Informáticos)',
+    'ft-copy':'© 2026 Policía Nacional del Perú. Taqi derechunaka waqaychata.'
   }
 };
 
@@ -868,11 +923,21 @@ function getCrimeName(c){
 
 function applyTranslations(lang){
   const tr = T[lang];
+  if(!tr) return;
   document.querySelectorAll('[data-t]').forEach(el=>{
     const key = el.getAttribute('data-t');
     if(tr[key] !== undefined){
       if(el.tagName==='INPUT'||el.tagName==='TEXTAREA') return;
+      
+      // Preservar elementos span (como los asteriscos de obligatoriedad)
+      const spans = Array.from(el.querySelectorAll('span'));
       el.innerHTML = tr[key];
+      // Si el texto de traducción no incluía ya sus propios spans, re-agregamos los originales al final
+      if (spans.length > 0 && !tr[key].includes('<span')) {
+         spans.forEach(span => el.appendChild(span));
+         // Añadir un espacio antes del span para que no se pegue al texto
+         el.insertBefore(document.createTextNode(' '), el.lastChild);
+      }
     }
   });
   const nbSec = document.getElementById('nb-section-lbl');
@@ -1111,6 +1176,24 @@ function toggleNotif(type){
       both.classList.remove('on');
     }
   }
+
+  const wrap = document.getElementById('notif-wrap');
+  if(wrap) {
+    wrap.style.border = '';
+    wrap.style.padding = '';
+    wrap.style.backgroundColor = '';
+  }
+
+  const reqTel = document.getElementById('req-tel');
+  const reqEmail = document.getElementById('req-email');
+  if(reqTel) {
+    if(sms.classList.contains('on')) reqTel.classList.remove('hidden');
+    else reqTel.classList.add('hidden');
+  }
+  if(reqEmail) {
+    if(email.classList.contains('on')) reqEmail.classList.remove('hidden');
+    else reqEmail.classList.add('hidden');
+  }
 }
 
 /* ====== GEOLOCALIZACIÓN ====== */
@@ -1207,7 +1290,22 @@ function showError(msg){
 function updateCounters(){
   const ci=document.getElementById('cnt-img'); if(ci)ci.textContent=AppState.imgCount;
   const cp=document.getElementById('cnt-pdf'); if(cp)cp.textContent=AppState.pdfCount;
-  const fc=document.getElementById('files-count'); if(fc)fc.textContent=AppState.imgCount+AppState.pdfCount;
+  const total = AppState.imgCount+AppState.pdfCount;
+  const fc=document.getElementById('files-count'); if(fc)fc.textContent=total;
+  
+  const title = document.querySelector('[data-t="upload-title"]');
+  const dzone = document.getElementById('drop-zone');
+  if(title && dzone) {
+    if(total > 0) {
+      title.textContent = 'Añadir más evidencias (Arrastra o haz clic)';
+      dzone.style.borderColor = 'var(--primary)';
+      dzone.style.backgroundColor = '#e8f0eb';
+    } else {
+      title.textContent = 'Arrastra tus archivos aquí o haz clic para seleccionar';
+      dzone.style.borderColor = '';
+      dzone.style.backgroundColor = '';
+    }
+  }
 }
 
 window.removeFile = function(btn, type){
@@ -1219,6 +1317,7 @@ window.removeFile = function(btn, type){
 
 window.handleFiles = function(fileList){
   if(!fileList) return;
+  let added = 0;
   for(const f of fileList){
     const isImg = (f.type === 'image/jpeg' || f.type === 'image/png');
     const isPdf = (f.type === 'application/pdf');
@@ -1231,12 +1330,28 @@ window.handleFiles = function(fileList){
     if(isImg) AppState.imgCount++; else AppState.pdfCount++;
     const l = document.getElementById('flist');
     const d = document.createElement('div');
-    d.className = 'frow';
+    d.className = 'frow fade-in';
     const type = isImg ? 'img' : 'pdf';
     const icon = isImg ? '🖼️' : '📄';
-    d.innerHTML = `<span style="font-size:18px">${icon}</span><span>${f.name}</span><span class="fsize">${sizeMB.toFixed(2)} MB</span><button class="fdel" onclick="removeFile(this,'${type}')">🗑</button>`;
+    d.innerHTML = `<span style="font-size:18px;flex-shrink:0">${icon}</span><span class="fname" title="${f.name}">${f.name}</span><span class="fsize">${sizeMB.toFixed(2)} MB</span><button class="fdel" onclick="removeFile(this,'${type}')" title="Eliminar">🗑</button>`;
     l.appendChild(d);
+    added++;
   }
+  
+  if (added > 0) {
+    let t = document.getElementById('succ-toast');
+    if(!t){
+      t = document.createElement('div');
+      t.id = 'succ-toast';
+      t.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1b5e3a;color:#fff;padding:12px 24px;border-radius:10px;font-size:14px;font-weight:700;z-index:9999;box-shadow:0 6px 20px rgba(0,0,0,0.3);animation:slideUp 0.3s;display:flex;align-items:center;gap:10px;';
+      document.body.appendChild(t);
+    }
+    t.innerHTML = `<span style="font-size:18px">✅</span> <span>${added} ${added===1?'archivo subido':'archivos subidos'} correctamente</span>`;
+    t.style.display = 'flex';
+    if(t.dataset.timeoutId) clearTimeout(parseInt(t.dataset.timeoutId));
+    t.dataset.timeoutId = setTimeout(()=>{t.style.display='none'}, 3500);
+  }
+  
   updateCounters();
   const inp = document.getElementById('file-input');
   if(inp) inp.value = '';
@@ -1251,16 +1366,84 @@ function validateStep(stepNum) {
   if(!container) return true;
   
   let isValid = true;
+  
+  if (stepNum === 2) {
+    const sms = document.getElementById('nch-sms');
+    const email = document.getElementById('nch-email');
+    if (sms && email && !sms.classList.contains('on') && !email.classList.contains('on')) {
+       const wrap = document.getElementById('notif-wrap');
+       if(wrap) {
+         wrap.style.border = '1.5px solid var(--danger)';
+         wrap.style.padding = '8px';
+         wrap.style.borderRadius = '8px';
+         wrap.style.backgroundColor = '#fdf2f1';
+         isValid = false;
+         
+         let t = document.getElementById('err-toast');
+         if(!t){
+            t = document.createElement('div');
+            t.id = 'err-toast';
+            t.style.cssText = 'position:fixed;top:20px;left:50%;transform:translateX(-50%);background:var(--danger);color:#fff;padding:12px 20px;border-radius:8px;font-size:14px;font-weight:700;z-index:9999;box-shadow:0 4px 12px rgba(0,0,0,0.2);animation:fadeIn 0.3s;';
+            document.body.appendChild(t);
+         }
+         t.innerHTML = '⚠️ Debes seleccionar cómo recibir notificaciones.';
+         t.style.display = 'block';
+         if(t.dataset.timeoutId) clearTimeout(parseInt(t.dataset.timeoutId));
+         t.dataset.timeoutId = setTimeout(()=>{t.style.display='none'}, 4000);
+       }
+    }
+  }
+
+  let missingFields = false;
+  
+  // Validación explícita de seguridad para Paso 2
+  if (stepNum === 2) {
+     const reqInputs = ['inp-nom', 'inp-apat', 'inp-amat', 'inp-doc'];
+     reqInputs.forEach(id => {
+       const el = document.getElementById(id);
+       if (el && (!el.value || el.value.trim() === '')) {
+         el.style.borderColor = 'var(--danger)';
+         el.style.backgroundColor = '#fdf2f1';
+         isValid = false;
+         missingFields = true;
+       }
+     });
+     
+     // Validación condicional
+     const sms = document.getElementById('nch-sms');
+     const email = document.getElementById('nch-email');
+     if (sms && sms.classList.contains('on')) {
+       const tel = document.getElementById('inp-tel');
+       if (tel && (!tel.value || tel.value.trim() === '')) {
+         tel.style.borderColor = 'var(--danger)';
+         tel.style.backgroundColor = '#fdf2f1';
+         isValid = false;
+         missingFields = true;
+       }
+     }
+     if (email && email.classList.contains('on')) {
+       const mail = document.getElementById('inp-email');
+       if (mail && (!mail.value || mail.value.trim() === '')) {
+         mail.style.borderColor = 'var(--danger)';
+         mail.style.backgroundColor = '#fdf2f1';
+         isValid = false;
+         missingFields = true;
+       }
+     }
+  }
+
+  // Validación dinámica general
   container.querySelectorAll('.fg').forEach(fg => {
-    // Solo validar campos visibles que sean obligatorios (tengan un span con *)
     if (fg.classList.contains('hidden') || fg.closest('.hidden')) return;
-    const isRequired = fg.querySelector('label span');
+    const span = fg.querySelector('label span');
+    const isRequired = span && !span.classList.contains('hidden') && span.textContent.includes('*');
     if (isRequired) {
       const input = fg.querySelector('.finput');
-      if (input && !input.value.trim()) {
+      if (input && (!input.value || input.value.trim() === '')) {
         input.style.borderColor = 'var(--danger)';
         input.style.backgroundColor = '#fdf2f1';
         isValid = false;
+        missingFields = true;
         input.addEventListener('input', function() {
           this.style.borderColor = '';
           this.style.backgroundColor = '';
@@ -1268,6 +1451,20 @@ function validateStep(stepNum) {
       }
     }
   });
+
+  if (missingFields) {
+     let t = document.getElementById('err-toast');
+     if(!t){
+        t = document.createElement('div');
+        t.id = 'err-toast';
+        t.style.cssText = 'position:fixed;top:20px;left:50%;transform:translateX(-50%);background:var(--danger);color:#fff;padding:12px 20px;border-radius:8px;font-size:14px;font-weight:700;z-index:9999;box-shadow:0 4px 12px rgba(0,0,0,0.2);animation:fadeIn 0.3s;';
+        document.body.appendChild(t);
+     }
+     t.innerHTML = '⚠️ Por favor, completa todos los campos obligatorios (*).';
+     t.style.display = 'block';
+     if(t.dataset.timeoutId) clearTimeout(parseInt(t.dataset.timeoutId));
+     t.dataset.timeoutId = setTimeout(()=>{t.style.display='none'}, 4000);
+  }
 
   if (stepNum === 3) {
     let minInput, maxInput;

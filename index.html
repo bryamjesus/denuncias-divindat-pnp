@@ -1383,6 +1383,13 @@ function startDenuncia(targetStep) {
 window.cancelLocation = function() {
   ui.$('geo-modal')?.classList.add('hidden');
   AppState.pendingTargetStep = null;
+  // Si estaba en "Solicitando permiso…" y el usuario canceló,
+  // detener el watchPosition pendiente y restaurar el botón
+  if (AppState.geo.watchId !== null && !AppState.geo.active) {
+    navigator.geolocation.clearWatch(AppState.geo.watchId);
+    AppState.geo.watchId = null;
+  }
+  resetGeoBtn();
 };
 
 window.acceptLocation = function() {

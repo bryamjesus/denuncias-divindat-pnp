@@ -528,15 +528,15 @@ h1,h2,.card-title,.hero-title{font-family: var(--font-display); font-weight: 700
     <h2 class="card-title" data-t="s2-title">Datos de la víctima</h2>
     <p class="card-sub" data-t="s2-sub">Cuéntanos quién eres. Tus datos están protegidos y serán usados solo para este proceso.</p>
     <div class="fgrid3">
-      <div class="fg"><label class="flbl" data-t="lbl-nombres">Nombres <span>*</span></label><input class="finput" id="inp-nom" placeholder="Ej. Maria Fernanda" data-required="true"/></div>
-      <div class="fg"><label class="flbl" data-t="lbl-apat">Apellido paterno <span>*</span></label><input class="finput" id="inp-apat" placeholder="Ej. García" data-required="true"/></div>
-      <div class="fg"><label class="flbl" data-t="lbl-amat">Apellido materno <span>*</span></label><input class="finput" id="inp-amat" placeholder="Ej. López" data-required="true"/></div>
+      <div class="fg"><label class="flbl" data-t="lbl-nombres">Nombres <span>*</span></label><input class="finput" id="inp-nom" value="Juan Alberto" data-required="true"/></div>
+      <div class="fg"><label class="flbl" data-t="lbl-apat">Apellido paterno <span>*</span></label><input class="finput" id="inp-apat" value="Quispe" data-required="true"/></div>
+      <div class="fg"><label class="flbl" data-t="lbl-amat">Apellido materno <span>*</span></label><input class="finput" id="inp-amat" value="Mamani" data-required="true"/></div>
     </div>
     <div class="fgrid4">
       <div class="fg"><label class="flbl" data-t="lbl-tdoc">Tipo de documento</label><select class="finput" id="inp-tdoc"><option>DNI</option><option>CE</option><option>Pasaporte</option></select></div>
-      <div class="fg"><label class="flbl" data-t="lbl-ndoc">Número de documento <span>*</span></label><input class="finput" id="inp-doc" placeholder="Ej. 45678912" data-required="true"/></div>
-      <div class="fg"><label class="flbl" data-t="lbl-tel">Teléfono celular <span id="req-tel" class="hidden">*</span></label><input class="finput" id="inp-tel" placeholder="Ej. 987 654 321"/></div>
-      <div class="fg"><label class="flbl" data-t="lbl-email">Correo electrónico <span id="req-email" class="hidden">*</span></label><input class="finput" id="inp-email" placeholder="Ej. maria@email.com"/></div>
+      <div class="fg"><label class="flbl" data-t="lbl-ndoc">Número de documento <span>*</span></label><input class="finput" id="inp-doc" value="45678901" data-required="true"/></div>
+      <div class="fg"><label class="flbl" data-t="lbl-tel">Teléfono celular <span id="req-tel" class="hidden">*</span></label><input class="finput" id="inp-tel" value="987654321"/></div>
+      <div class="fg"><label class="flbl" data-t="lbl-email">Correo electrónico <span id="req-email" class="hidden">*</span></label><input class="finput" id="inp-email" value="juan.quispe@ejemplo.pe"/></div>
     </div>
     <div class="fg">
       <label class="flbl" data-t="lbl-notif">¿Cómo deseas recibir notificaciones sobre tu caso? <span>*</span></label>
@@ -578,16 +578,16 @@ h1,h2,.card-title,.hero-title{font-family: var(--font-display); font-weight: 700
     </div>
     <div id="form-sup" class="hidden">
       <div class="fgrid2">
-        <div class="fg"><label class="flbl">¿Qué tipo de suplantación? <span>*</span></label><select class="finput"><option>Selecciona</option><option>Perfil falso en redes</option><option>Cuenta bancaria a mi nombre</option><option>WhatsApp clonado</option></select></div>
-        <div class="fg"><label class="flbl">¿Dónde ocurrió? <span>*</span></label><select class="finput"><option>Selecciona</option><option>Facebook</option><option>Instagram</option><option>WhatsApp</option><option>TikTok</option></select></div>
+        <div class="fg"><label class="flbl" data-t="lbl-sup-tipo">¿Qué tipo de suplantación? <span>*</span></label><select class="finput"><option>Selecciona</option><option selected>Perfil falso en redes</option><option>Cuenta bancaria a mi nombre</option><option>WhatsApp clonado</option></select></div>
+        <div class="fg"><label class="flbl" data-t="lbl-sup-donde">¿Dónde ocurrió? <span>*</span></label><select class="finput"><option>Selecciona</option><option selected>Facebook</option><option>Instagram</option><option>WhatsApp</option><option>TikTok</option></select></div>
       </div>
-      <div class="fg"><label class="flbl">URL del perfil falso (opcional)</label><input class="finput" placeholder="https://facebook.com/perfil-falso"/></div>
-      <div class="fg"><label class="flbl">Descripción detallada <span>*</span></label><textarea class="finput" rows="4">Crearon un perfil de Facebook usando mis fotos y nombre completo. Están enviando mensajes a mis contactos pidiendo dinero prestado.</textarea></div>
+      <div class="fg"><label class="flbl" data-t="lbl-sup-url">URL del perfil falso (opcional)</label><input class="finput" value="https://facebook.com/juan-quispe-perfil-falso"/></div>
+      <div class="fg"><label class="flbl" data-t="lbl-detalles">Descripción detallada <span>*</span></label><textarea class="finput" rows="4">Crearon un perfil de Facebook usando mis fotos y mi nombre completo. Están enviando mensajes a mis contactos pidiendo dinero prestado alegando una emergencia.</textarea></div>
     </div>
     <div id="form-hackeo" class="hidden">
       <div class="fgrid2">
-        <div class="fg"><label class="flbl">¿Qué fue vulnerado? <span>*</span></label><select class="finput"><option>Selecciona</option><option>Cuenta bancaria</option><option>Redes sociales</option><option>Correo electrónico</option></select></div>
-        <div class="fg"><label class="flbl">Servicio afectado <span>*</span></label><input class="finput" placeholder="Ej. Gmail, BCP, Facebook"/></div>
+        <div class="fg"><label class="flbl" data-t="lbl-hck-que">¿Qué fue vulnerado? <span>*</span></label><select class="finput"><option>Selecciona</option><option>Cuenta bancaria</option><option>Redes sociales</option><option selected>Correo electrónico</option></select></div>
+        <div class="fg"><label class="flbl" data-t="lbl-hck-serv">Servicio afectado <span>*</span></label><input class="finput" value="Gmail"/></div>
       </div>
       <div class="fgrid2">
         <div class="fg"><label class="flbl">Fecha <span>*</span></label><input class="finput" type="date" value="2026-05-09"/></div>
@@ -597,7 +597,7 @@ h1,h2,.card-title,.hero-title{font-family: var(--font-display); font-weight: 700
     </div>
     <div id="form-ext" class="hidden">
       <div class="fgrid2">
-        <div class="fg"><label class="flbl">¿Cómo recibiste la extorsión? <span>*</span></label><select class="finput"><option>Selecciona</option><option>WhatsApp</option><option>Telegram</option><option>Correo electrónico</option><option>Llamada</option></select></div>
+        <div class="fg"><label class="flbl">¿Cómo recibiste la extorsión? <span>*</span></label><select class="finput"><option>Selecciona</option><option selected>WhatsApp</option><option>Telegram</option><option>Correo electrónico</option><option>Llamada</option></select></div>
         <div class="fg">
           <label class="flbl">Monto exigido — rango (S/.)</label>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">

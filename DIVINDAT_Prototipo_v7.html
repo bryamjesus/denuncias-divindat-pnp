@@ -42,21 +42,31 @@ h1,h2,.card-title,.hero-title{font-family:'Georgia','Times New Roman',serif;lett
 
 /* NAVBAR */
 .navbar{background:var(--primary);display:flex;align-items:center;padding:12px 16px;height:auto;gap:12px;box-shadow:0 2px 8px rgba(0,0,0,.15);border-bottom:3px solid #d91023;flex-wrap:wrap;justify-content:space-between}
-@media(min-width:768px){ .navbar{padding:0 48px;height:60px;flex-wrap:nowrap;justify-content:flex-start} }
+@media(min-width:769px){ .navbar{padding:0 48px;height:60px;flex-wrap:nowrap;justify-content:flex-start} }
+.nb-mobile-head{display:flex;width:100%;justify-content:space-between;align-items:center}
+@media(min-width:769px){ .nb-mobile-head{width:auto} }
 .nb-brand{display:flex;align-items:center;gap:12px}
 .nb-escudo{width:38px;height:38px;background:#fff;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:var(--primary)}
 .nb-texts b{color:#fff;font-size:14px;display:block;letter-spacing:.3px}
 .nb-texts span{color:rgba(255,255,255,.65);font-size:11px;display:none}
-@media(min-width:768px){ .nb-texts span{display:block} }
+@media(min-width:769px){ .nb-texts span{display:block} }
+.hamburger-btn{display:none;background:none;border:none;color:#fff;font-size:26px;cursor:pointer;padding:4px}
+@media(max-width:768px){
+  .hamburger-btn{display:block}
+  .navbar{flex-direction:column;align-items:stretch;transition:all 0.3s}
+  .navbar.menu-open .nb-right{display:flex}
+  .navbar.menu-open .nb-section{display:block;margin-top:10px;text-align:center;width:100%}
+  .navbar.menu-open .nb-div{display:none}
+}
 .nb-div{width:1px;height:30px;background:rgba(255,255,255,.2);margin:0 10px;display:none}
-@media(min-width:768px){ .nb-div{display:block;margin:0 20px} }
+@media(min-width:769px){ .nb-div{display:block;margin:0 20px} }
 .nb-section{color:rgba(255,255,255,.8);font-size:13px;display:none}
-@media(min-width:768px){ .nb-section{display:block} }
-.nb-right{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px}
-@media(min-width:768px){ .nb-right{width:auto;margin-left:auto;justify-content:flex-start} }
+@media(min-width:769px){ .nb-section{display:block} }
+.nb-right{width:100%;display:none;flex-direction:column;align-items:stretch;gap:10px;margin-top:10px}
+@media(min-width:769px){ .nb-right{display:flex;flex-direction:row;width:auto;margin-left:auto;justify-content:flex-start;margin-top:0} }
 
 /* LANGUAGE SWITCHER */
-.lang-switcher{display:flex;align-items:center;gap:3px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:4px 6px}
+.lang-switcher{display:flex;align-items:center;justify-content:center;gap:3px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:4px 6px}
 .lang-btn{background:none;border:none;color:rgba(255,255,255,.6);font-size:11px;font-weight:700;cursor:pointer;padding:4px 8px;border-radius:5px;transition:all .15s;letter-spacing:.5px;font-family:'Segoe UI',Arial,sans-serif;white-space:nowrap}
 .lang-btn:hover{background:rgba(255,255,255,.15);color:#fff}
 .lang-btn.active{background:#fff;color:var(--primary)}
@@ -69,9 +79,10 @@ h1,h2,.card-title,.hero-title{font-family:'Georgia','Times New Roman',serif;lett
 /* STEPBAR (Scroll Horizontal en móvil) */
 .stepbar{background:#fff;border-bottom:2px solid #e8ecf5;padding:0}
 @media(min-width:768px){ .stepbar{padding:0 48px} }
-.stepbar-inner{display:flex;align-items:flex-start;justify-content:flex-start;padding:24px 16px 48px 16px;gap:0;max-width:800px;margin:0 auto;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+.stepbar-inner{display:flex;align-items:flex-start;justify-content:flex-start;padding:24px 16px 48px 16px;gap:0;max-width:100%;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+.stepbar-inner::before, .stepbar-inner::after{content:'';margin:auto}
 .stepbar-inner::-webkit-scrollbar{display:none}
-@media(min-width:768px){ .stepbar-inner{justify-content:center;padding:24px 0 48px 0;overflow-x:visible} }
+@media(min-width:768px){ .stepbar-inner{padding:24px 0 48px 0;overflow-x:visible;max-width:800px;margin:0 auto} }
 .stp{display:flex;flex-direction:column;align-items:center;position:relative;flex-shrink:0}
 .stp-c{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;transition:all .2s;position:relative;z-index:2}
 .stp-c.done{background:var(--primary);color:#fff}
@@ -80,8 +91,8 @@ h1,h2,.card-title,.hero-title{font-family:'Georgia','Times New Roman',serif;lett
 .stp-lbl{position:absolute;top:38px;font-size:13px;color:#aaa;white-space:nowrap;transition:all .2s}
 .stp-lbl.active{color:var(--primary);font-weight:700}
 .stp-lbl.done{color:var(--primary)}
-.stp-line{flex-shrink:0;height:2px;background:#e4e8f0;width:40px;min-width:40px;transition:background .2s;margin-top:13px}
-@media(min-width:768px){ .stp-line{flex:1;width:auto;max-width:100px} }
+.stp-line{flex-shrink:0;height:2px;background:#e4e8f0;width:70px;min-width:70px;transition:background .2s;margin-top:13px}
+@media(min-width:768px){ .stp-line{flex:1;width:auto;min-width:40px;max-width:100px} }
 .stp-line.done{background:var(--primary)}
 
 /* UX IMPROVEMENTS */
@@ -345,10 +356,13 @@ h1,h2,.card-title,.hero-title{font-family:'Georgia','Times New Roman',serif;lett
 </div>
 
 <!-- NAVBAR -->
-<nav class="navbar">
-  <div class="nb-brand">
-    <div class="nb-escudo">🛡</div>
-    <div class="nb-texts"><b>PNP · DIVINDAT</b><span data-t="nb-sub">División de Investigación de Delitos de Alta Tecnología</span></div>
+<nav class="navbar" id="navbar">
+  <div class="nb-mobile-head">
+    <div class="nb-brand">
+      <div class="nb-escudo">🛡</div>
+      <div class="nb-texts"><b>PNP · DIVINDAT</b><span data-t="nb-sub">División de Investigación de Delitos de Alta Tecnología</span></div>
+    </div>
+    <button class="hamburger-btn" onclick="document.getElementById('navbar').classList.toggle('menu-open')">☰</button>
   </div>
   <div class="nb-div"></div>
   <span class="nb-section" id="nb-section-lbl" data-t="sec-inicio">Inicio</span>
@@ -500,8 +514,8 @@ h1,h2,.card-title,.hero-title{font-family:'Georgia','Times New Roman',serif;lett
       <div class="fgrid4">
         <div class="fg"><label class="flbl">Fecha <span>*</span></label><input class="finput" type="date" value="2026-05-09"/></div>
         <div class="fg"><label class="flbl">Hora</label><input class="finput" type="time" value="14:30"/></div>
-        <div class="fg"><label class="flbl">Monto mínimo (S/) <span>*</span></label><input class="finput" type="number" min="0" step="0.01" placeholder="500.00"/></div>
-        <div class="fg"><label class="flbl">Monto máximo (S/) <span>*</span></label><input class="finput" type="number" min="0" step="0.01" placeholder="1,250.00"/></div>
+        <div class="fg"><label class="flbl">Monto mínimo (S/) <span>*</span></label><input class="finput" id="monto-min" type="number" min="0" step="0.01" placeholder="500.00"/></div>
+        <div class="fg"><label class="flbl">Monto máximo (S/) <span>*</span></label><input class="finput" id="monto-max" type="number" min="0" step="0.01" placeholder="1,250.00"/></div>
       </div>
       <div class="fgrid2">
         <div class="fg"><label class="flbl">Banco afectado <span>*</span></label><select class="finput" data-change="checkOtherBank"><option value="BCP">BCP</option><option value="Interbank">Interbank</option><option value="BBVA">BBVA</option><option value="Scotiabank">Scotiabank</option><option value="Yape">Yape</option><option value="Plin">Plin</option><option value="Otros">Otros</option></select></div>
@@ -534,8 +548,8 @@ h1,h2,.card-title,.hero-title{font-family:'Georgia','Times New Roman',serif;lett
         <div class="fg">
           <label class="flbl">Monto exigido — rango (S/.)</label>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-            <input class="finput" type="number" min="0" step="0.01" placeholder="Mínimo: 500.00"/>
-            <input class="finput" type="number" min="0" step="0.01" placeholder="Máximo: 1,000.00"/>
+            <input class="finput" id="ext-monto-min" type="number" min="0" step="0.01" placeholder="Mínimo: 500.00"/>
+            <input class="finput" id="ext-monto-max" type="number" min="0" step="0.01" placeholder="Máximo: 1,000.00"/>
           </div>
         </div>
       </div>
@@ -1211,6 +1225,42 @@ function validateStep(stepNum) {
       }
     }
   });
+
+  if (stepNum === 3) {
+    let minInput, maxInput;
+    if (AppState.crime === 'Phishing' || AppState.crime === 'Fraude') {
+      minInput = document.getElementById('monto-min');
+      maxInput = document.getElementById('monto-max');
+    } else if (AppState.crime === 'Extorsión') {
+      minInput = document.getElementById('ext-monto-min');
+      maxInput = document.getElementById('ext-monto-max');
+    }
+    
+    if (minInput && maxInput && minInput.value && maxInput.value) {
+      if (parseFloat(maxInput.value) < parseFloat(minInput.value)) {
+        maxInput.style.borderColor = 'var(--danger)';
+        maxInput.style.backgroundColor = '#fdf2f1';
+        isValid = false;
+        
+        let t = document.getElementById('err-toast');
+        if(!t){
+          t = document.createElement('div');
+          t.id = 'err-toast';
+          t.style.cssText = 'position:fixed;top:20px;left:50%;transform:translateX(-50%);background:var(--danger);color:#fff;padding:12px 20px;border-radius:8px;font-size:14px;font-weight:700;z-index:9999;box-shadow:0 4px 12px rgba(0,0,0,0.2);animation:fadeIn 0.3s;';
+          document.body.appendChild(t);
+        }
+        t.innerHTML = '⚠️ El monto máximo no puede ser menor al mínimo.';
+        t.style.display = 'block';
+        setTimeout(()=>{t.style.display='none'}, 4000);
+        
+        maxInput.addEventListener('input', function() {
+          this.style.borderColor = '';
+          this.style.backgroundColor = '';
+        }, {once:true});
+      }
+    }
+  }
+
   return isValid;
 }
 

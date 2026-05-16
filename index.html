@@ -471,7 +471,7 @@ textarea.finput{
 <div id="geo-modal" class="modal-overlay hidden">
   <div class="modal-card">
     <div class="modal-head">
-      <div class="modal-icon-pulse">📍</div>
+      <div class="modal-icon-pulse"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1b5e3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
       <h2 class="modal-title" data-t="geo-title">Activación obligatoria de ubicación</h2>
       <p class="modal-sub" data-t="geo-sub">Requerido por el protocolo PNP · DIVINDAT antes de iniciar la denuncia</p>
     </div>
@@ -486,12 +486,12 @@ textarea.finput{
           <li data-t="geo-r4">Coordinar respuesta inmediata con la comisaría más cercana si el caso lo amerita.</li>
         </ul>
       </div>
-      <div class="modal-legal" data-t="geo-legal">⚖️ <strong>Aviso legal:</strong> Tu ubicación será registrada únicamente durante el llenado del formulario y se vinculará al expediente. Estos datos están protegidos bajo la Ley N° 29733 de Protección de Datos Personales. No se compartirán con terceros.</div>
+      <div class="modal-legal" data-t="geo-legal"><strong>Aviso legal:</strong> Tu ubicación será registrada únicamente durante el llenado del formulario y se vinculará al expediente. Estos datos están protegidos bajo la Ley N° 29733 de Protección de Datos Personales. No se compartirán con terceros.</div>
       <div id="geo-error" class="modal-error-box"></div>
     </div>
     <div class="modal-foot">
       <button class="modal-cancel" onclick="cancelLocation()" data-t="geo-cancel">Cancelar</button>
-      <button class="modal-accept" id="geo-accept-btn" onclick="acceptLocation()"><span>📍</span> <span data-t="geo-accept">Activar ubicación y continuar</span></button>
+      <button class="modal-accept" id="geo-accept-btn" onclick="acceptLocation()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:5px;flex-shrink:0" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span data-t="geo-accept">Activar ubicación y continuar</span></button>
     </div>
   </div>
 </div>
@@ -523,7 +523,7 @@ textarea.finput{
   <div class="container">
     <div class="nb-mobile-head">
       <div class="nb-brand" data-nav="0" style="cursor:pointer" title="Ir al inicio">
-        <div class="nb-escudo">🛡</div>
+        <div class="nb-escudo"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1b5e3a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2L3 7v5c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z"/></svg></div>
         <div class="nb-texts"><b>PNP · DIVINDAT</b><span data-t="nb-sub">División de Investigación de Delitos de Alta Tecnología</span></div>
       </div>
       <button class="hamburger-btn" onclick="document.getElementById('navbar').classList.toggle('menu-open')">☰</button>
@@ -540,8 +540,8 @@ textarea.finput{
         <span class="lang-sep">|</span>
         <button class="lang-btn" data-lang="ay" id="lb-ay">AY</button>
       </div>
-      <button class="nb-ayuda" data-nav="0.5" data-t="btn-ayuda">❓ Ayuda</button>
-      <button class="nb-emergencia" data-start="1" data-t="btn-emergencia">🚨 Me acaban de estafar ahora</button>
+      <button class="nb-ayuda" data-nav="0.5" data-t="btn-ayuda">Ayuda</button>
+      <button class="nb-emergencia" data-start="1" data-t="btn-emergencia"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:5px;flex-shrink:0" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Me acaban de estafar ahora</button>
     </div>
   </div>
 </nav>
@@ -564,12 +564,18 @@ textarea.finput{
       <h1 class="hero-title" data-t="hero-title">Plataforma de Denuncia de<br>Delitos Cibernéticos</h1>
       <p class="hero-sub" data-t="hero-sub">Denuncia phishing, fraude bancario, hackeo, suplantación o extorsión digital en menos de 10 minutos. Sin ir a ninguna comisaría. Con validez legal mediante ID Perú.</p>
       <div class="hero-btns">
-        <button class="btn-red" data-start="1" data-t="btn-urgente">🚨 Iniciar denuncia urgente</button>
+        <button class="btn-red" data-start="1" data-t="btn-urgente"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;flex-shrink:0" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Iniciar denuncia urgente</button>
         <button class="btn-hero-white" data-start="0.5" data-t="btn-iniciar">Iniciar denuncia</button>
       </div>
     </div>
     <div class="hero-right">
-      <div class="hero-icon-big">🛡️💻</div>
+      <div class="hero-icon-big">
+        <svg width="90" height="90" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M45 8L16 20v22c0 17.2 12.3 33.3 29 37.4C61.7 75.3 74 59.2 74 42V20L45 8z" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
+          <path d="M45 18L24 28v16c0 12.6 9 24.4 21 27.4 12-3 21-14.8 21-27.4V28L45 18z" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+          <path d="M36 42l6 6 12-12" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
       <div class="stat-grid">
         <div class="stat-box"><div class="stat-num">42,000+</div><div class="stat-lbl" data-t="stat1">Denuncias en 2024</div></div>
         <div class="stat-box"><div class="stat-num">&lt;10 min</div><div class="stat-lbl" data-t="stat2">Para completar denuncia</div></div>
@@ -594,7 +600,7 @@ textarea.finput{
   <div class="card">
     <h2 class="card-title" data-t="tut-title">Centro de ayuda y tutorial</h2>
     <p class="card-sub" data-t="tut-sub">¿Cómo funciona el proceso de denuncia? Sigue estos 5 pasos — te tomará menos de 10 minutos.</p>
-    <div class="scroll-hint"><span>Desliza para ver pasos</span> ↔️</div>
+    <div class="scroll-hint"><span>Desliza para ver pasos</span> ↔</div>
     <div class="scroll-grid" style="margin-bottom:28px">
       <div class="tut-step"><div class="tut-num">1</div><div class="tut-title" data-t="tstep1">Reúne tu evidencia</div><div class="tut-text" data-t="tstep1b">Capturas, URLs, datos bancarios, mensajes</div></div>
       <div class="tut-step"><div class="tut-num">2</div><div class="tut-title" data-t="tstep2">Selecciona el delito</div><div class="tut-text" data-t="tstep2b">El formulario se adapta automáticamente</div></div>
@@ -746,10 +752,10 @@ textarea.finput{
     <div class="tip" id="ev-tip">📌 Para phishing: captura del correo/SMS falso, URL del sitio, comprobante de transferencia.</div>
     <input type="file" id="file-input" accept="image/jpeg,image/png,application/pdf" multiple style="display:none" onchange="handleFiles(this.files)"/>
     <div class="uzone" id="drop-zone" onclick="document.getElementById('file-input').click()">
-      <div style="font-size:40px;margin-bottom:10px">☁️</div>
+      <div style="margin-bottom:10px"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#1b5e3a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg></div>
       <p style="font-size:15px;font-weight:700;color:#1b5e3a" data-t="upload-title">Arrastra tus archivos aquí o haz clic para seleccionar</p>
       <p style="font-size:12px;color:#666;margin-top:6px;font-weight:600" data-t="upload-sub">📎 Formatos permitidos: JPG · PNG · PDF únicamente</p>
-      <p style="font-size:12px;color:#888;margin-top:4px" data-t="upload-sub2">⚖️ Máximo 10 MB por archivo · Hasta 3 capturas y 1 PDF</p>
+      <p style="font-size:12px;color:#888;margin-top:4px" data-t="upload-sub2">Máx. 10 MB por archivo · Hasta 3 capturas y 1 PDF</p>
     </div>
     <div id="upload-counter" style="display:flex;gap:12px;margin-top:14px;font-size:12px">
       <span style="background:#e7f3eb;border:1px solid #b8d4c2;border-radius:6px;padding:4px 12px;color:#1b5e3a;font-weight:600">🖼️ Capturas: <span id="cnt-img">0</span>/3</span>
@@ -805,7 +811,7 @@ textarea.finput{
       <button class="btn-blue" style="font-size:15px;padding:13px 32px" data-nav="6" data-t="btn-idperu">Continuar con ID Perú →</button>
       <p class="id-footnote" data-t="id-footnote">🔐 Tus datos biométricos están protegidos bajo la Ley N° 29733 de Protección de Datos Personales.</p>
     </div>
-    <div class="id-right"><div style="font-size:80px">🛡️</div><p style="color:#1b5e3a;font-size:12px;margin-top:8px;font-weight:700" data-t="id-secure">Autenticación segura<br>vía RENIEC</p></div>
+    <div class="id-right"><svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#1b5e3a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2L3 7v5c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z"/><path d="M9 12l2 2 4-4" stroke-width="2"/></svg><p style="color:#1b5e3a;font-size:12px;margin-top:8px;font-weight:700" data-t="id-secure">Autenticación segura<br>vía RENIEC</p></div>
   </div>
   <div class="btn-row"><button class="btn-out" data-nav="4" data-t="btn-volver">← Volver</button></div>
 </div>
@@ -827,8 +833,8 @@ textarea.finput{
       </div>
       <div class="notif-box">✉️ <span data-t="notif-msg">Te notificaremos sobre los avances de tu caso al canal que seleccionaste.</span></div>
       <div class="success-btns">
-        <button class="btn-out" data-nav="0" data-t="btn-seguimiento">🔍 Ver seguimiento de mi caso</button>
-        <button class="btn-blue" data-t="btn-pdf">⬇️ Descargar constancia (PDF)</button>
+        <button class="btn-out" data-nav="0" data-t="btn-seguimiento">Ver seguimiento de mi caso</button>
+        <button class="btn-blue" data-t="btn-pdf"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;flex-shrink:0" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Descargar constancia (PDF)</button>
         <button class="btn-blue" data-nav="0" data-t="btn-finalizar">Finalizar y volver al inicio</button>
       </div>
     </div>
@@ -847,7 +853,7 @@ textarea.finput{
         <div class="footer-title">DIVINDAT · PNP</div>
         <p class="footer-text" data-t="ft-desc">La División de Investigación de Delitos de Alta Tecnología es la unidad especializada de la Policía Nacional del Perú encargada de combatir el cibercrimen a nivel nacional.</p>
         <div style="display:flex;gap:12px;margin-top:20px;align-items:center">
-          <div style="background:#fff; padding:6px; border-radius:4px; display:flex; align-items:center; justify-content:center; width:40px; height:40px; font-size:24px;">🛡️</div>
+          <div style="background:#fff; padding:8px; border-radius:4px; display:flex; align-items:center; justify-content:center; width:40px; height:40px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b5e3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2L3 7v5c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z"/></svg></div>
           <div style="background:rgba(255,255,255,0.1); padding:6px; border-radius:4px; display:flex; align-items:center; justify-content:center; width:40px; height:40px; font-size:24px;">🇵🇪</div>
         </div>
       </div>
@@ -887,7 +893,7 @@ textarea.finput{
 const T = {
   es: {
     'nb-sub':'División de Investigación de Delitos de Alta Tecnología',
-    'btn-ayuda':'❓ Ayuda','btn-emergencia':'🚨 Me acaban de estafar ahora','btn-urgente':'🚨 Iniciar denuncia urgente','btn-iniciar':'Iniciar denuncia',
+    'btn-ayuda':'Ayuda','btn-emergencia':'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:5px;flex-shrink:0" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Me acaban de estafar ahora','btn-urgente':'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;flex-shrink:0" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Iniciar denuncia urgente','btn-iniciar':'Iniciar denuncia',
     'hero-badge':'PNP · DIVINDAT · LEY 30096',
     'hero-title':'Plataforma de Denuncia de<br>Delitos Cibernéticos',
     'hero-sub':'Denuncia phishing, fraude bancario, hackeo, suplantación o extorsión digital en menos de 10 minutos. Sin ir a ninguna comisaría. Con validez legal mediante ID Perú.',
@@ -912,7 +918,7 @@ const T = {
     'privacy-tip':'🔒 Sus datos serán usados únicamente para notificarle el avance de su caso y no serán compartidos con terceros.',
     's3-sub':'Completa la información específica de tu caso.','tip-strong':'Si hay dinero en riesgo ahora:','tip-text':'Llama a la Línea 1820 (gratuita, 24h) para bloqueo bancario inmediato.',
     's4-title':'Adjunta evidencia digital','s4-sub':'Sube hasta 3 capturas de pantalla (JPG/PNG) y/o 1 documento PDF que respalden tu denuncia.',
-    'upload-title':'Arrastra tus archivos aquí o haz clic para seleccionar','upload-sub':'📎 Formatos permitidos: JPG · PNG · PDF únicamente','upload-sub2':'⚖️ Máximo 10 MB por archivo · Hasta 3 capturas y 1 PDF',
+    'upload-title':'Arrastra tus archivos aquí o haz clic para seleccionar','upload-sub':'📎 Formatos permitidos: JPG · PNG · PDF únicamente','upload-sub2':'Máximo 10 MB por archivo · Hasta 3 capturas y 1 PDF',
     'files-lbl':'Archivos adjuntos','files-lbl-prefix':'Archivos adjuntos','hash-note':'🔐 Cada archivo recibe hash SHA-256, timestamp e IP para cadena de custodia forense.',
     's5-title':'Revisa tu información','s5-sub':'Verifica que todos los datos estén correctos antes de continuar.',
     'rev-tipo':'Tipo de delito','rev-datos':'Datos personales','rev-nombre':'Nombre','rev-tel':'Teléfono','rev-correo':'Correo',
@@ -923,7 +929,7 @@ const T = {
     'success-title':'¡Denuncia registrada correctamente!','success-sub':'Tu caso ha sido registrado con éxito en el sistema de DIVINDAT.',
     'case-lbl':'Número de caso','meta-fecha':'Fecha y hora','meta-estado':'Estado actual','status-recibido':'Recibido','meta-delito':'Tipo de delito','meta-invest':'Investigador',
     'notif-msg':'Te notificaremos sobre los avances de tu caso al canal que seleccionaste.',
-    'btn-seguimiento':'🔍 Ver seguimiento de mi caso','btn-pdf':'⬇️ Descargar constancia (PDF)',
+    'btn-seguimiento':'Ver seguimiento de mi caso','btn-pdf':'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;flex-shrink:0" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Descargar constancia (PDF)',
     'bank-title':'¿Necesitas bloqueo bancario inmediato?','bank-text':'Llama a la Línea 1820 (gratuita, 24h) para coordinar el bloqueo de cuentas bancarias involucradas.',
     'btn-volver':'← Volver','btn-continuar':'Continuar →','btn-comenzar':'Comenzar denuncia →','btn-volver-inicio':'← Volver al inicio',
     'nav-inicio':'Inicio','nav-tutorial':'Tutorial','nav-tipo':'1 Tipo','nav-datos':'2 Datos','nav-detalles':'3 Detalles','nav-evidencia':'4 Evidencia','nav-confirmar':'5 Confirmar','nav-exito':'✅ Éxito',
@@ -936,7 +942,7 @@ const T = {
     'geo-r2':'Generar la geo-firma forense que acompaña a la cadena de custodia digital.',
     'geo-r3':'Prevenir denuncias fraudulentas mediante validación geográfica del denunciante.',
     'geo-r4':'Coordinar respuesta inmediata con la comisaría más cercana si el caso lo amerita.',
-    'geo-legal':'⚖️ <strong>Aviso legal:</strong> Tu ubicación será registrada únicamente durante el llenado del formulario y se vinculará al expediente. Estos datos están protegidos bajo la Ley N° 29733 de Protección de Datos Personales. No se compartirán con terceros.',
+    'geo-legal':'<strong>Aviso legal:</strong> Tu ubicación será registrada únicamente durante el llenado del formulario y se vinculará al expediente. Estos datos están protegidos bajo la Ley N° 29733 de Protección de Datos Personales. No se compartirán con terceros.',
     'geo-cancel':'Cancelar',
     'geo-accept':'Activar ubicación y continuar',
     'geo-active':'📍 Ubicación activa',
@@ -967,7 +973,7 @@ const T = {
   },
   qu: {
     'nb-sub':'Teknolojíawan Llullakuykunata Maskaq Kikin (DIVINDAT)',
-    'btn-ayuda':'❓ Yanapay','btn-emergencia':'🚨 Kunanmi suwariwanku','btn-urgente':'🚨 Utqaylla willakuyta qallariy','btn-iniciar':'Willakuyta qallariy',
+    'btn-ayuda':'Yanapay','btn-emergencia':'Kunanmi suwariwanku','btn-urgente':'Utqaylla willakuyta qallariy','btn-iniciar':'Willakuyta qallariy',
     'hero-badge':'PNP · DIVINDAT · LEY 30096',
     'hero-title':'Ciberdelitoskunamanta<br>Willakuy Plataforma',
     'hero-sub':'Phishing, qullqi suwayta, hackeo, suplantaciónta willakuy 10 minutollapi. Manam comisaríaman risqachu. ID Perúwan chaninchasqa.',
@@ -992,7 +998,7 @@ const T = {
     'privacy-tip':'🔒 Willakuyniyki casoykimanta yachachinaykillampaqmi, manam pikunawanpas qukusunki.',
     's3-sub':'Casoykimanta kikin willakuykunata hunt\'ay.','tip-strong':'Qullqiyki kunan llakipis:','tip-text':'1820 liniaman waqay bloqueo bancario nisqapaq.',
     's4-title':'Ruwasqaykita adjuntar','s4-sub':'Kinsa captura (JPG/PNG) ima huk PDF qillqa adjuntayway, casoyki willakuypaq.',
-    'upload-title':'Kayman archivosniykita usqhaychay o clic ruwayway','upload-sub':'📎 Atisqa formatos: JPG · PNG · PDF sapallan','upload-sub2':'⚖️ 10 MB sapa archivo · 3 captura ima 1 PDF',
+    'upload-title':'Kayman archivosniykita usqhaychay o clic ruwayway','upload-sub':'📎 Atisqa formatos: JPG · PNG · PDF sapallan','upload-sub2':'10 MB sapa archivo · 3 captura ima 1 PDF',
     'files-lbl':'Adjuntasqa archivos','files-lbl-prefix':'Adjuntasqa archivos','hash-note':'🔐 Sapa archivo SHA-256 hash, timestamp ima chaskikun.',
     's5-title':'Willakuyniykita qaway','s5-sub':'Lliw willay chiqantas kasqanta qaway manaraj ñist\'iniykipaq.',
     'rev-tipo':'Delito tipo','rev-datos':'Runa willakuy','rev-nombre':'Suti','rev-tel':'Teléfono','rev-correo':'Correo',
@@ -1003,7 +1009,7 @@ const T = {
     'success-title':'¡Willakuyki allintan chaskikurqan!','success-sub':'Casoyki DIVINDAT systemapi chaskikurqan.',
     'case-lbl':'Caso número','meta-fecha':'Punchay hora','meta-estado':'Kunan estado','status-recibido':'Chaskisqa','meta-delito':'Delito tipo','meta-invest':'Investigador',
     'notif-msg':'Casoykimanta yachachisunkim akllasqayki canalniykiman.',
-    'btn-seguimiento':'🔍 Casoyta qatiy','btn-pdf':'⬇️ Certificado PDF uraykuy',
+    'btn-seguimiento':'Casoyta qatiy','btn-pdf':'Certificado PDF uraykuy',
     'bank-title':'¿Kunan banco bloqueo munankichu?','bank-text':'1820 liniaman waqay (qullqiniyuq, 24h) banco cuentata bloquearnapaq.',
     'btn-volver':'← Kutiy','btn-continuar':'Katiy →','btn-comenzar':'Willakuyta qallariy →','btn-volver-inicio':'← Qallarinman kutiy',
     'nav-inicio':'Qallariy','nav-tutorial':'Yanapay','nav-tipo':'1 Rikchaq','nav-datos':'2 Runa','nav-detalles':'3 Willakuy','nav-evidencia':'4 Ruwasqa','nav-confirmar':'5 Chiqanchay','nav-exito':'✅ Tukuy',
@@ -1016,7 +1022,7 @@ const T = {
     'geo-r2':'Forense geo-firma cadena de custodia digital ruway.',
     'geo-r3':'Llulla willakuykunata jark\'ay.',
     'geo-r4':'Aswan qaylla comisaría tantachiy chayri kan.',
-    'geo-legal':'⚖️ <strong>Liyiymanta willay:</strong> Lugarniyki formulario hunt\'asqaykita rikuchillanqa, casoyki expedientepi qillqasqa. Ley N° 29733 waqaychasqa.',
+    'geo-legal':'<strong>Liyiymanta willay:</strong> Lugarniyki formulario hunt\'asqaykita rikuchillanqa, casoyki expedientepi qillqasqa. Ley N° 29733 waqaychasqa.',
     'geo-cancel':'Saqiy',
     'geo-accept':'Lugar kachay, katiy',
     'geo-active':'📍 Lugar kachasqa',
@@ -1047,7 +1053,7 @@ const T = {
   },
   ay: {
     'nb-sub':'Teknolojia Juchanakan Uñakipaña Kikin (DIVINDAT)',
-    'btn-ayuda':'❓ Yanapaña','btn-emergencia':'🚨 Jichhax suwawistu','btn-urgente':'🚨 Jankaki yatiyawi qalltaña','btn-iniciar':'Yatiyawi qalltaña',
+    'btn-ayuda':'Yanapaña','btn-emergencia':'Jichhax suwawistu','btn-urgente':'Jankaki yatiyawi qalltaña','btn-iniciar':'Yatiyawi qalltaña',
     'hero-badge':'PNP · DIVINDAT · LEY 30096',
     'hero-title':'Ciberdelitunakan<br>Yatiyawi Plataforma',
     'hero-sub':'Phishing, qullqi suwaña, hackeo, yatiyaña 10 minutun. Comisarianx maynïchu. ID Perump chaninchatawa.',
@@ -1072,7 +1078,7 @@ const T = {
     'privacy-tip':'🔒 Yatiyawïx casunakamp yatichañatakiwa, makï jaqinakampiwa qukañäni.',
     's3-sub':'Casuma kimsa yatiyawi junt\'aña.','tip-strong':'Qullqïx jichhax phaxsitawa:','tip-text':'1820 nimanx wawiyaña bloqueo bancario irnaqañpataki.',
     's4-title':'Lurawi adjuntar','s4-sub':'Kimsa captura (JPG/PNG) ukat mä PDF qillqa adjuntaña, casuma yatiyawimpataki.',
-    'upload-title':'Kamanx archivonakama usqharaña utajx clic luraña','upload-sub':'📎 Phaqtata formatos: JPG · PNG · PDF sapaki','upload-sub2':'⚖️ 10 MB sapa archivo · 3 captura ukat 1 PDF',
+    'upload-title':'Kamanx archivonakama usqharaña utajx clic luraña','upload-sub':'📎 Phaqtata formatos: JPG · PNG · PDF sapaki','upload-sub2':'10 MB sapa archivo · 3 captura ukat 1 PDF',
     'files-lbl':'Adjuntata archivos','files-lbl-prefix':'Adjuntata archivos','hash-note':'🔐 Sapa archivo SHA-256 hash, timestamp ima chiktata.',
     's5-title':'Yatiyawimax uñakipaña','s5-sub':'Lliw yatiyawi chiqankas kaskanama uñakipaña.',
     'rev-tipo':'Jucha tipo','rev-datos':'Jaqi yatiyawi','rev-nombre':'Suti','rev-tel':'Teléfono','rev-correo':'Correo',
@@ -1083,7 +1089,7 @@ const T = {
     'success-title':'¡Yatiyawimax allintan chiktatayna!','success-sub':'Casuma DIVINDAT sistimapi chiktatayna.',
     'case-lbl':'Caso número','meta-fecha':'Uru hora','meta-estado':'Jichha estado','status-recibido':'Chiktata','meta-delito':'Jucha tipo','meta-invest':'Uñakipaña',
     'notif-msg':'Casunakamp yatichañataki akathasïri canalruwa.',
-    'btn-seguimiento':'🔍 Casuma qathaña','btn-pdf':'⬇️ Certificado PDF uraña',
+    'btn-seguimiento':'Casuma qathaña','btn-pdf':'Certificado PDF uraña',
     'bank-title':'¿Jichhax banco bloqueo munaskta?','bank-text':'1820 nimanx wawiyaña (gratis, 24h) banco cuenta bloquearañataki.',
     'btn-volver':'← Kutt\'aña','btn-continuar':'Kathaña →','btn-comenzar':'Yatiyawi qalltaña →','btn-volver-inicio':'← Qalltan kuthaña',
     'nav-inicio':'Qalltaña','nav-tutorial':'Yanapaña','nav-tipo':'1 Rikuña','nav-datos':'2 Jaqi','nav-detalles':'3 Yatiyawi','nav-evidencia':'4 Luräwi','nav-confirmar':'5 Irnaqaña','nav-exito':'✅ Tukuña',
@@ -1096,7 +1102,7 @@ const T = {
     'geo-r2':'Forense geo-firma cadena de custodia digital luraña.',
     'geo-r3':'Llunthaña yatiyawinakax jark\'aña.',
     'geo-r4':'Jak\'a comisaria ulluqsuyaña tantachañpataki.',
-    'geo-legal':'⚖️ <strong>Liyimpi yatiyawi:</strong> Lugarmax formulario junt\'añkamak yatisi, expedientearu chiktata. Ley N° 29733 waqaychata.',
+    'geo-legal':'<strong>Liyimpi yatiyawi:</strong> Lugarmax formulario junt\'añkamak yatisi, expedientearu chiktata. Ley N° 29733 waqaychata.',
     'geo-cancel':'Apsutaña',
     'geo-accept':'Lugar wakichaña, sarantaña',
     'geo-active':'📍 Lugar wakichata',
@@ -1285,7 +1291,7 @@ function renderDynamicForm(crime) {
 
 function renderReviewScreen() {
   const s5c = ui.$('s5-crime');
-  if (s5c) s5c.textContent = (crimes[AppState.crime]?.icon ?? '❓') + ' ' + getCrimeName(AppState.crime);
+  if (s5c) s5c.textContent = (crimes[AppState.crime]?.icon ?? '') + ' ' + getCrimeName(AppState.crime);
 
   const ev = ui.$('s5-evidence');
   if (ev) {
@@ -1370,6 +1376,13 @@ function toggleNotif(type) {
 }
 
 // ─── GEOLOCATION ─────────────────────────────────────────────────────────────
+function resetGeoBtn() {
+  var btn = ui.$('geo-accept-btn');
+  if (!btn) return;
+  btn.disabled = false;
+  btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:5px;flex-shrink:0" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span data-t="geo-accept">' + t('geo-accept') + '</span>';
+}
+
 function startDenuncia(targetStep) {
   if (AppState.geo.active) { navigateToScreen(targetStep); return; }
   AppState.pendingTargetStep = targetStep;
@@ -1415,7 +1428,7 @@ window.acceptLocation = function() {
     },
     function(geoErr) {
       btn.disabled = false;
-      btn.innerHTML = '<span>📍</span> <span data-t="geo-accept">Reintentar activación</span>';
+      btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:5px;flex-shrink:0" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span data-t="geo-accept">Reintentar activación</span>';
       showGeoError(t(GEO_ERR[geoErr.code] ?? 'err-geo-fail'));
     },
     { enableHighAccuracy:true, timeout:15000, maximumAge:0 }

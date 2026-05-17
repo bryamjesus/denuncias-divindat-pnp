@@ -16,6 +16,8 @@
   --primary-bg: #dceee3;
   --danger: #c0392b;
   --danger-hover: #a93226;
+  --success: #1f9d55;
+  --warning: #f39c12;
   --border-light: #e8ecf5;
   --border-main: #e0e4ef;
   --text-main: #222;
@@ -123,6 +125,19 @@ h1,h2,.card-title,.hero-title{font-family: var(--font-display); font-weight: 700
 .uzone.drag-active { border-color: var(--primary) !important; background-color: var(--primary-light) !important; border-style: solid !important; }
 .stp-c.clickable { cursor: pointer; }
 .stp-c.clickable:hover { box-shadow: 0 0 0 4px rgba(27,94,58,.15); }
+
+/* VALIDACION EN TIEMPO REAL + GUARDADO VISIBLE */
+.fg.has-error .finput,.finput.invalid{border-color:var(--danger)!important;background:#fff5f4!important;box-shadow:0 0 0 3px rgba(192,57,43,.08)}
+.fg.has-success .finput,.finput.valid{border-color:var(--success)!important;background:#f3fbf6!important}
+.field-error{display:none;color:var(--danger);font-size:12px;line-height:1.35;font-weight:600;margin-top:2px}.field-error.show{display:block;animation:slideDown .18s ease-out}
+.validation-ok{display:none;color:var(--success);font-size:12px;font-weight:700;margin-top:2px}.fg.has-success .validation-ok{display:block}
+@keyframes slideDown{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+.autosave-badge{position:fixed;top:84px;right:24px;background:#fff;border:1.5px solid var(--border-main);border-radius:999px;padding:9px 14px;display:none;align-items:center;gap:8px;font-size:12px;font-weight:700;color:#555;box-shadow:0 8px 22px rgba(0,0,0,.12);z-index:950;max-width:calc(100vw - 32px)}
+.autosave-badge.show{display:flex;animation:slideUp .22s ease-out}.autosave-badge.saving{border-color:var(--warning);color:#9a6100}.autosave-badge.saved{border-color:var(--success);color:var(--success)}
+.autosave-dot{width:10px;height:10px;border-radius:50%;background:currentColor;flex-shrink:0}.autosave-badge.saving .autosave-dot{width:14px;height:14px;background:transparent;border:2px solid currentColor;border-top-color:transparent;animation:spin .7s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+.draft-prompt{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:960;display:none;width:min(560px,calc(100vw - 28px));background:#fff;border:1px solid #d9e6dd;border-left:5px solid var(--primary);border-radius:12px;box-shadow:0 16px 38px rgba(0,0,0,.18);padding:14px;gap:12px;align-items:center;justify-content:space-between}.draft-prompt.show{display:flex;animation:slideUp .24s ease-out}
+.draft-prompt-text{font-size:13px;color:#334;line-height:1.45;font-weight:600}.draft-prompt-actions{display:flex;gap:8px;flex-shrink:0}.draft-mini-btn{border:1.5px solid var(--primary);background:#fff;color:var(--primary);border-radius:8px;padding:8px 10px;font-size:12px;font-weight:800;cursor:pointer}.draft-mini-btn.primary{background:var(--primary);color:#fff}
+@media(max-width:767px){.autosave-badge{top:auto;right:14px;bottom:86px;left:14px;justify-content:center}.draft-prompt{align-items:stretch;flex-direction:column}.draft-prompt-actions{width:100%;display:grid;grid-template-columns:1fr 1fr}}
 
 /* MAIN */
 .main{max-width:1200px;margin:0 auto;padding:24px 16px 60px}
@@ -466,6 +481,18 @@ textarea.finput{
 
 </head>
 <body>
+<!-- INDICADORES DE BORRADOR / AUTOGUARDADO -->
+<div id="autosave-badge" class="autosave-badge" role="status" aria-live="polite">
+  <span class="autosave-dot"></span>
+  <span id="autosave-text">Guardando...</span>
+</div>
+<div id="draft-prompt" class="draft-prompt" role="status" aria-live="polite">
+  <div class="draft-prompt-text" id="draft-prompt-text">Encontramos un borrador guardado.</div>
+  <div class="draft-prompt-actions">
+    <button type="button" class="draft-mini-btn" id="draft-discard-btn" onclick="discardDraft()">Empezar de nuevo</button>
+    <button type="button" class="draft-mini-btn primary" id="draft-resume-btn" onclick="resumeDraft()">Continuar borrador</button>
+  </div>
+</div>
 
 <!-- MODAL DE GEOLOCALIZACIÓN OBLIGATORIA -->
 <div id="geo-modal" class="modal-overlay hidden">
@@ -650,15 +677,15 @@ textarea.finput{
     <h2 class="card-title" data-t="s2-title">Datos de la víctima</h2>
     <p class="card-sub" data-t="s2-sub">Cuéntanos quién eres. Tus datos están protegidos y serán usados solo para este proceso.</p>
     <div class="fgrid3">
-      <div class="fg"><label class="flbl" data-t="lbl-nombres">Nombres <span>*</span></label><input class="finput" id="inp-nom" value="Juan Alberto" data-required="true"/></div>
-      <div class="fg"><label class="flbl" data-t="lbl-apat">Apellido paterno <span>*</span></label><input class="finput" id="inp-apat" value="Quispe" data-required="true"/></div>
-      <div class="fg"><label class="flbl" data-t="lbl-amat">Apellido materno <span>*</span></label><input class="finput" id="inp-amat" value="Mamani" data-required="true"/></div>
+      <div class="fg"><label class="flbl" data-t="lbl-nombres">Nombres <span>*</span></label><input class="finput" id="inp-nom" value="Juan Alberto" data-required="true" data-validate="text"/></div>
+      <div class="fg"><label class="flbl" data-t="lbl-apat">Apellido paterno <span>*</span></label><input class="finput" id="inp-apat" value="Quispe" data-required="true" data-validate="text"/></div>
+      <div class="fg"><label class="flbl" data-t="lbl-amat">Apellido materno <span>*</span></label><input class="finput" id="inp-amat" value="Mamani" data-required="true" data-validate="text"/></div>
     </div>
     <div class="fgrid4">
       <div class="fg"><label class="flbl" data-t="lbl-tdoc">Tipo de documento</label><select class="finput" id="inp-tdoc"><option>DNI</option><option>CE</option><option>Pasaporte</option></select></div>
-      <div class="fg"><label class="flbl" data-t="lbl-ndoc">Número de documento <span>*</span></label><input class="finput" id="inp-doc" value="45678901" data-required="true"/></div>
-      <div class="fg"><label class="flbl" data-t="lbl-tel">Teléfono celular <span id="req-tel" class="hidden">*</span></label><input class="finput" id="inp-tel" value="987654321"/></div>
-      <div class="fg"><label class="flbl" data-t="lbl-email">Correo electrónico <span id="req-email" class="hidden">*</span></label><input class="finput" id="inp-email" value="juan.quispe@ejemplo.pe"/></div>
+      <div class="fg"><label class="flbl" data-t="lbl-ndoc">Número de documento <span>*</span></label><input class="finput" id="inp-doc" value="45678901" data-required="true" data-validate="document"/></div>
+      <div class="fg"><label class="flbl" data-t="lbl-tel">Teléfono celular <span id="req-tel" class="hidden">*</span></label><input class="finput" id="inp-tel" value="987654321" data-validate="phone"/></div>
+      <div class="fg"><label class="flbl" data-t="lbl-email">Correo electrónico <span id="req-email" class="hidden">*</span></label><input class="finput" id="inp-email" value="juan.quispe@ejemplo.pe" data-validate="email"/></div>
     </div>
     <div class="fg">
       <label class="flbl" data-t="lbl-notif">¿Cómo deseas recibir notificaciones sobre tu caso? <span>*</span></label>
@@ -782,15 +809,17 @@ textarea.finput{
     <div class="rev-grid">
       <div class="rcard"><p class="rhead" data-t="rev-tipo">Tipo de delito</p><p id="s5-crime" style="font-size:16px;font-weight:700;color:#1b5e3a">🎣 Phishing</p></div>
       <div class="rcard"><p class="rhead" data-t="rev-datos">Datos personales</p>
-        <div class="rrow"><span class="rk" data-t="rev-nombre">Nombre</span><span class="rv">Maria Fernanda García López</span></div>
-        <div class="rrow"><span class="rk">DNI</span><span class="rv">45678912</span></div>
-        <div class="rrow"><span class="rk" data-t="rev-tel">Teléfono</span><span class="rv">987 654 321</span></div>
-        <div class="rrow"><span class="rk" data-t="rev-correo">Correo</span><span class="rv">maria.garcia@email.com</span></div>
+        <div class="rrow"><span class="rk" data-t="rev-nombre">Nombre</span><span class="rv" id="s5-nombre">-</span></div>
+        <div class="rrow"><span class="rk" id="s5-doc-label">DNI</span><span class="rv" id="s5-doc">-</span></div>
+        <div class="rrow"><span class="rk" data-t="rev-tel">Teléfono</span><span class="rv" id="s5-tel">-</span></div>
+        <div class="rrow"><span class="rk" data-t="rev-correo">Correo</span><span class="rv" id="s5-email">-</span></div>
       </div>
       <div class="rcard"><p class="rhead" data-t="rev-detalles">Detalles del caso</p>
-        <div class="rrow"><span class="rk" data-t="rev-entidad">Entidad afectada</span><span class="rv">BCP</span></div>
-        <div class="rrow"><span class="rk" data-t="rev-fecha">Fecha y hora</span><span class="rv">09/05/2026 · 14:30</span></div>
-        <div class="rrow"><span class="rk" data-t="rev-monto">Monto afectado (rango)</span><span class="rv">S/ 500.00 — S/ 1,250.00</span></div>
+        <div id="s5-details-body">
+          <div class="rrow"><span class="rk" data-t="rev-entidad">Entidad afectada</span><span class="rv">-</span></div>
+          <div class="rrow"><span class="rk" data-t="rev-fecha">Fecha y hora</span><span class="rv">-</span></div>
+          <div class="rrow"><span class="rk" data-t="rev-monto">Monto afectado</span><span class="rv">-</span></div>
+        </div>
       </div>
       <div class="rcard"><p class="rhead" data-t="rev-evidencia">Evidencia adjunta</p>
         <div id="s5-evidence" style="display:flex;gap:10px;flex-wrap:wrap;min-height:44px;align-items:center">
@@ -1705,6 +1734,65 @@ document.addEventListener('DOMContentLoaded', function() {
 
   if (!checkDraft()) navigateToScreen(0);
 });
+
+/* PATCH UI/UX: S5 dinamico, validacion en tiempo real y borrador visible. */
+var UX2 = {
+  es:{req:'Este campo es obligatorio.',text:'Ingresa al menos 2 caracteres.',long:'Describe lo ocurrido con un poco mas de detalle.',doc:'El DNI debe tener 8 digitos.',phone:'El celular debe tener 9 digitos y empezar con 9.',email:'Ingresa un correo valido.',url:'Ingresa una URL valida con http:// o https://.',amount:'Ingresa un monto valido.',date:'Selecciona una fecha.',select:'Selecciona una opcion.',monto:'El monto maximo debe ser mayor o igual al minimo.',ok:'Correcto',saving:'Guardando borrador...',saved:'Borrador guardado',found:'Encontramos un borrador guardado.',resume:'Continuar borrador',discard:'Empezar de nuevo',restored:'Borrador recuperado',discarded:'Borrador descartado',empty:'-',emptyFiles:'Sin archivos adjuntos',platform:'Plataforma',service:'Servicio afectado',medium:'Medio de contacto',supType:'Tipo de suplantacion',access:'Acceso actual',description:'Descripcion',yes:'Si',no:'No'},
+  qu:{req:'Kay campoqa huntana.',text:'Iskay qillqakunatapas qillqay.',long:'Ima pasarqanmanta aswan sutita willay.',doc:'DNIqa 8 yupayniyuq kanan.',phone:'Telefonoqa 9 yupayniyuq kanan hinaspa 9wan qallarin.',email:'Allin correo qillqay.',url:'Allin URL qillqay: http:// o https://wan.',amount:'Allin qullqi yupayta qillqay.',date:'Punchayta akllay.',select:'Huk akllayta akllay.',monto:'Aswan hatun qullqiqa pisi qullqimanta aswan hatun utaq kaqlla kanan.',ok:'Allin',saving:'Borradorta waqaychachkan...',saved:'Borrador waqaychasqa',found:'Huk borrador waqaychasqata tarirqayku.',resume:'Borradorta qatipay',discard:'Musuqmanta qallariy',restored:'Borrador kutichisqa',discarded:'Borrador qullusqa',empty:'-',emptyFiles:'Mana archivos adjuntos',platform:'Plataforma',service:'Servicio afectado',medium:'Rimanakuy medio',supType:'Sutikuy tipo',access:'Kunan yaykuy',description:'Willakuy',yes:'Ari',no:'Mana'},
+  ay:{req:'Aka chiqax phuqhatawa.',text:'Paya qillqatpach qillqtama.',long:'Kunas pasatayna uk jukampi qhana qillqtama.',doc:'DNI ukax 8 jakhuniwa.',phone:'Celularax 9 jakhuniwa ukat 9mpi qalltanapa.',email:'Walja correo qillqtama.',url:'Walja URL qillqtama: http:// jan ukax https://.',amount:'Walja qullqi monto qillqtama.',date:'Maya uru ajllinama.',select:'Maya amtawi ajllinama.',monto:'Jacha montox jiska montot sipan jacha jan ukax pachpanapawa.',ok:'Waliki',saving:'Borrador imasiski...',saved:'Borrador imata',found:'Maya borrador imata jikxatatawa.',resume:'Borradorampi sarana',discard:'Wasitat qallta',restored:'Borrador kuttayata',discarded:'Borrador chhaqtayata',empty:'-',emptyFiles:'Janiw archivos adjuntos utjkiti',platform:'Plataforma',service:'Servicio afectado',medium:'Aruskipawi medio',supType:'Suti lantintawi tipo',access:'Jichha mantana',description:'Qhananchawi',yes:'Jisa',no:'Jani'}
+};
+function ux2(k){return (UX2[AppState.lang]&&UX2[AppState.lang][k])||UX2.es[k]||k;}
+function lbl2(k){return (T[AppState.lang]&&T[AppState.lang][k])||T.es[k]||ux2(k)||k;}
+function esc2(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function val2(sel,fb){var el=document.querySelector(sel);var v=el&&el.value!=null?String(el.value).trim():'';return v||(fb!=null?fb:ux2('empty'));}
+function safe2(v){v=String(v==null?'':v).trim();return v||ux2('empty');}
+function date2(v){if(!v)return '';var p=v.split('-');return p.length===3?p[2]+'/'+p[1]+'/'+p[0]:v;}
+function money2(a,b){a=String(a||'').trim();b=String(b||'').trim();if(!a&&!b)return ux2('empty');if(a&&b)return 'S/ '+a+' - S/ '+b;return 'S/ '+(a||b);}
+function row2(label,value,isT){var lab=isT?lbl2(label):ux2(label);return '<div class="rrow"><span class="rk">'+esc2(lab)+'</span><span class="rv">'+esc2(safe2(value))+'</span></div>';}
+
+var FIELD2 = [
+  {s:'#inp-nom',type:'text',req:1},{s:'#inp-apat',type:'text',req:1},{s:'#inp-amat',type:'text',req:1},{s:'#inp-doc',type:'document',req:1},{s:'#inp-tel',type:'phone'},{s:'#inp-email',type:'email'},
+  {s:'#form-phishing .fgrid2 .fg:nth-child(1) .finput',id:'ph-url',type:'url',req:1},{s:'#form-phishing .fgrid2 .fg:nth-child(2) .finput',id:'ph-email',type:'email',req:1},{s:'#ph-fecha',type:'date',req:1},{s:'#monto-min',type:'amount',req:1},{s:'#monto-max',type:'amount',req:1},{s:'#form-phishing select[data-change="checkOtherBank"]',id:'ph-bank',type:'select',req:1},{s:'#other-bank-wrap .finput',id:'ph-bank-other',type:'text',req:1},{s:'#form-phishing textarea.finput',id:'ph-desc',type:'long',req:1},
+  {s:'#form-sup .fgrid2 .fg:nth-child(1) select.finput',id:'sup-type',type:'select',req:1},{s:'#form-sup .fgrid2 .fg:nth-child(2) select.finput',id:'sup-platform',type:'select',req:1},{s:'#form-sup input.finput',id:'sup-url',type:'url'},{s:'#form-sup textarea.finput',id:'sup-desc',type:'long',req:1},
+  {s:'#form-hackeo .fgrid2 .fg:nth-child(1) select.finput',id:'hck-target',type:'select',req:1},{s:'#form-hackeo .fgrid2 .fg:nth-child(2) input.finput',id:'hck-service',type:'text',req:1},{s:'#hck-fecha',type:'date',req:1},{s:'#form-hackeo textarea.finput',id:'hck-desc',type:'long',req:1},
+  {s:'#form-ext .fgrid2 .fg:nth-child(1) select.finput',id:'ext-channel',type:'select',req:1},{s:'#ext-monto-min',type:'amount'},{s:'#ext-monto-max',type:'amount'},{s:'#form-ext textarea.finput',id:'ext-desc',type:'long',req:1}
+];
+function enhanceFormFields(){FIELD2.forEach(function(c){var el=document.querySelector(c.s);if(!el)return;if(c.id&&!el.id)el.id=c.id;if(c.type)el.setAttribute('data-validate',c.type);if(c.req)el.setAttribute('data-required','true');});updateNotificationReq2();}
+function visible2(el){return !!el&&!el.closest('.hidden')&&!!(el.offsetParent||el.getClientRects().length);}
+function required2(el){if(!el)return false;if(el.id==='inp-tel')return !ui.$('req-tel').classList.contains('hidden');if(el.id==='inp-email')return !ui.$('req-email').classList.contains('hidden');return el.getAttribute('data-required')==='true';}
+function updateNotificationReq2(){var tel=ui.$('inp-tel'),email=ui.$('inp-email');if(tel)tel.toggleAttribute('data-required',!ui.$('req-tel').classList.contains('hidden'));if(email)email.toggleAttribute('data-required',!ui.$('req-email').classList.contains('hidden'));}
+function errKey2(el){var type=el.getAttribute('data-validate');var v=String(el.value||'').trim();if(!v)return required2(el)?'req':null;if(type==='text'&&v.length<2)return 'text';if(type==='long'&&v.length<20)return 'long';if(type==='document'){var d=ui.$('inp-tdoc')?ui.$('inp-tdoc').value:'DNI';if(d==='DNI'&&!/^\d{8}$/.test(v))return 'doc';if(d!=='DNI'&&v.length<6)return 'text';}if(type==='phone'&&!/^9\d{8}$/.test(v))return 'phone';if(type==='email'&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v))return 'email';if(type==='url'){try{var u=new URL(v);if(u.protocol!=='http:'&&u.protocol!=='https:')return 'url';}catch(e){return 'url';}}if(type==='amount'&&(isNaN(parseFloat(v))||parseFloat(v)<0))return 'amount';if(type==='date'&&!v)return 'date';if(type==='select'&&(!v||v==='Selecciona'))return 'select';return null;}
+function fieldErr2(fg){var e=fg.querySelector('.field-error');if(!e){e=document.createElement('div');e.className='field-error';fg.appendChild(e);}return e;}
+function fieldOk2(fg){var o=fg.querySelector('.validation-ok');if(!o){o=document.createElement('div');o.className='validation-ok';fg.appendChild(o);}return o;}
+function applyFieldState2(el,key,force){var fg=el.closest('.fg');if(!fg)return !key;var show=force||el.dataset.touched==='true';var e=fieldErr2(fg),o=fieldOk2(fg);fg.classList.remove('has-error','has-success');el.classList.remove('invalid','valid');e.classList.remove('show');if(!show)return !key;if(key){fg.classList.add('has-error');el.classList.add('invalid');e.textContent=ux2(key);e.setAttribute('data-ux-error',key);e.classList.add('show');return false;}if(String(el.value||'').trim()){fg.classList.add('has-success');el.classList.add('valid');o.textContent=ux2('ok');}return true;}
+function validateField2(el,force){if(!el||!el.classList.contains('finput')||!visible2(el))return true;return applyFieldState2(el,errKey2(el),!!force);}
+function refreshValidationMessages2(){document.querySelectorAll('.field-error[data-ux-error]').forEach(function(e){e.textContent=ux2(e.getAttribute('data-ux-error'));});document.querySelectorAll('.validation-ok').forEach(function(e){e.textContent=ux2('ok');});var n=ui.$('notif-error');if(n)n.textContent=t('err-notif');}
+function clearNotifErr2(){var w=ui.$('notif-wrap');if(w)w.style.cssText='';var e=ui.$('notif-error');if(e)e.remove();}
+function showNotifErr2(){var w=ui.$('notif-wrap');if(w)w.style.cssText='border:1.5px solid var(--danger);padding:8px;border-radius:8px;background:#fdf2f1;';var e=ui.$('notif-error');if(!e&&w){e=document.createElement('div');e.id='notif-error';e.className='field-error show';e.style.display='block';w.insertAdjacentElement('afterend',e);}if(e)e.textContent=t('err-notif');}
+function getMontoInputs(){if(AppState.crime==='Phishing'||AppState.crime==='Fraude')return [ui.$('monto-min'),ui.$('monto-max')];if(AppState.crime==='Extorsión')return [ui.$('ext-monto-min'),ui.$('ext-monto-max')];return [null,null];}
+function validateMontoRange(showToastMsg){var p=getMontoInputs(),minEl=p[0],maxEl=p[1];if(!minEl||!maxEl||!minEl.value||!maxEl.value)return true;if(parseFloat(maxEl.value)<parseFloat(minEl.value)){var fg=maxEl.closest('.fg'),e=fg?fieldErr2(fg):null;if(fg)fg.classList.add('has-error');maxEl.classList.remove('valid');maxEl.classList.add('invalid');if(e){e.textContent=ux2('monto');e.setAttribute('data-ux-error','monto');e.classList.add('show');}if(showToastMsg)ui.showToast(t('err-monto'),'error','err-toast');return false;}validateField2(maxEl,maxEl.dataset.touched==='true');return true;}
+function validateStep(stepNum){enhanceFormFields();var stepMap={1:'s1',2:'s2',3:'s3',4:'s4',5:'s5'};var c=ui.$(stepMap[stepNum]);if(!c)return true;var valid=true;if(stepNum===2){var sms=ui.$('nch-sms'),email=ui.$('nch-email');if(sms&&email&&!sms.classList.contains('on')&&!email.classList.contains('on')){showNotifErr2();ui.showToast(t('err-notif'),'error');valid=false;}else clearNotifErr2();}c.querySelectorAll('.finput').forEach(function(inp){if(!validateField2(inp,true))valid=false;});if(stepNum===3&&!validateMontoRange(true))valid=false;if(!valid)ui.showToast(t('err-required'),'error','err-toast');return valid;}
+function setupLiveValidation2(){enhanceFormFields();document.body.addEventListener('input',function(e){var x=e.target;if(!x.classList||!x.classList.contains('finput'))return;x.dataset.touched='true';validateField2(x,true);if(['monto-min','monto-max','ext-monto-min','ext-monto-max'].indexOf(x.id)!==-1)validateMontoRange(false);queueDraftSave2();});document.body.addEventListener('blur',function(e){var x=e.target;if(!x.classList||!x.classList.contains('finput'))return;x.dataset.touched='true';validateField2(x,true);if(['monto-min','monto-max','ext-monto-min','ext-monto-max'].indexOf(x.id)!==-1)validateMontoRange(false);},true);document.body.addEventListener('change',function(e){var x=e.target;if(!x.classList||!x.classList.contains('finput'))return;x.dataset.touched='true';validateField2(x,true);if(x.id==='inp-tdoc')validateField2(ui.$('inp-doc'),ui.$('inp-doc')&&ui.$('inp-doc').dataset.touched==='true');queueDraftSave2();});}
+function renderReviewScreen(){enhanceFormFields();var c=ui.$('s5-crime');if(c)c.textContent=(crimes[AppState.crime]&&crimes[AppState.crime].icon?crimes[AppState.crime].icon:'')+' '+getCrimeName(AppState.crime);var name=[val2('#inp-nom',''),val2('#inp-apat',''),val2('#inp-amat','')].filter(Boolean).join(' ');if(ui.$('s5-nombre'))ui.$('s5-nombre').textContent=safe2(name);if(ui.$('s5-doc-label'))ui.$('s5-doc-label').textContent=val2('#inp-tdoc','DNI');if(ui.$('s5-doc'))ui.$('s5-doc').textContent=val2('#inp-doc');if(ui.$('s5-tel'))ui.$('s5-tel').textContent=val2('#inp-tel');if(ui.$('s5-email'))ui.$('s5-email').textContent=val2('#inp-email');var box=ui.$('s5-details-body');if(box){var rows='';if(AppState.crime==='Phishing'||AppState.crime==='Fraude'){var bank=val2('#ph-bank',''),other=val2('#ph-bank-other','');rows+=row2('rev-entidad',bank==='Otros'?(other||bank):bank,1);rows+=row2('rev-fecha',[date2(val2('#ph-fecha','')),val2('#ph-hora','')].filter(Boolean).join(' - '),1);rows+=row2('rev-monto',money2(val2('#monto-min',''),val2('#monto-max','')),1);}else if(AppState.crime==='Suplantación'){rows+=row2('supType',val2('#sup-type'),0);rows+=row2('platform',val2('#sup-platform'),0);rows+=row2('rev-url',val2('#sup-url'),1);}else if(AppState.crime==='Hackeo'){var r=document.querySelector('#form-hackeo input[name="acc"]:checked');var acc=r&&(r.parentElement.textContent.indexOf('No')!==-1)?ux2('no'):ux2('yes');rows+=row2('service',val2('#hck-service'),0);rows+=row2('rev-fecha',date2(val2('#hck-fecha','')),1);rows+=row2('access',acc,0);}else if(AppState.crime==='Extorsión'){rows+=row2('medium',val2('#ext-channel'),0);rows+=row2('rev-monto',money2(val2('#ext-monto-min',''),val2('#ext-monto-max','')),1);rows+=row2('description',val2('#ext-desc'),0);}box.innerHTML=rows;}var ev=ui.$('s5-evidence');if(ev){var b='<div style="background:var(--primary-bg);border-radius:var(--radius-md);padding:10px 14px;font-size:20px">';var imgs=Array(AppState.imgCount).fill(b+'&#128444;</div>').join('');var pdfs=Array(AppState.pdfCount).fill(b+'&#128196;</div>').join('');ev.innerHTML=imgs+pdfs||'<span style="color:var(--text-muted);font-size:13px;font-style:italic">'+esc2(ux2('emptyFiles'))+'</span>';}}
+var draftTimer2=null,autosaveHide2=null,restoringDraft2=false;
+function notifChannels2(){return ['sms','email','both'].filter(function(x){var e=ui.$('nch-'+x);return e&&e.classList.contains('on');});}
+function collectDraft2(){var fields={};document.querySelectorAll('input.finput,textarea.finput,select.finput').forEach(function(e){if(e.id&&e.type!=='file')fields[e.id]=e.value;});var radios={};document.querySelectorAll('input[type="radio"]:checked').forEach(function(e){if(e.name)radios[e.name]=e.value||'on';});return {fields:fields,radios:radios,notifications:notifChannels2()};}
+function applyDraft2(d){if(!d)return;enhanceFormFields();Object.keys(d.fields||{}).forEach(function(id){var e=ui.$(id);if(e&&e.type!=='file')e.value=d.fields[id];});Object.keys(d.radios||{}).forEach(function(name){var r=document.querySelector('input[type="radio"][name="'+name+'"][value="'+d.radios[name]+'"]');if(r)r.checked=true;});document.querySelectorAll('#notif-wrap .nch').forEach(function(e){e.classList.remove('on');});(d.notifications||[]).forEach(function(x){var e=ui.$('nch-'+x);if(e)e.classList.add('on');});updateNotificationReq2();var ob=ui.$('other-bank-wrap'),bank=ui.$('ph-bank');if(ob&&bank)ob.classList.toggle('hidden',bank.value!=='Otros');}
+function showAutosave2(state){var badge=ui.$('autosave-badge'),text=ui.$('autosave-text');if(!badge||!text)return;badge.classList.remove('saving','saved');badge.classList.add('show',state);text.textContent=state==='saving'?ux2('saving'):ux2('saved');if(autosaveHide2)clearTimeout(autosaveHide2);if(state==='saved')autosaveHide2=setTimeout(function(){badge.classList.remove('show');},1700);}
+function queueDraftSave2(show){if(restoringDraft2)return;if(!(AppState.step>0&&AppState.step<6))return;if(draftTimer2)clearTimeout(draftTimer2);if(show!==false)showAutosave2('saving');draftTimer2=setTimeout(function(){saveDraft(show!==false);},450);}
+function saveDraft(show){if(AppState.step>0&&AppState.step<6){var d=collectDraft2();localStorage.setItem('divindat_draft',JSON.stringify({step:AppState.step,crime:AppState.crime,lang:AppState.lang,fields:d.fields,radios:d.radios,notifications:d.notifications,savedAt:new Date().toISOString()}));if(show!==false)showAutosave2('saved');}else if(AppState.step===6)localStorage.removeItem('divindat_draft');}
+function refreshDraftPrompt2(){var p=ui.$('draft-prompt');if(!p)return;if(ui.$('draft-prompt-text'))ui.$('draft-prompt-text').textContent=ux2('found');if(ui.$('draft-resume-btn'))ui.$('draft-resume-btn').textContent=ux2('resume');if(ui.$('draft-discard-btn'))ui.$('draft-discard-btn').textContent=ux2('discard');}
+function showDraftPrompt2(){refreshDraftPrompt2();var p=ui.$('draft-prompt');if(p)p.classList.add('show');}
+function hideDraftPrompt2(){var p=ui.$('draft-prompt');if(p)p.classList.remove('show');}
+function checkDraft(){try{var d=JSON.parse(localStorage.getItem('divindat_draft'));if(d&&d.step>0&&d.step<6){if(d.lang)setLang(d.lang);navigateToScreen(0);showDraftPrompt2();return true;}}catch(e){}return false;}
+window.resumeDraft=function(){try{var d=JSON.parse(localStorage.getItem('divindat_draft'));if(!d)return;restoringDraft2=true;if(d.lang)setLang(d.lang);AppState.crime=d.crime||AppState.crime;applyDraft2(d);var card=document.querySelector('[data-action="selCrime"][data-crime="'+AppState.crime+'"]');if(card){document.querySelectorAll('#s1 .ccard').forEach(function(c){c.classList.remove('sel');});card.classList.add('sel');var b=ui.$('btn-s1');if(b)b.disabled=false;}hideDraftPrompt2();navigateToScreen(d.step);restoringDraft2=false;ui.showToast('<span>&check;</span><span>'+ux2('restored')+'</span>','success','succ-toast');}catch(e){restoringDraft2=false;}};
+window.discardDraft=function(){localStorage.removeItem('divindat_draft');hideDraftPrompt2();ui.showToast('<span>&check;</span><span>'+ux2('discarded')+'</span>','success','succ-toast');};
+
+var baseSetLang2=setLang;setLang=function(lang){baseSetLang2(lang);refreshValidationMessages2();refreshDraftPrompt2();if(AppState.step===5)renderReviewScreen();};
+var baseToggleNotif2=window.toggleNotif;window.toggleNotif=function(type){if(baseToggleNotif2)baseToggleNotif2(type);updateNotificationReq2();var sms=ui.$('nch-sms'),email=ui.$('nch-email');if(sms&&email&&(sms.classList.contains('on')||email.classList.contains('on')))clearNotifErr2();queueDraftSave2();};toggleNotif=window.toggleNotif;
+var baseRemoveFile2=window.removeFile;window.removeFile=function(btn,type){if(baseRemoveFile2)baseRemoveFile2(btn,type);queueDraftSave2();};removeFile=window.removeFile;
+var baseHandleFiles2=window.handleFiles;window.handleFiles=function(list){if(baseHandleFiles2)baseHandleFiles2(list);queueDraftSave2();};handleFiles=window.handleFiles;
+document.addEventListener('DOMContentLoaded',function(){enhanceFormFields();setupLiveValidation2();document.body.addEventListener('click',function(e){if(e.target.closest('[data-action="selCrime"],[data-action="selTutCrime"],#notif-wrap .nch'))queueDraftSave2();});refreshDraftPrompt2();});
 
 </script>
 </body>

@@ -125,6 +125,11 @@ h1,h2,.card-title,.hero-title{font-family: var(--font-display); font-weight: 700
 .uzone.drag-active { border-color: var(--primary) !important; background-color: var(--primary-light) !important; border-style: solid !important; }
 .stp-c.clickable { cursor: pointer; }
 .stp-c.clickable:hover { box-shadow: 0 0 0 4px rgba(27,94,58,.15); }
+.stp-c.locked { cursor: not-allowed; opacity: .9; box-shadow: none !important; }
+.stp-c.locked:hover { box-shadow: none !important; transform: none !important; }
+.stepbar.locked .stp-c.done { background: var(--primary); color: #fff; }
+.stepbar.locked .stp-lbl.done { color: var(--primary); font-weight: 700; }
+.stepbar.locked .stp-line.done { background: var(--primary); }
 
 /* VALIDACION EN TIEMPO REAL + GUARDADO VISIBLE */
 .fg.has-error .finput,.finput.invalid{border-color:var(--danger)!important;background:#fff5f4!important;box-shadow:0 0 0 3px rgba(192,57,43,.08)}
@@ -1195,12 +1200,40 @@ const UPLOAD = { MAX_MB:10, MAX_IMG:3, MAX_PDF:1 };
 // Geo error code → translation key
 const GEO_ERR = {1:'err-geo-denied', 2:'err-geo-gps', 3:'err-geo-timeout'};
 
+// Stepper lock texts: when S6 is reached, the registered report is read-only.
+const FLOW_LOCK_TEXT = {
+  es: {
+    toast: 'La denuncia ya fue registrada. Los pasos anteriores quedan bloqueados.',
+    title: 'Denuncia registrada: pasos cerrados'
+  },
+  qu: {
+    toast: 'Willakuyqa chaskisqañam. Ñawpaq pasoskunaqa wichqasqaña.',
+    title: 'Willakuy chaskisqa: pasokuna wichqasqa'
+  },
+  ay: {
+    toast: 'Yatiyawixa qillqantataxiwa. Nayra pasonakaxa jistantataxiwa.',
+    title: 'Yatiyawi qillqantata: pasonaka jistantata'
+  }
+};
+
+function flowLockText(key) {
+  const lang = AppState?.lang || 'es';
+  return FLOW_LOCK_TEXT[lang]?.[key] || FLOW_LOCK_TEXT.es[key];
+}
+
+function escapeHtmlAttr(value) {
+  return String(value == null ? '' : value).replace(/[&<>"']/g, function(c) {
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+  });
+}
+
 // ─── APPLICATION STATE ────────────────────────────────────────────────────────
 const AppState = {
   lang:'es', step:0, crime:'Phishing',
   imgCount:0, pdfCount:0,
   geo:{ active:false, watchId:null },
-  pendingTargetStep:null
+  pendingTargetStep:null,
+  caseSubmitted:false
 };
 
 // ─── UI UTILITIES ─────────────────────────────────────────────────────────────
@@ -1284,16 +1317,22 @@ function setLang(lang) {
 function updateStepperUI(step) {
   const c = ui.$('stepper'); if (!c) return;
   const labels = t('stepper-labels') || ['Tipo','Datos','Detalles','Evidencia','Confirmación'];
-  const cur = Math.floor(step);
+  const cur = Math.floor(parseFloat(step) || 0);
+  const locked = AppState.caseSubmitted === true || cur >= 6;
+  const lockedTitle = locked ? escapeHtmlAttr(flowLockText('title')) : '';
+
+  ui.$('stepbar')?.classList.toggle('locked', locked);
+
   c.innerHTML = Array.from({length: 5}, (_, i) => {
     const n = i + 1;
-    const done   = n < cur;
-    const active = n === cur;
-    const cls = done ? 'done clickable' : active ? 'active' : 'pend';
+    const done   = locked || n < cur;
+    const active = !locked && n === cur;
+    const cls = locked ? 'done locked' : done ? 'done clickable' : active ? 'active' : 'pend';
     const lbl = done ? 'done' : active ? 'active' : '';
-    const nav = done ? ' data-nav="' + n + '"' : '';
+    const nav = (!locked && done) ? ' data-nav="' + n + '"' : '';
+    const lockedAttrs = locked ? ' data-locked-step="' + n + '" aria-disabled="true" tabindex="-1" title="' + lockedTitle + '"' : '';
     const sep = i < 4 ? '<div class="stp-line ' + (done ? 'done' : '') + '"></div>' : '';
-    return '<div class="stp"><div class="stp-c ' + cls + '"' + nav + '>' + (done ? '✓' : n) + '</div>' +
+    return '<div class="stp"><div class="stp-c ' + cls + '"' + nav + lockedAttrs + '>' + (done ? '✓' : n) + '</div>' +
            '<div class="stp-lbl ' + lbl + '">' + labels[i] + '</div></div>' + sep;
   }).join('');
 }
@@ -1335,6 +1374,13 @@ function renderReviewScreen() {
 // ─── NAVIGATION ───────────────────────────────────────────────────────────────
 function navigateToScreen(n) {
   const nNum = parseFloat(n);
+  const isRegisteredFormStep = AppState.caseSubmitted === true && Number.isInteger(nNum) && nNum >= 1 && nNum <= 5;
+
+  if (isRegisteredFormStep) {
+    ui.showToast('<span>🔒</span><span>' + flowLockText('toast') + '</span>', 'error', 'err-toast');
+    updateStepperUI(6);
+    return;
+  }
 
   if (nNum > AppState.step && AppState.step > 0 && AppState.step < 6) {
     if (!validateStep(AppState.step)) return;
@@ -1358,10 +1404,12 @@ function navigateToScreen(n) {
   const isStep = Number.isInteger(nNum) && nNum >= 1 && nNum <= 6;
   if (isStep) {
     AppState.step = nNum;
+    if (nNum === 6) AppState.caseSubmitted = true;
     sb?.classList.remove('hidden');
     updateStepperUI(AppState.step);
   } else {
     AppState.step = 0;
+    if (nNum === 0) AppState.caseSubmitted = false;
     sb?.classList.add('hidden');
   }
 
@@ -1413,6 +1461,7 @@ function resetGeoBtn() {
 }
 
 function startDenuncia(targetStep) {
+  AppState.caseSubmitted = false;
   if (AppState.geo.active) { navigateToScreen(targetStep); return; }
   AppState.pendingTargetStep = targetStep;
   const err = ui.$('geo-error');
@@ -1676,6 +1725,14 @@ window.resumeDraft = function() {
 document.addEventListener('DOMContentLoaded', function() {
 
   document.body.addEventListener('click', function(e) {
+    const lockedStep = e.target.closest('.stp-c.locked');
+    if (lockedStep) {
+      e.preventDefault();
+      e.stopPropagation();
+      ui.showToast('<span>🔒</span><span>' + flowLockText('toast') + '</span>', 'error', 'err-toast');
+      updateStepperUI(6);
+      return;
+    }
     var nav    = e.target.closest('[data-nav]');
     var start  = e.target.closest('[data-start]');
     var lang   = e.target.closest('[data-lang]');

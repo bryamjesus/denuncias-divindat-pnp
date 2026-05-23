@@ -1384,6 +1384,7 @@ function navigateToScreen(n) {
 
   if (nNum > AppState.step && AppState.step > 0 && AppState.step < 6) {
     if (!validateStep(AppState.step)) return;
+    clearStepValidationState(AppState.step);
   }
 
   Object.values(SCREEN_IDS).forEach(id => {
@@ -1826,6 +1827,8 @@ function validateField2(el,force){if(!el||!el.classList.contains('finput')||!vis
 function refreshValidationMessages2(){document.querySelectorAll('.field-error[data-ux-error]').forEach(function(e){e.textContent=ux2(e.getAttribute('data-ux-error'));});document.querySelectorAll('.validation-ok').forEach(function(e){e.textContent=ux2('ok');});var n=ui.$('notif-error');if(n)n.textContent=t('err-notif');}
 function clearNotifErr2(){var w=ui.$('notif-wrap');if(w)w.style.cssText='';var e=ui.$('notif-error');if(e)e.remove();}
 function showNotifErr2(){var w=ui.$('notif-wrap');if(w)w.style.cssText='border:1.5px solid var(--danger);padding:8px;border-radius:8px;background:#fdf2f1;';var e=ui.$('notif-error');if(!e&&w){e=document.createElement('div');e.id='notif-error';e.className='field-error show';e.style.display='block';w.insertAdjacentElement('afterend',e);}if(e)e.textContent=t('err-notif');}
+function clearFieldValidationState2(el){if(!el)return;var fg=el.closest('.fg');delete el.dataset.touched;el.classList.remove('invalid','valid');if(fg){fg.classList.remove('has-error','has-success');var e=fg.querySelector('.field-error');if(e)e.classList.remove('show');}}
+function clearStepValidationState(stepNum){var stepMap={1:'s1',2:'s2',3:'s3',4:'s4',5:'s5'};var c=ui.$(stepMap[stepNum]);if(!c)return;c.querySelectorAll('.finput').forEach(clearFieldValidationState2);if(stepNum===2)clearNotifErr2();}
 function getMontoInputs(){if(AppState.crime==='Phishing'||AppState.crime==='Fraude')return [ui.$('monto-min'),ui.$('monto-max')];if(AppState.crime==='Extorsión')return [ui.$('ext-monto-min'),ui.$('ext-monto-max')];return [null,null];}
 function validateMontoRange(showToastMsg){var p=getMontoInputs(),minEl=p[0],maxEl=p[1];if(!minEl||!maxEl||!minEl.value||!maxEl.value)return true;if(parseFloat(maxEl.value)<parseFloat(minEl.value)){var fg=maxEl.closest('.fg'),e=fg?fieldErr2(fg):null;if(fg)fg.classList.add('has-error');maxEl.classList.remove('valid');maxEl.classList.add('invalid');if(e){e.textContent=ux2('monto');e.setAttribute('data-ux-error','monto');e.classList.add('show');}if(showToastMsg)ui.showToast(t('err-monto'),'error','err-toast');return false;}validateField2(maxEl,maxEl.dataset.touched==='true');return true;}
 function validateStep(stepNum){enhanceFormFields();var stepMap={1:'s1',2:'s2',3:'s3',4:'s4',5:'s5'};var c=ui.$(stepMap[stepNum]);if(!c)return true;var valid=true;if(stepNum===2){var sms=ui.$('nch-sms'),email=ui.$('nch-email');if(sms&&email&&!sms.classList.contains('on')&&!email.classList.contains('on')){showNotifErr2();ui.showToast(t('err-notif'),'error');valid=false;}else clearNotifErr2();}c.querySelectorAll('.finput').forEach(function(inp){if(!validateField2(inp,true))valid=false;});if(stepNum===3&&!validateMontoRange(true))valid=false;if(!valid)ui.showToast(t('err-required'),'error','err-toast');return valid;}
